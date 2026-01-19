@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b859526dee4a7fa4586888cf3be7b86b, type: 2}
     - target: {fileID: 919132149155446097, guid: 5528e816ffc626f438bc362c7baa014d, type: 3}
       propertyPath: m_Name
-      value: Trolley
+      value: TrolleyModel
       objectReference: {fileID: 0}
     - target: {fileID: 3415187203891776283, guid: 5528e816ffc626f438bc362c7baa014d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
