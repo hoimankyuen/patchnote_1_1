@@ -35,9 +35,6 @@ public class Cart : MonoBehaviour
     {
         if (m_inputReader.IsMoveInputPressed)
         {
-            m_rigidbody.linearVelocity = Vector3.zero;
-            m_rigidbody.angularVelocity = Vector3.zero;
-        
             // Get camera directions flattened on the Y axis
             Vector3 cameraForward = m_cameraTransform.forward;
             Vector3 cameraRight = m_cameraTransform.right;
@@ -48,13 +45,20 @@ public class Cart : MonoBehaviour
 
             // Calculate movement direction relative to camera
             Vector3 moveDir = (cameraForward * m_inputReader.MoveDirection.y) + (cameraRight * m_inputReader.MoveDirection.x);
-                
-            Vector3 newPosition = m_rigidbody.position + moveDir * (m_acceleration * Time.fixedDeltaTime);
-            m_rigidbody.MovePosition(newPosition);
-
-            float turnAngle = m_inputReader.MoveDirection.x * m_turnSpeed * Time.fixedDeltaTime;
-            Quaternion deltaRotation = Quaternion.Euler(0f, turnAngle, 0f);
-            m_rigidbody.MoveRotation(m_rigidbody.rotation * deltaRotation);
+            
+            // Limit the maximum speed
+            if (m_rigidbody.linearVelocity.magnitude > m_maxSpeed)
+            {
+                m_rigidbody.linearVelocity = m_rigidbody.linearVelocity.normalized * m_maxSpeed;
+            }
+            else
+            {
+                m_rigidbody.AddForce(moveDir * m_acceleration, ForceMode.Acceleration);
+            }
         }
+        
+        float turnAngle = m_inputReader.RotateInput * m_turnSpeed * Time.fixedDeltaTime;
+        Quaternion deltaRotation = Quaternion.Euler(0f, turnAngle, 0f);
+        m_rigidbody.MoveRotation(m_rigidbody.rotation * deltaRotation);
     }
 }

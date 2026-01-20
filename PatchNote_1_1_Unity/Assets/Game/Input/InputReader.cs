@@ -18,10 +18,9 @@ namespace Input
         public UnityAction Attack = delegate {  };
         public UnityAction Next = delegate {  };
         public UnityAction Previous = delegate {  };
-        public UnityAction Interact = delegate {  };
-        public UnityAction Inventory = delegate {  };
-        public UnityAction Roll = delegate {  };
         public UnityAction Look = delegate {  };
+        public UnityAction Sprint = delegate {  };
+        public UnityAction<float> Rotate = delegate { };
         
         private InputSystem_Actions m_inputActions;
         
@@ -29,6 +28,8 @@ namespace Input
         public Vector2 LookDirection => m_inputActions.Player.Look.ReadValue<Vector2>();
         
         public bool IsMoveInputPressed => m_inputActions.Player.Move.IsPressed();
+        public float RotateInput => m_inputActions.Player.Rotate.ReadValue<float>();
+        
         public void EnablePlayerActions()
         {
             if (m_inputActions == null)
@@ -56,24 +57,6 @@ namespace Input
                 Attack?.Invoke();
             }
         }
-        
-        public void OnInteract(InputAction.CallbackContext context)
-        {
-            if (context.phase == InputActionPhase.Started)
-            {
-                Interact?.Invoke();
-            }
-        }
-
-        public void OnCrouch(InputAction.CallbackContext context)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void OnJump(InputAction.CallbackContext context)
-        {
-            throw new System.NotImplementedException();
-        }
 
         public void OnPrevious(InputAction.CallbackContext context)
         {
@@ -87,19 +70,12 @@ namespace Input
         
         public void OnSprint(InputAction.CallbackContext context)
         {
-            
-        }
-        public void OnInventory(InputAction.CallbackContext context)
-        {
-            Inventory?.Invoke();
+            Sprint?.Invoke();
         }
 
-        public void OnRoll(InputAction.CallbackContext context)
+        public void OnRotate(InputAction.CallbackContext context)
         {
-            if (context.phase == InputActionPhase.Started)
-            {
-                Roll?.Invoke();
-            }
+            Rotate?.Invoke(context.ReadValue<float>());
         }
 
         public void OnLook(InputAction.CallbackContext context)
