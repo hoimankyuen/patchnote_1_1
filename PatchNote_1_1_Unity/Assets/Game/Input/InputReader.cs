@@ -15,12 +15,11 @@ namespace Input
     public class InputReader : ScriptableObject, IInputReader, IPlayerActions
     {
         public UnityAction<Vector2> Move = delegate {  };
-        public UnityAction Attack = delegate {  };
+        public UnityAction<float> Rotate = delegate { };
+        public UnityAction Look = delegate {  };
+        public UnityAction Reset = delegate { };
         public UnityAction Next = delegate {  };
         public UnityAction Previous = delegate {  };
-        public UnityAction Look = delegate {  };
-        public UnityAction Sprint = delegate {  };
-        public UnityAction<float> Rotate = delegate { };
         
         private InputSystem_Actions m_inputActions;
         
@@ -49,12 +48,22 @@ namespace Input
         {
             Move?.Invoke(context.ReadValue<Vector2>());
         }
+        
+        public void OnRotate(InputAction.CallbackContext context)
+        {
+            Rotate?.Invoke(context.ReadValue<float>());
+        }
+        
+        public void OnLook(InputAction.CallbackContext context)
+        {
+            Look?.Invoke();
+        }
 
-        public void OnAttack(InputAction.CallbackContext context)
+        public void OnReset(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Started)
             {
-                Attack?.Invoke();
+                Reset?.Invoke();
             }
         }
 
@@ -66,21 +75,6 @@ namespace Input
         public void OnNext(InputAction.CallbackContext context)
         {
             Next?.Invoke();
-        }
-        
-        public void OnSprint(InputAction.CallbackContext context)
-        {
-            Sprint?.Invoke();
-        }
-
-        public void OnRotate(InputAction.CallbackContext context)
-        {
-            Rotate?.Invoke(context.ReadValue<float>());
-        }
-
-        public void OnLook(InputAction.CallbackContext context)
-        {
-            Look?.Invoke();
         }
     }
 }
