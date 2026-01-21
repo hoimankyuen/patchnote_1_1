@@ -13,7 +13,8 @@ public class Cart : MonoBehaviour
     [Header("Components")]
     [SerializeField] private Rigidbody m_rigidbody;
     [SerializeField] private Transform m_cameraFollowTargetTransform;
-    [SerializeField] private List<Collider> m_wheeLColliders;
+    [SerializeField] private List<Collider> m_wheelColliders;
+    [SerializeField] private List<Transform> m_wheelModelTransforms;
 
     [Header("Settings (Acceleration)")] 
     [SerializeField] private float m_maxSpeed;
@@ -30,6 +31,8 @@ public class Cart : MonoBehaviour
 
     private readonly List<int> m_colliderInstanceIds = new List<int>();
 
+    private Vector3 m_lastPosition;
+    
     private void Awake()
     {
         RecordOriginalTransform();
@@ -61,16 +64,18 @@ public class Cart : MonoBehaviour
     {
         m_inputReader.DisablePlayerActions();
     }
-
+    
     private void FixedUpdate()
     {
         ApplyMovement();
         ReOrientateCameraFollowTarget();
+
+        RotateWheels();
     }
     
     private void SetupColliders()
     {
-        foreach (Collider c in m_wheeLColliders)
+        foreach (Collider c in m_wheelColliders)
         {
             m_colliderInstanceIds.Add(c.GetInstanceID());
             c.hasModifiableContacts = true;
@@ -107,6 +112,7 @@ public class Cart : MonoBehaviour
         m_rigidbody.angularVelocity = Vector3.zero;
         transform.position = m_originalPosition;
         transform.rotation = m_originalRotation;
+        m_lastPosition = transform.position;
     }
 
     private void ApplyMovement()
@@ -139,6 +145,19 @@ public class Cart : MonoBehaviour
     
     private void ReOrientateCameraFollowTarget()
     {
-        m_cameraFollowTargetTransform.rotation = Quaternion.LookRotation(transform.forward, Vector3.up);
+        m_cameraFollowTargetTransform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane( transform.forward, Vector3.up).normalized, Vector3.up);
+    }
+
+    private void RotateWheels()
+    {
+        if (Vector3.Distance(transform.position, m_lastPosition) > 0.01f)
+        {
+            Vector3 direction = Vector3.ProjectOnPlane(transform.position - m_lastPosition, transform.up).normalized;
+            foreach (Transform wheel in m_wheelModelTransforms)
+            {
+                wheel.rotation = Quaternion.LookRotation(direction, transform.up);
+            }
+            m_lastPosition = transform.position;
+        }
     }
 }

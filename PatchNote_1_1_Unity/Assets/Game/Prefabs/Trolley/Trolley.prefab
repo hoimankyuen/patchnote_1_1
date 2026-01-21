@@ -1454,14 +1454,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cart
   m_inputReader: {fileID: 11400000, guid: 9f5e1caab0d20b480919c7157126729c, type: 2}
-  m_rigidbody: {fileID: 2731846719565306082}
   m_cameraTransform: {fileID: 0}
+  m_rigidbody: {fileID: 2731846719565306082}
   m_cameraFollowTargetTransform: {fileID: 8949017635357069669}
-  m_wheeLColliders:
+  m_wheelColliders:
   - {fileID: 2150718675317431589}
   - {fileID: 6560812001152844872}
   - {fileID: 8562752029443050480}
   - {fileID: 1692341030899372990}
+  m_wheelModelTransforms:
+  - {fileID: 4307891399917902349}
+  - {fileID: 9211517036204965272}
+  - {fileID: 1900915451533126609}
+  - {fileID: 2816417309138176617}
   m_maxSpeed: 15
   m_acceleration: 15
   m_deceleration: 15
