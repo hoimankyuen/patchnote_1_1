@@ -1349,8 +1349,8 @@ Transform:
   m_GameObject: {fileID: 294317149}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.237, y: 2.418, z: 0.249}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalPosition: {x: -0.035, y: 1.059, z: 0.116}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 333070547}
@@ -2396,7 +2396,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: -3}
+  m_LocalPosition: {x: 0, y: 1.5, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2795,8 +2795,8 @@ Transform:
   m_GameObject: {fileID: 773224475}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.132, y: 2.418, z: -0.073}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalPosition: {x: 0.132, y: 1.059, z: -0.073}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 333070547}
@@ -4771,8 +4771,8 @@ Transform:
   m_GameObject: {fileID: 1446135953}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.108, y: 2.418, z: 0.451}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalPosition: {x: 0.083, y: 1.059, z: 0.176}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 333070547}
@@ -5447,7 +5447,7 @@ Transform:
   m_GameObject: {fileID: 1532984486}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: -3}
+  m_LocalPosition: {x: 0, y: 1.5, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5546,7 +5546,7 @@ MonoBehaviour:
     AngularDampingMode: 0
     RotationDamping: {x: 0.25, y: 0.25, z: 0.25}
     QuaternionDamping: 1
-  FollowOffset: {x: 0, y: 3, z: -3}
+  FollowOffset: {x: 0, y: 1.5, z: -1.5}
 --- !u!114 &1532984491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5722,8 +5722,8 @@ Transform:
   m_GameObject: {fileID: 1565077032}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.262, y: 2.418, z: -0.279}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalPosition: {x: -0.119, y: 1.059, z: -0.073}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 333070547}
@@ -8442,34 +8442,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 333070547}
     m_Modifications:
-    - target: {fileID: 2731846719565306082, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
-      propertyPath: m_LinearDamping
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 4077866214284046478, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
-      propertyPath: m_maxSpeed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4077866214284046478, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
-      propertyPath: m_acceleration
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4077866214284046478, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
-      propertyPath: m_deceleration
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4077866214284046478, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
-      propertyPath: m_turningForce
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 4077866214284046478, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
       propertyPath: m_cameraTransform
       value: 
       objectReference: {fileID: 1532984487}
-    - target: {fileID: 4077866214284046478, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
-      propertyPath: m_maxTurningSpeed
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4584568171044949356, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
