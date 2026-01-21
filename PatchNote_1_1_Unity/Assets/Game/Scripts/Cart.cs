@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Input;
 using Unity.Collections;
@@ -17,6 +16,8 @@ public class Cart : MonoBehaviour
     [SerializeField] private float m_acceleration;
     [SerializeField] private float m_deceleration;
     [SerializeField] private float m_turnSpeed = 100f;
+    [SerializeField] private float m_turningForce;
+    [SerializeField] private float m_maxTurningSpeed;
 
     private float m_currentSpeed;
 
@@ -53,15 +54,17 @@ public class Cart : MonoBehaviour
         if (m_inputReader.IsMoveInputPressed)
         {
             // Get camera directions flattened on the Y axis
-            Vector3 cameraForward = m_cameraTransform.forward;
-            Vector3 cameraRight = m_cameraTransform.right;
-            cameraForward.y = 0;
-            cameraRight.y = 0;
-            cameraForward.Normalize();
-            cameraRight.Normalize();
+            Vector3 cameraForward = Vector3.ProjectOnPlane( m_cameraTransform.forward, Vector3.up).normalized;
+            Vector3 cameraRight = Vector3.ProjectOnPlane(m_cameraTransform.right, Vector3.up).normalized;
+            //Vector3 cameraForward = m_cameraTransform.forward;
+            //Vector3 cameraRight = m_cameraTransform.right;
+            //cameraForward.y = 0;
+            //cameraRight.y = 0;
+            //cameraForward.Normalize();
+            //cameraRight.Normalize();
 
             // Calculate movement direction relative to camera
-            Vector3 moveDir = (cameraForward * m_inputReader.MoveDirection.y) + (cameraRight * m_inputReader.MoveDirection.x);
+            Vector3 moveDir = (cameraForward * m_inputReader.MoveDirection.y + cameraRight * m_inputReader.MoveDirection.x).normalized;
             
             // Limit the maximum speed
             if (m_rigidbody.linearVelocity.magnitude > m_maxSpeed)
@@ -74,9 +77,11 @@ public class Cart : MonoBehaviour
             }
         }
         
-        float turnAngle = m_inputReader.RotateInput * m_turnSpeed * Time.fixedDeltaTime;
-        Quaternion deltaRotation = Quaternion.Euler(0f, turnAngle, 0f);
-        m_rigidbody.MoveRotation(m_rigidbody.rotation * deltaRotation);
+        //float turnAngle = m_inputReader.RotateInput * m_turnSpeed * Time.fixedDeltaTime;
+        //Quaternion deltaRotation = Quaternion.Euler(0f, turnAngle, 0f);
+        //m_rigidbody.MoveRotation(m_rigidbody.rotation * deltaRotation);
+        
+        m_rigidbody.AddRelativeTorque(Vector3.up * (m_inputReader.RotateInput * m_turningForce), ForceMode.Acceleration);
     }
     
     private void SetupColliders()
@@ -100,7 +105,8 @@ public class Cart : MonoBehaviour
             {
                 if (contactPair.GetSeparation(i) > 0f)
                 {
-                    contactPair.IgnoreContact(i);
+                    contactPair.SetNormal(i, Vector3.up);
+                    //contactPair.IgnoreContact(i);
                 }
             }
 
