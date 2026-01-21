@@ -2396,7 +2396,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: -1.5}
+  m_LocalPosition: {x: 0, y: 1.51, z: -1.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2988,6 +2988,11 @@ MonoBehaviour:
 --- !u!4 &807017756 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4584568171044949356, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
+  m_PrefabInstance: {fileID: 3571118845490365242}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &851577602 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8949017635357069669, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
   m_PrefabInstance: {fileID: 3571118845490365242}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &862274785
@@ -5447,7 +5452,7 @@ Transform:
   m_GameObject: {fileID: 1532984486}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: -1.5}
+  m_LocalPosition: {x: 0, y: 1.51, z: -1.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5514,9 +5519,9 @@ MonoBehaviour:
     Range: {x: -60, y: 60}
     Wrap: 0
     Recentering:
-      Enabled: 0
-      Wait: 1
-      Time: 2
+      Enabled: 1
+      Wait: 0
+      Time: 1
     Restrictions: 0
   TiltAxis:
     Value: 0
@@ -5524,9 +5529,9 @@ MonoBehaviour:
     Range: {x: -30, y: 30}
     Wrap: 0
     Recentering:
-      Enabled: 0
-      Wait: 1
-      Time: 2
+      Enabled: 1
+      Wait: 0
+      Time: 1
     Restrictions: 0
 --- !u!114 &1532984490
 MonoBehaviour:
@@ -5546,7 +5551,7 @@ MonoBehaviour:
     AngularDampingMode: 0
     RotationDamping: {x: 0.25, y: 0.25, z: 0.25}
     QuaternionDamping: 1
-  FollowOffset: {x: 0, y: 1.5, z: -1.5}
+  FollowOffset: {x: 0, y: 1.51, z: -1.74}
 --- !u!114 &1532984491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5567,7 +5572,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 1612800488}
+    TrackingTarget: {fileID: 851577602}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -5833,11 +5838,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565077032}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1612800488 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8707865504469962289, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
-  m_PrefabInstance: {fileID: 3571118845490365242}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1613136744
 GameObject:
   m_ObjectHideFlags: 0
