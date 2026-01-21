@@ -11,13 +11,14 @@ public class Cart : MonoBehaviour
     [SerializeField] private Transform m_cameraTransform;
     [SerializeField] private List<Collider> m_wheeLColliders;
 
-    [Header("Settings")] 
+    [Header("Settings (Acceleration)")] 
     [SerializeField] private float m_maxSpeed;
     [SerializeField] private float m_acceleration;
     [SerializeField] private float m_deceleration;
-    [SerializeField] private float m_turnSpeed = 100f;
-    [SerializeField] private float m_turningForce;
+
+    [Header("Settings Turning")]
     [SerializeField] private float m_maxTurningSpeed;
+    [SerializeField] private float m_turningForce;
 
     private float m_currentSpeed;
 
@@ -66,7 +67,7 @@ public class Cart : MonoBehaviour
             // Calculate movement direction relative to camera
             Vector3 moveDir = (cameraForward * m_inputReader.MoveDirection.y + cameraRight * m_inputReader.MoveDirection.x).normalized;
             
-            // Limit the maximum speed
+            // Add force while limit the maximum speed
             if (m_rigidbody.linearVelocity.magnitude > m_maxSpeed)
             {
                 m_rigidbody.linearVelocity = m_rigidbody.linearVelocity.normalized * m_maxSpeed;
@@ -77,11 +78,15 @@ public class Cart : MonoBehaviour
             }
         }
         
-        //float turnAngle = m_inputReader.RotateInput * m_turnSpeed * Time.fixedDeltaTime;
-        //Quaternion deltaRotation = Quaternion.Euler(0f, turnAngle, 0f);
-        //m_rigidbody.MoveRotation(m_rigidbody.rotation * deltaRotation);
-        
-        m_rigidbody.AddRelativeTorque(Vector3.up * (m_inputReader.RotateInput * m_turningForce), ForceMode.Acceleration);
+        // Add torque while limit the maximum rotation
+        if (m_rigidbody.angularVelocity.magnitude > m_maxTurningSpeed)
+        {
+            m_rigidbody.angularVelocity = m_rigidbody.angularVelocity.normalized * m_maxTurningSpeed;
+        }
+        else
+        {
+            m_rigidbody.AddRelativeTorque(Vector3.up * (m_inputReader.RotateInput * m_turningForce), ForceMode.Acceleration);
+        }
     }
     
     private void SetupColliders()
@@ -106,10 +111,8 @@ public class Cart : MonoBehaviour
                 if (contactPair.GetSeparation(i) > 0f)
                 {
                     contactPair.SetNormal(i, Vector3.up);
-                    //contactPair.IgnoreContact(i);
                 }
             }
-
         }
     }
 }

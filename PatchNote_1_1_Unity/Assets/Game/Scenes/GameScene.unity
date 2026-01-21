@@ -8442,10 +8442,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 333070547}
     m_Modifications:
+    - target: {fileID: 2731846719565306082, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
+      propertyPath: m_LinearDamping
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077866214284046478, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
+      propertyPath: m_maxSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077866214284046478, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
+      propertyPath: m_acceleration
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077866214284046478, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
+      propertyPath: m_deceleration
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077866214284046478, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
+      propertyPath: m_turningForce
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4077866214284046478, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
       propertyPath: m_cameraTransform
       value: 
       objectReference: {fileID: 1532984487}
+    - target: {fileID: 4077866214284046478, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
+      propertyPath: m_maxTurningSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4584568171044949356, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
