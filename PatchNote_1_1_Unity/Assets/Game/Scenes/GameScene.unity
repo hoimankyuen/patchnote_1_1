@@ -3604,6 +3604,11 @@ MonoBehaviour:
   m_inputReader: {fileID: 11400000, guid: 9f5e1caab0d20b480919c7157126729c, type: 2}
   m_rigidbody: {fileID: 807017757}
   m_cameraTransform: {fileID: 1532984487}
+  m_wheeLColliders:
+  - {fileID: 1968671953}
+  - {fileID: 1498788144}
+  - {fileID: 136890454}
+  - {fileID: 303241470}
   m_maxSpeed: 100
   m_acceleration: 100
   m_deceleration: 100

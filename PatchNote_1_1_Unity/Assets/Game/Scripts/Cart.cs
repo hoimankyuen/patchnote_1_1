@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using Input;
+using Unity.Collections;
 using UnityEngine;
 
 public class Cart : MonoBehaviour
@@ -7,6 +10,7 @@ public class Cart : MonoBehaviour
     [SerializeField] private InputReader m_inputReader;
     [SerializeField] private Rigidbody m_rigidbody;
     [SerializeField] private Transform m_cameraTransform;
+    [SerializeField] private List<Collider> m_wheeLColliders;
 
     [Header("Settings")] 
     [SerializeField] private float m_maxSpeed;
@@ -15,6 +19,14 @@ public class Cart : MonoBehaviour
     [SerializeField] private float m_turnSpeed = 100f;
 
     private float m_currentSpeed;
+
+    private readonly List<int> _colliderInstanceIds = new List<int>();
+
+    private void Awake()
+    {
+        SetupColliders();
+        Physics.ContactModifyEvent += PreventGhostCollisions;
+    }
     
     private void Start()
     {
@@ -29,6 +41,11 @@ public class Cart : MonoBehaviour
     private void OnDisable()
     {
         m_inputReader.DisablePlayerActions();
+    }
+
+    private void OnDestroy()
+    {
+        Physics.ContactModifyEvent -= PreventGhostCollisions;
     }
 
     private void FixedUpdate()
@@ -60,5 +77,33 @@ public class Cart : MonoBehaviour
         float turnAngle = m_inputReader.RotateInput * m_turnSpeed * Time.fixedDeltaTime;
         Quaternion deltaRotation = Quaternion.Euler(0f, turnAngle, 0f);
         m_rigidbody.MoveRotation(m_rigidbody.rotation * deltaRotation);
+    }
+    
+    private void SetupColliders()
+    {
+        foreach (Collider c in m_wheeLColliders)
+        {
+            _colliderInstanceIds.Add(c.GetInstanceID());
+            c.hasModifiableContacts = true;
+            c.providesContacts = true;
+        }
+    }
+    
+    private void PreventGhostCollisions(PhysicsScene scene, NativeArray<ModifiableContactPair> contactPairs)
+    {
+        foreach (ModifiableContactPair contactPair in contactPairs)
+        {
+            if (!_colliderInstanceIds.Contains(contactPair.colliderInstanceID))
+                continue;
+            
+            for (int i = 0; i < contactPair.contactCount; i++)
+            {
+                if (contactPair.GetSeparation(i) > 0f)
+                {
+                    contactPair.IgnoreContact(i);
+                }
+            }
+
+        }
     }
 }
