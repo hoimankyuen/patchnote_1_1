@@ -1470,8 +1470,8 @@ MonoBehaviour:
   m_maxSpeed: 15
   m_acceleration: 15
   m_deceleration: 15
-  m_maxTurningSpeed: 5
-  m_turningForce: 15
+  m_maxTurningSpeed: 3
+  m_turningForce: 30
 --- !u!54 &2731846719565306082
 Rigidbody:
   m_ObjectHideFlags: 0
