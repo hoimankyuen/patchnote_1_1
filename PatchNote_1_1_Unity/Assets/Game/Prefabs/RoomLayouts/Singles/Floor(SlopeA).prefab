@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 8457049938323988958}
   - component: {fileID: 4554997487201672093}
   m_Layer: 0
-  m_Name: Floor(SlopeA)Model
+  m_Name: Floor(SlopeA)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1218609228709470803
 Transform:
