@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Input;
-using Unity.Cinemachine;
 using Unity.Collections;
 using UnityEngine;
 
@@ -25,6 +24,9 @@ public class Cart : MonoBehaviour
     [SerializeField] private float m_maxTurningSpeed;
     [SerializeField] private float m_turningForce;
 
+    private Vector2 m_MoveInput;
+    private float m_RotateInput;
+    
     private Vector3 m_originalPosition;
     private Quaternion m_originalRotation;
     private float m_currentSpeed;
@@ -32,6 +34,8 @@ public class Cart : MonoBehaviour
     private readonly List<int> m_colliderInstanceIds = new List<int>();
 
     private Vector3 m_lastPosition;
+    
+    // ======== Unity Events ========
     
     private void Awake()
     {
@@ -42,7 +46,8 @@ public class Cart : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        m_inputReader.Move += OnMoveTrolley;
+        m_inputReader.Rotate += OnRotateTrolley;
         m_inputReader.Reset += OnResetTrolley;
     }
     
@@ -50,19 +55,11 @@ public class Cart : MonoBehaviour
     {
         if (m_inputReader != null)
         {
+            m_inputReader.Move -= OnMoveTrolley;
+            m_inputReader.Rotate -= OnRotateTrolley;
             m_inputReader.Reset -= OnResetTrolley;
         }
         Physics.ContactModifyEvent -= PreventGhostCollisions;
-    }
-    
-    private void OnEnable()
-    {
-        m_inputReader.EnablePlayerActions();
-    }
-
-    private void OnDisable()
-    {
-        m_inputReader.DisablePlayerActions();
     }
     
     private void FixedUpdate()
@@ -72,6 +69,8 @@ public class Cart : MonoBehaviour
 
         RotateWheels();
     }
+    
+    // ======== Physics System Handling ========
     
     private void SetupColliders()
     {
@@ -99,6 +98,8 @@ public class Cart : MonoBehaviour
             }
         }
     }
+    
+    // ======== Reset ========
 
     private void RecordOriginalTransform()
     {
@@ -115,12 +116,24 @@ public class Cart : MonoBehaviour
         m_lastPosition = transform.position;
     }
 
+    // ======== Controls ========
+
+    private void OnMoveTrolley(Vector2 inputValue)
+    {
+        m_MoveInput = inputValue;
+    }
+
+    private void OnRotateTrolley(float inputValue)
+    {
+        m_RotateInput = inputValue;
+    }
+    
     private void ApplyMovement()
     {
         // Calculate movement direction relative to camera
         Vector3 cameraForward = Vector3.ProjectOnPlane( m_cameraTransform.forward, Vector3.up).normalized;
         Vector3 cameraRight = Vector3.ProjectOnPlane(m_cameraTransform.right, Vector3.up).normalized;
-        Vector3 moveDir = (cameraForward * m_inputReader.MoveDirection.y + cameraRight * m_inputReader.MoveDirection.x).normalized;
+        Vector3 moveDir = (cameraForward * m_MoveInput.y + cameraRight * m_MoveInput.x).normalized;
             
         // Add force while limit the maximum speed
         if (m_rigidbody.linearVelocity.magnitude > m_maxSpeed)
@@ -139,7 +152,7 @@ public class Cart : MonoBehaviour
         }
         else
         {
-            m_rigidbody.AddRelativeTorque(Vector3.up * (m_inputReader.RotateInput * m_turningForce), ForceMode.Acceleration);
+            m_rigidbody.AddRelativeTorque(Vector3.up * (m_RotateInput * m_turningForce), ForceMode.Acceleration);
         }
     }
     
@@ -147,6 +160,8 @@ public class Cart : MonoBehaviour
     {
         m_cameraFollowTargetTransform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane( transform.forward, Vector3.up).normalized, Vector3.up);
     }
+    
+    // ======== Appearance ========
 
     private void RotateWheels()
     {

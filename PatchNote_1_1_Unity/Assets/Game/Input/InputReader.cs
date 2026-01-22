@@ -5,43 +5,46 @@ using static InputSystem_Actions;
 
 namespace Input
 {
-    public interface IInputReader
-    {
-        Vector2 MoveDirection { get; }
-        void EnablePlayerActions();
-    }
-    
     [CreateAssetMenu(fileName = "InputReader", menuName = "Input/InputReader")]
-    public class InputReader : ScriptableObject, IInputReader, IPlayerActions
+    public class InputReader : ScriptableObject, IPlayerActions
     {
+        // here for controlling other system that uses input actions independently
+        [SerializeField] private InputActionAsset m_inputActionAsset; 
+        
+        private InputSystem_Actions m_inputActions;
+        
         public UnityAction<Vector2> Move = delegate {  };
         public UnityAction<float> Rotate = delegate { };
         public UnityAction Look = delegate {  };
         public UnityAction Reset = delegate { };
-        public UnityAction Next = delegate {  };
-        public UnityAction Previous = delegate {  };
+        public UnityAction Pause = delegate { };
         
-        private InputSystem_Actions m_inputActions;
-        
-        public Vector2 MoveDirection => m_inputActions.Player.Move.ReadValue<Vector2>();
-        public Vector2 LookDirection => m_inputActions.Player.Look.ReadValue<Vector2>();
-        
-        public bool IsMoveInputPressed => m_inputActions.Player.Move.IsPressed();
-        public float RotateInput => m_inputActions.Player.Rotate.ReadValue<float>();
-        
-        public void EnablePlayerActions()
+        public void EnablePlayerInput()
         {
             if (m_inputActions == null)
             {
                 m_inputActions = new InputSystem_Actions();
                 m_inputActions.Player.SetCallbacks(this);
+                
             }
-            m_inputActions.Enable();
+            m_inputActions.Player.Enable();
+            m_inputActionAsset.actionMaps[0].Enable();
+        }
+
+        public void EnableUIInput()
+        {
+            m_inputActionAsset.actionMaps[1].Enable();
         }
         
-        public void DisablePlayerActions()
+        public void DisablePlayerInput()
         {
-            m_inputActions.Disable();
+            m_inputActions.Player.Disable();
+            m_inputActionAsset.actionMaps[0].Disable();
+        }
+
+        public void DisableUIInput()
+        {
+            m_inputActionAsset.actionMaps[1].Disable();
         }
 
         public void OnMove(InputAction.CallbackContext context)
@@ -61,20 +64,12 @@ namespace Input
 
         public void OnReset(InputAction.CallbackContext context)
         {
-            if (context.phase == InputActionPhase.Started)
-            {
-                Reset?.Invoke();
-            }
-        }
-
-        public void OnPrevious(InputAction.CallbackContext context)
-        {
-            Previous?.Invoke();
+            Reset?.Invoke();
         }
         
-        public void OnNext(InputAction.CallbackContext context)
+        public void OnPause(InputAction.CallbackContext context)
         {
-            Next?.Invoke();
+            Pause?.Invoke();
         }
     }
 }

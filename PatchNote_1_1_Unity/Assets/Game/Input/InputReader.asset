@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e8bc6c641811b963a2f2fcd034073e2, type: 3}
   m_Name: InputReader
   m_EditorClassIdentifier: 
+  m_inputActionAsset: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
