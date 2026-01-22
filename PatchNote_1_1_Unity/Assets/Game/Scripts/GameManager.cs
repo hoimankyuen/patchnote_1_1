@@ -22,12 +22,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Cart m_cart;
 
     public State CurrentState { get; private set; }
-    public Action CurrentStateChanged;
+    public event Action CurrentStateChanged;
 
     public void Awake()
     {
         m_inputReader.Pause += Pause;
-        m_inputReader.Resume += Resume;
     }
     
     private void Start()
@@ -40,7 +39,6 @@ public class GameManager : MonoBehaviour
         if (m_inputReader != null)
         {
             m_inputReader.Pause -= Pause;
-            m_inputReader.Resume -= Resume;
             
             m_inputReader.DisablePlayerInput();
             m_inputReader.DisableUIInput();
@@ -101,7 +99,7 @@ public class GameManager : MonoBehaviour
     {
         if (CurrentState != State.Paused)
             return;
-        
+
         CurrentState = State.Playing;
         CurrentStateChanged?.Invoke();
         
