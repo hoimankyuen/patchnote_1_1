@@ -1,3 +1,4 @@
+using System;
 using Input;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -6,28 +7,32 @@ public class GameManager : MonoBehaviour
 {
     public enum State
     {
+        None,
+        MapPreview,
+        Countdown,
         Playing,
         Paused,
+        Ended
     }
 
-    [Header("References")]
-    [SerializeField] private InputReader m_inputReader;
-    [SerializeField] private CinemachineCamera m_camera;
+    [Header("References")] [SerializeField]
+    private InputReader m_inputReader;
+
+    [SerializeField] private CameraManager m_cameraManager;
     [SerializeField] private Cart m_cart;
- 
+
     public State CurrentState { get; private set; }
-    
-    private void Start()
+    public Action CurrentStateChanged;
+
+    public void Awake()
     {
         m_inputReader.Pause += Pause;
         m_inputReader.Resume += Resume;
-        
-        //m_inputReader.DisablePlayerInput();
-        //m_inputReader.DisableUIInput();
-        
-        m_inputReader.EnablePlayerInput();
-        
-        //Cursor.lockState = CursorLockMode.Locked;
+    }
+    
+    private void Start()
+    {
+        StartMapPreview();
     }
 
     private void OnDestroy()
@@ -38,13 +43,44 @@ public class GameManager : MonoBehaviour
             m_inputReader.Resume -= Resume;
             
             m_inputReader.DisablePlayerInput();
+            m_inputReader.DisableUIInput();
+            Cursor.lockState = CursorLockMode.None;
         }
+    }
+    
+    // ======== Map Preview ========
 
-        //Cursor.lockState = CursorLockMode.None;
+    private void StartMapPreview()
+    {
+        if (CurrentState != State.None)
+            return;
+        
+        CurrentState = State.MapPreview;
+        CurrentStateChanged?.Invoke();
+        
+        m_inputReader.DisablePlayerInput();
+        m_inputReader.EnableUIInput();
+        Cursor.lockState = CursorLockMode.Locked;
+        
+        m_cameraManager.StartMapPreviewCamera();
     }
 
+    public void CompleteMapPreview()
+    {
+        if (CurrentState != State.MapPreview)
+            return;
+        
+        CurrentState = State.Playing;
+        CurrentStateChanged?.Invoke();
+        
+        m_inputReader.EnablePlayerInput();
+        m_inputReader.DisableUIInput();
+        Cursor.lockState = CursorLockMode.Locked;
+        
+        m_cameraManager.StartTrolleyCamera();
+    }
     
-    // ======== Pausing ======== 
+    // ======== Playing and Paused ======== 
     
     private void Pause()
     {
@@ -52,6 +88,10 @@ public class GameManager : MonoBehaviour
             return;
         
         CurrentState = State.Paused;
+        CurrentStateChanged?.Invoke();
+        
+        m_inputReader.DisablePlayerInput();
+        m_inputReader.EnableUIInput();
         Cursor.lockState = CursorLockMode.None;
 
         Time.timeScale = 0f;
@@ -63,8 +103,12 @@ public class GameManager : MonoBehaviour
             return;
         
         CurrentState = State.Playing;
+        CurrentStateChanged?.Invoke();
+        
+        m_inputReader.EnablePlayerInput();
+        m_inputReader.DisableUIInput();
         Cursor.lockState = CursorLockMode.Locked;
+        
+        Time.timeScale = 1f;
     }
-    
-    
 }
