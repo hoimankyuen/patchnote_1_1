@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6834006810003656167, guid: cc414b68875b5e2459b23665cc5a89bf, type: 3}
       propertyPath: m_Name
-      value: UIVersionDisplay Variant
+      value: UIVersionDisplay
       objectReference: {fileID: 0}
     - target: {fileID: 7014968574220821729, guid: cc414b68875b5e2459b23665cc5a89bf, type: 3}
       propertyPath: m_Pivot.x
@@ -95,11 +95,11 @@ PrefabInstance:
     - target: {fileID: 9149222808658532073, guid: cc414b68875b5e2459b23665cc5a89bf, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: e85d29e36dfb5c446a8a5aa917036f21, type: 2}
+      objectReference: {fileID: 11400000, guid: a78c73db7cc6b98459d24811c49c6710, type: 2}
     - target: {fileID: 9149222808658532073, guid: cc414b68875b5e2459b23665cc5a89bf, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -8418552201053738536, guid: e85d29e36dfb5c446a8a5aa917036f21, type: 2}
+      objectReference: {fileID: 2026379841797840785, guid: a78c73db7cc6b98459d24811c49c6710, type: 2}
     - target: {fileID: 9149222808658532073, guid: cc414b68875b5e2459b23665cc5a89bf, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0

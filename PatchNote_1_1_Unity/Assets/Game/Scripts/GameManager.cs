@@ -79,6 +79,11 @@ public class GameManager : MonoBehaviour
     }
     
     // ======== Playing and Paused ======== 
+
+    public void Restart()
+    {
+        LevelManager.Instance.GotoLevel(LevelManager.Instance.CurrentLevelNumber);
+    }
     
     private void Pause()
     {
@@ -108,5 +113,10 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         
         Time.timeScale = 1f;
+    }
+
+    public void BackToManuMenu()
+    {
+        LevelManager.Instance.GotoMainMenu();
     }
 }

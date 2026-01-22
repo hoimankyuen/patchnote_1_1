@@ -21,10 +21,17 @@ public class UIMapPreviews : MonoBehaviour
 
     private float m_ElapseTime;
     
+    // ======== Unity Events ========
+    
     public void Awake()
     {
         m_gameManager.CurrentStateChanged += OnCurrentStateChanged;
         m_inputReader.Continue += OnSubmitInput;
+    }
+
+    public void Start()
+    {
+        UpdateText();
     }
 
     private void OnDestroy()
@@ -44,6 +51,8 @@ public class UIMapPreviews : MonoBehaviour
     {
         BlinkContinueText();
     }
+    
+    // ======== Other Events ========
     
     private void OnCurrentStateChanged()
     {
@@ -69,6 +78,13 @@ public class UIMapPreviews : MonoBehaviour
         m_gameManager.CompleteMapPreview();
     }
 
+    // ======== Functionalities ========
+
+    private void UpdateText()
+    {
+        m_levelNameText.text = $"Level {LevelManager.Instance.CurrentLevelNumber + 1}";
+    }
+    
     private void BlinkContinueText()
     {
         if (m_gameManager.CurrentState != GameManager.State.MapPreview)

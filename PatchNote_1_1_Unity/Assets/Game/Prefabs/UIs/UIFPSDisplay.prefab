@@ -11,18 +11,18 @@ PrefabInstance:
     - target: {fileID: 3225589218768812994, guid: 888924e37f343eb4081c1620d21f4403, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: e85d29e36dfb5c446a8a5aa917036f21, type: 2}
+      objectReference: {fileID: 11400000, guid: a78c73db7cc6b98459d24811c49c6710, type: 2}
     - target: {fileID: 3225589218768812994, guid: 888924e37f343eb4081c1620d21f4403, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -8418552201053738536, guid: e85d29e36dfb5c446a8a5aa917036f21, type: 2}
+      objectReference: {fileID: 2026379841797840785, guid: a78c73db7cc6b98459d24811c49c6710, type: 2}
     - target: {fileID: 3225589218768812994, guid: 888924e37f343eb4081c1620d21f4403, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5844671436420380317, guid: 888924e37f343eb4081c1620d21f4403, type: 3}
       propertyPath: m_Name
-      value: UIFPSDisplay Variant
+      value: UIFPSDisplay
       objectReference: {fileID: 0}
     - target: {fileID: 6139242484199956279, guid: 888924e37f343eb4081c1620d21f4403, type: 3}
       propertyPath: m_Pivot.x
