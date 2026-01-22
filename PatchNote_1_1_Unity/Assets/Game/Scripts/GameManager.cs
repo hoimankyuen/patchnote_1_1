@@ -50,9 +50,6 @@ public class GameManager : MonoBehaviour
 
     private void StartMapPreview()
     {
-        if (CurrentState != State.None)
-            return;
-        
         CurrentState = State.MapPreview;
         CurrentStateChanged?.Invoke();
         
@@ -67,19 +64,44 @@ public class GameManager : MonoBehaviour
     {
         if (CurrentState != State.MapPreview)
             return;
+
+        StartCountdown();
+    }
+    
+    // ======== Countdown ========
+
+    private void StartCountdown()
+    {
+        CurrentState = State.Countdown;
+        CurrentStateChanged?.Invoke();
         
+        m_inputReader.DisablePlayerInput();
+        m_inputReader.DisableUIInput();
+        Cursor.lockState = CursorLockMode.Locked;
+        
+        m_cameraManager.StartTrolleyCamera();
+    }
+
+    public void CompleteCountdown()
+    {
+        if (CurrentState != State.Countdown)
+            return;
+        
+        StartPlaying();
+    }
+
+    // ======== Playing and Paused ======== 
+
+    private void StartPlaying()
+    {
         CurrentState = State.Playing;
         CurrentStateChanged?.Invoke();
         
         m_inputReader.EnablePlayerInput();
         m_inputReader.DisableUIInput();
         Cursor.lockState = CursorLockMode.Locked;
-        
-        m_cameraManager.StartTrolleyCamera();
     }
     
-    // ======== Playing and Paused ======== 
-
     public void Restart()
     {
         LevelManager.Instance.GotoLevel(LevelManager.Instance.CurrentLevelNumber);
