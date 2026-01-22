@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Shelf : MonoBehaviour
 {
-    private static readonly int Fall = Animator.StringToHash("Fall");
+    private static readonly int Collide = Animator.StringToHash("Collide");
     
     [Header("References")]
     [SerializeField] private Animator m_animator;
@@ -40,7 +40,7 @@ public class Shelf : MonoBehaviour
         
         if (rb.linearVelocity.magnitude < m_forceRequiredForItemsFall) return;
 
-        m_animator.SetTrigger(Fall);
+        m_animator.SetTrigger(Collide);
         
         ActivatePhysicsForItems();
     }

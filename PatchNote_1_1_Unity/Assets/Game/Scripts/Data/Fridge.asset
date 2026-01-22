@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c7c5c69a88abeb479302a20a04046de, type: 3}
+  m_Name: Fridge
+  m_EditorClassIdentifier: Assembly-CSharp::ItemList
+  Items:
+  - {fileID: 8469357059290778857, guid: 770e764d2a24eab48a5894c8f3b05ef1, type: 3}
+  - {fileID: 6002216981904243730, guid: 9393fb5d4355805458a5fce07ecf0c2c, type: 3}
+  - {fileID: 8597565649547528606, guid: b6a6e605f4f077848b7c057d0e08ccb3, type: 3}
+  - {fileID: 3752578987335906503, guid: 7befa399f00f64c4a8d5bd62d4c06cdd, type: 3}
+  - {fileID: 2518176100745994948, guid: daa8447e759d75c48b427d97d1c6750d, type: 3}
+  - {fileID: 2606066022917364813, guid: 83c23b4aed2731a4b9962faeb620bcf2, type: 3}
+  - {fileID: 5755992046572987026, guid: ff8a497ad671a8b4da2ccd18d997eadd, type: 3}
