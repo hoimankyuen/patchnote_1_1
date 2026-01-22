@@ -6,7 +6,7 @@ using static InputSystem_Actions;
 namespace Input
 {
     [CreateAssetMenu(fileName = "InputReader", menuName = "Input/InputReader")]
-    public class InputReader : ScriptableObject, IPlayerActions
+    public class InputReader : ScriptableObject, IPlayerActions, IUIActions
     {
         // here for controlling other system that uses input actions independently
         [SerializeField] private InputActionAsset m_inputActionAsset; 
@@ -18,6 +18,7 @@ namespace Input
         public UnityAction Look = delegate {  };
         public UnityAction Reset = delegate { };
         public UnityAction Pause = delegate { };
+        public UnityAction Resume = delegate { };
         
         public void EnablePlayerInput()
         {
@@ -70,6 +71,41 @@ namespace Input
         public void OnPause(InputAction.CallbackContext context)
         {
             Pause?.Invoke();
+        }
+
+        public void OnNavigate(InputAction.CallbackContext context)
+        {
+            // Not in used
+        }
+
+        public void OnSubmit(InputAction.CallbackContext context)
+        {
+            // Not in used
+        }
+
+        public void OnCancel(InputAction.CallbackContext context)
+        {
+            // Not in used
+        }
+
+        public void OnPoint(InputAction.CallbackContext context)
+        {
+            // Not in used
+        }
+
+        public void OnClick(InputAction.CallbackContext context)
+        {
+            // Not in used
+        }
+
+        public void OnScrollWheel(InputAction.CallbackContext context)
+        {
+            // Not in used
+        }
+
+        public void OnResume(InputAction.CallbackContext context)
+        {
+            Resume?.Invoke();
         }
     }
 }

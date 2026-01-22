@@ -19,11 +19,13 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
+        m_inputReader.Pause += Pause;
+        m_inputReader.Resume += Resume;
+        
         //m_inputReader.DisablePlayerInput();
         //m_inputReader.DisableUIInput();
         
         m_inputReader.EnablePlayerInput();
-        m_inputReader.Pause += OnPauseInput;
         
         //Cursor.lockState = CursorLockMode.Locked;
     }
@@ -32,7 +34,9 @@ public class GameManager : MonoBehaviour
     {
         if (m_inputReader != null)
         {
-            m_inputReader.Pause -= OnPauseInput;
+            m_inputReader.Pause -= Pause;
+            m_inputReader.Resume -= Resume;
+            
             m_inputReader.DisablePlayerInput();
         }
 
@@ -41,21 +45,6 @@ public class GameManager : MonoBehaviour
 
     
     // ======== Pausing ======== 
-
-    private void OnPauseInput()
-    {
-        switch (CurrentState)
-        {
-            case State.Playing:
-                Pause();
-                break;
-            case State.Paused:
-                Resume();
-                break;
-            default:
-                break;
-        }
-    }
     
     private void Pause()
     {
