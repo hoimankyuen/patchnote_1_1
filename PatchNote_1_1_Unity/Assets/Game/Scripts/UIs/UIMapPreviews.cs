@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Input;
 using MoonlightTools.GeneralTools;
 using MoonlightTools.MathTools;
@@ -12,7 +13,7 @@ public class UIMapPreviews : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private GameObject m_contents;
-    [SerializeField] private TextMeshProUGUI m_levelNameText;
+    [SerializeField] private List<TextMeshProUGUI> m_levelNameTexts;
     [SerializeField] private CanvasGroup m_continueCanvasGroup;
 
     [Header("Settings")] 
@@ -82,7 +83,10 @@ public class UIMapPreviews : MonoBehaviour
 
     private void UpdateText()
     {
-        m_levelNameText.text = $"Level {LevelManager.Instance.CurrentLevelNumber + 1}";
+        foreach (TextMeshProUGUI text in m_levelNameTexts)
+        {
+            text.text = $"Level {LevelManager.Instance.CurrentLevelNumber + 1}";
+        }
     }
     
     private void BlinkContinueText()
