@@ -58,6 +58,8 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         
         m_cameraManager.StartMapPreviewCamera();
+        
+        Time.timeScale = 1f;
     }
 
     public void CompleteMapPreview()

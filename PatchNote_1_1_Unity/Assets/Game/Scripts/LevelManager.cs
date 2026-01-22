@@ -18,8 +18,10 @@ public class LevelManager : MonoBehaviourPersistentSingleton<LevelManager>
     
     // ======== Unity Events ========
     
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
+        
         RetrieveLevelIndex();
     }
 
