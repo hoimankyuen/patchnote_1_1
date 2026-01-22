@@ -506,7 +506,7 @@ MonoBehaviour:
   - {fileID: 4370370549601254106}
   - {fileID: 4845194298658450780}
   - {fileID: 8842227441654028037}
-  m_itemList: {fileID: 11400000, guid: e382490855d850ba4b81a819774c6071, type: 2}
+  m_itemList: {fileID: 11400000, guid: c3abf7ce489a9d9f79a4530106692c22, type: 2}
   m_forceRequiredForItemsFall: 0.1
   m_forceOffShelf: 50
 --- !u!1 &6197938628300503918

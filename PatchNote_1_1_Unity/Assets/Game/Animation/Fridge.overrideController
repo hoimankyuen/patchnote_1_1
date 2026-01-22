@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Fridge
+  m_Controller: {fileID: 9100000, guid: 37cfc3ec35de823358a7ba627d725ac4, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 69da12405406f118ebecbf841dc9de4d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 69da12405406f118ebecbf841dc9de4d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: dd739722e823e048aa6f59fb26826934, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 208fbe90e6b4091c9889dc39319fb055, type: 2}
