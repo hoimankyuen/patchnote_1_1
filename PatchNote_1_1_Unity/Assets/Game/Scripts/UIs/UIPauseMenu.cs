@@ -16,7 +16,7 @@ public class UIPauseMenu : MonoBehaviour
 
     // ======== Unity Events ========
     
-    public void Awake()
+    private void Awake()
     {
         m_gameManager.CurrentStateChanged += OnCurrentStateChanged;
         m_inputReader.Resume += OnResumeInput;
