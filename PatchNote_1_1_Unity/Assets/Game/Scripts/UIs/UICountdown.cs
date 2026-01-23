@@ -11,8 +11,8 @@ public class UICountdown : MonoBehaviour
     [SerializeField] private GameManager m_gameManager;
   
     [Header("Components")]
-    [SerializeField] private CanvasGroup m_countdownGroup;
-    [SerializeField] private List<TextMeshProUGUI> m_countDownTexts;
+    [SerializeField] private CanvasGroup m_canvasGroup;
+    [SerializeField] private List<TextMeshProUGUI> m_texts;
 
     [Header("Settings")] 
     [SerializeField] private int m_countFrom = 3;
@@ -42,12 +42,12 @@ public class UICountdown : MonoBehaviour
     {
         if (m_gameManager.CurrentState == GameManager.State.Countdown)
         {
-            m_countdownGroup.alpha = 0;
+            m_canvasGroup.alpha = 0;
             StartCoroutine(CountdownSequence());
         }
         else
         {
-            m_countdownGroup.alpha = 0;
+            m_canvasGroup.alpha = 0;
         }
     }
 
@@ -64,7 +64,7 @@ public class UICountdown : MonoBehaviour
                 Mathf.Max(Mathf.Min(m_countdownTickDuration - m_textStayDuration, m_textDecayDuration), 0),
                 t =>
                 {
-                    m_countdownGroup.alpha = 1 - t;
+                    m_canvasGroup.alpha = 1 - t;
                 });
             yield return new WaitForSeconds(Mathf.Max(m_countdownTickDuration - m_textStayDuration - m_textDecayDuration, 0));
         }
@@ -77,16 +77,16 @@ public class UICountdown : MonoBehaviour
         yield return CoroutineUtils.LerpWithTime(m_textDecayDuration,
             t =>
             {
-                m_countdownGroup.alpha = 1 - t;
+                m_canvasGroup.alpha = 1 - t;
             });
     }
 
     private void SetText(string s)
     {
-        foreach (TextMeshProUGUI text in m_countDownTexts)
+        foreach (TextMeshProUGUI text in m_texts)
         {
             text.text = s;
         }
-        m_countdownGroup.alpha = 1;
+        m_canvasGroup.alpha = 1;
     }
 }
