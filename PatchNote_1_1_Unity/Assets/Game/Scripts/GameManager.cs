@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
     
     public void Restart()
     {
-        LevelManager.Instance.GotoLevel(LevelManager.Instance.CurrentLevelNumber);
+        LevelManager.Instance.GotoLevel(LevelManager.Instance.CurrentLevelInfo.number);
     }
     
     private void Pause()

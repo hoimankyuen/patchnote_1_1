@@ -9,12 +9,12 @@ public class LevelManager : MonoBehaviourPersistentSingleton<LevelManager>
 {
     [Header("Settings")] 
     [SerializeField] private string m_mainMenuSceneName;
-    [SerializeField] private List<string> m_levelSceneNames;
+    [SerializeField] private LevelLibrary m_levelLibrary;
     [SerializeField] private float m_loadSceneFaderDelay;
     
     private bool m_loadingScene = false;
 
-    public int CurrentLevelNumber { get; private set; } = -1;
+    public LevelInfo CurrentLevelInfo { get; private set; } = null;
     
     // ======== Unity Events ========
     
@@ -30,12 +30,12 @@ public class LevelManager : MonoBehaviourPersistentSingleton<LevelManager>
     private void RetrieveLevelIndex()
     {
         string sceneName = SceneManager.GetActiveScene().name;
-        CurrentLevelNumber = m_levelSceneNames.IndexOf(sceneName);
+        CurrentLevelInfo = m_levelLibrary.GetLevelInfoOf(sceneName);
     }
     
     public void GotoMainMenu()
     {
-        GotoLevel(0);
+        GotoLevel(-1);
     }
 
     public void GotoLevel(int levelNumber)
@@ -44,12 +44,12 @@ public class LevelManager : MonoBehaviourPersistentSingleton<LevelManager>
             return;
 
         m_loadingScene = true;
-        
-        string sceneName = levelNumber == -1 ? m_mainMenuSceneName : m_levelSceneNames[levelNumber];
+
+        LevelInfo levelInfo = levelNumber == -1 ? null : m_levelLibrary.GetLevelInfo(levelNumber);
         LoadingFader.Instance.Show(() =>
         {
-            SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
-            CurrentLevelNumber = levelNumber;
+            SceneManager.LoadScene(levelInfo == null ? m_mainMenuSceneName : levelInfo.sceneName, LoadSceneMode.Single);
+            CurrentLevelInfo = levelInfo;
             StartCoroutine(DelayedHideFader());
         });
     }

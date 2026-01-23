@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   m_mainMenuSceneName: MenuScene
-  m_levelSceneNames:
-  - GameScene
+  m_levelLibrary: {fileID: 11400000, guid: 170fc26475de9344c997c7d43399f92a, type: 2}
+  m_loadSceneFaderDelay: 0.5
 --- !u!1 &8375195777225516612
 GameObject:
   m_ObjectHideFlags: 0
