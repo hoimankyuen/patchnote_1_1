@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 2654626894831047300}
   - component: {fileID: 4116529701388444550}
   m_Layer: 6
-  m_Name: Cooler(Static)
+  m_Name: Cooler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
