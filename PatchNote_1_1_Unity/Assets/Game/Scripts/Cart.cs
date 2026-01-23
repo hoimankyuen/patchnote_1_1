@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Input;
 using Unity.Collections;
@@ -27,13 +28,16 @@ public class Cart : MonoBehaviour
     private Vector2 m_MoveInput;
     private float m_RotateInput;
     
+    private readonly List<int> m_colliderInstanceIds = new List<int>();
+    
     private Vector3 m_originalPosition;
     private Quaternion m_originalRotation;
-    private float m_currentSpeed;
-
-    private readonly List<int> m_colliderInstanceIds = new List<int>();
-
     private Vector3 m_lastPosition;
+    
+    public float MaxSpeed => m_maxSpeed;
+    
+    public float CurrentSpeed { get; private set; }
+    public event Action CurrentSpeedChanged;
     
     // ======== Unity Events ========
     
@@ -60,6 +64,11 @@ public class Cart : MonoBehaviour
             m_inputReader.Reset -= OnResetTrolley;
         }
         Physics.ContactModifyEvent -= PreventGhostCollisions;
+    }
+
+    private void Update()
+    {
+        CalculateSpeed();
     }
     
     private void FixedUpdate()
@@ -114,6 +123,9 @@ public class Cart : MonoBehaviour
         transform.position = m_originalPosition;
         transform.rotation = m_originalRotation;
         m_lastPosition = transform.position;
+
+        CurrentSpeed = 0;
+        CurrentSpeedChanged?.Invoke();
     }
 
     // ======== Controls ========
@@ -159,6 +171,16 @@ public class Cart : MonoBehaviour
     private void ReOrientateCameraFollowTarget()
     {
         m_cameraFollowTargetTransform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane( transform.forward, Vector3.up).normalized, Vector3.up);
+    }
+
+    private void CalculateSpeed()
+    {
+        float newCurrentSpeed = m_rigidbody.linearVelocity.magnitude;
+        if (!Mathf.Approximately(newCurrentSpeed, CurrentSpeed))
+        {
+            CurrentSpeed = m_rigidbody.linearVelocity.magnitude;
+            CurrentSpeedChanged?.Invoke();
+        }
     }
     
     // ======== Appearance ========

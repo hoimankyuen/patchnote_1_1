@@ -13,6 +13,7 @@ public class UIMapPreviews : MonoBehaviour
     [Header("Components")]
     [SerializeField] private GameObject m_contents;
     [SerializeField] private List<TextMeshProUGUI> m_levelNameTexts;
+    [SerializeField] private List<TextMeshProUGUI> m_levelTitleTexts;
     [SerializeField] private CanvasGroup m_continueCanvasGroup;
 
     [Header("Settings")] 
@@ -84,7 +85,11 @@ public class UIMapPreviews : MonoBehaviour
     {
         foreach (TextMeshProUGUI text in m_levelNameTexts)
         {
-            text.text = $"Level {LevelManager.Instance.CurrentLevelNumber + 1}";
+            text.text = $"Level {LevelManager.Instance.CurrentLevelInfo.number + 1}";
+        }
+        foreach (TextMeshProUGUI text in m_levelTitleTexts)
+        {
+            text.text = LevelManager.Instance.CurrentLevelInfo.title;
         }
     }
     

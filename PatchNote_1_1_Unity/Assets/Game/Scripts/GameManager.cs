@@ -1,6 +1,6 @@
 using System;
 using Input;
-using Unity.Cinemachine;
+using MoonlightTools.GeneralTools;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -15,18 +15,22 @@ public class GameManager : MonoBehaviour
         Ended
     }
 
-    [Header("References")] [SerializeField]
-    private InputReader m_inputReader;
-
+    [Header("References")] 
+    [SerializeField] private InputReader m_inputReader;
     [SerializeField] private CameraManager m_cameraManager;
-    [SerializeField] private Cart m_cart;
+    [SerializeField] private Timer m_levelTimer;
 
     public State CurrentState { get; private set; }
     public event Action CurrentStateChanged;
-
+    
+    public Timer LevelTimer => m_levelTimer;
+    
+    // ======== Unity Events ========
+    
     public void Awake()
     {
         m_inputReader.Pause += Pause;
+        m_levelTimer.Completed += LevelTimeOut;
     }
     
     private void Start()
@@ -43,6 +47,11 @@ public class GameManager : MonoBehaviour
             m_inputReader.DisablePlayerInput();
             m_inputReader.DisableUIInput();
             Cursor.lockState = CursorLockMode.None;
+        }
+
+        if (m_levelTimer != null)
+        {
+            m_levelTimer.Completed -= LevelTimeOut;
         }
     }
     
@@ -93,7 +102,7 @@ public class GameManager : MonoBehaviour
     }
 
     // ======== Playing and Paused ======== 
-
+    
     private void StartPlaying()
     {
         CurrentState = State.Playing;
@@ -102,11 +111,14 @@ public class GameManager : MonoBehaviour
         m_inputReader.EnablePlayerInput();
         m_inputReader.DisableUIInput();
         Cursor.lockState = CursorLockMode.Locked;
+        
+        m_levelTimer.Setup(LevelManager.Instance.CurrentLevelInfo.timeLimit);
+        m_levelTimer.StartTimer();
     }
     
     public void Restart()
     {
-        LevelManager.Instance.GotoLevel(LevelManager.Instance.CurrentLevelNumber);
+        LevelManager.Instance.GotoLevel(LevelManager.Instance.CurrentLevelInfo.number);
     }
     
     private void Pause()
@@ -142,5 +154,11 @@ public class GameManager : MonoBehaviour
     public void BackToManuMenu()
     {
         LevelManager.Instance.GotoMainMenu();
+    }
+
+    private void LevelTimeOut()
+    {
+        if (CurrentState is not State.Playing and not State.Paused)
+            return;
     }
 }
