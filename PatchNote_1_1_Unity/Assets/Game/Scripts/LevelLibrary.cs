@@ -8,6 +8,7 @@ public class LevelInfo
     [NonSerialized] public int number;
     public string title;
     public string sceneName;
+    public float timeLimit;
 }
 
 [CreateAssetMenu(menuName = "Data/Level Library", fileName = "Level Library")]
