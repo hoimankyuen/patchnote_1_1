@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3105277188727813800}
   - component: {fileID: 3225897024255773663}
   - component: {fileID: -5273008447527586485}
-  - component: {fileID: 312812032242759235}
+  - component: {fileID: 1294993886700131065}
   m_Layer: 7
   m_Name: MilkModel
   m_TagString: Untagged
@@ -119,8 +119,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &312812032242759235
-CapsuleCollider:
+--- !u!64 &1294993886700131065
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -137,8 +137,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.11038527
-  m_Height: 0.39984614
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.20051637, z: 0}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3371799226304767270, guid: 47ca3420e201d4b41a5779ba948cace5, type: 3}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5195007416066278}
   - component: {fileID: 2928399705844843787}
   - component: {fileID: 538301051426474840}
-  - component: {fileID: 1029835319894156468}
+  - component: {fileID: 8835155972846856706}
   m_Layer: 7
   m_Name: OilModel
   m_TagString: Untagged
@@ -119,8 +119,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &1029835319894156468
-CapsuleCollider:
+--- !u!64 &8835155972846856706
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -137,8 +137,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.055168495
-  m_Height: 0.30386353
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.1523509, z: -0.0016197246}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1292755854437463149, guid: 47ca3420e201d4b41a5779ba948cace5, type: 3}
