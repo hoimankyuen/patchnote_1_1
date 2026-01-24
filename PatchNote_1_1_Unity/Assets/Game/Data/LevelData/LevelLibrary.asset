@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: LevelLibrary
   m_EditorClassIdentifier: Assembly-CSharp::LevelLibrary
   levelInfos:
-  - title: O'Typical
-    sceneName: GameScene
-    timeLimit: 90
+  - {fileID: 11400000, guid: ac8d6958419727547ab877da5396b99f, type: 2}

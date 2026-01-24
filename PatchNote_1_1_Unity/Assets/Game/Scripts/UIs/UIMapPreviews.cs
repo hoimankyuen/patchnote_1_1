@@ -85,11 +85,11 @@ public class UIMapPreviews : MonoBehaviour
     {
         foreach (TextMeshProUGUI text in m_levelNameTexts)
         {
-            text.text = $"Level {LevelManager.Instance.CurrentLevelInfo.number + 1}";
+            text.text = $"Level {LevelManager.Instance.CurrentLevelData.number + 1}";
         }
         foreach (TextMeshProUGUI text in m_levelTitleTexts)
         {
-            text.text = LevelManager.Instance.CurrentLevelInfo.title;
+            text.text = LevelManager.Instance.CurrentLevelData.title;
         }
     }
     

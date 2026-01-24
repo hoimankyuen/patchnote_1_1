@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     public State CurrentState { get; private set; }
     public event Action CurrentStateChanged;
     
+    public int CurrentLap { get; private set; }
+    public event Action CurrentLapChanged;
+    
     public Timer LevelTimer => m_levelTimer;
     
     // ======== Unity Events ========
@@ -112,13 +115,16 @@ public class GameManager : MonoBehaviour
         m_inputReader.DisableUIInput();
         Cursor.lockState = CursorLockMode.Locked;
         
-        m_levelTimer.Setup(LevelManager.Instance.CurrentLevelInfo.timeLimit);
+        CurrentLap = 0;
+        CurrentLapChanged?.Invoke();
+        
+        m_levelTimer.Setup(LevelManager.Instance.CurrentLevelData.timeLimit);
         m_levelTimer.StartTimer();
     }
     
     public void Restart()
     {
-        LevelManager.Instance.GotoLevel(LevelManager.Instance.CurrentLevelInfo.number);
+        LevelManager.Instance.GotoLevel(LevelManager.Instance.CurrentLevelData.number);
     }
     
     private void Pause()

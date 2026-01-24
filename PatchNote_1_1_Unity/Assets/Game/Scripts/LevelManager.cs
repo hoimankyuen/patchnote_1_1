@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using MoonlightTools.GeneralTools;
@@ -14,7 +15,7 @@ public class LevelManager : MonoBehaviourPersistentSingleton<LevelManager>
     
     private bool m_loadingScene = false;
 
-    public LevelInfo CurrentLevelInfo { get; private set; } = null;
+    public LevelData CurrentLevelData { get; private set; }
     
     // ======== Unity Events ========
     
@@ -26,13 +27,13 @@ public class LevelManager : MonoBehaviourPersistentSingleton<LevelManager>
     }
 
     // ======== Functionalities ========
-    
+
     private void RetrieveLevelIndex()
     {
         string sceneName = SceneManager.GetActiveScene().name;
-        CurrentLevelInfo = m_levelLibrary.GetLevelInfoOf(sceneName);
+        CurrentLevelData = m_levelLibrary.GetLevelInfoOf(sceneName);
     }
-    
+
     public void GotoMainMenu()
     {
         GotoLevel(-1);
@@ -45,11 +46,11 @@ public class LevelManager : MonoBehaviourPersistentSingleton<LevelManager>
 
         m_loadingScene = true;
 
-        LevelInfo levelInfo = levelNumber == -1 ? null : m_levelLibrary.GetLevelInfo(levelNumber);
+        LevelData levelInfo = levelNumber == -1 ? null : m_levelLibrary.GetLevelInfo(levelNumber);
         LoadingFader.Instance.Show(() =>
         {
             SceneManager.LoadScene(levelInfo == null ? m_mainMenuSceneName : levelInfo.sceneName, LoadSceneMode.Single);
-            CurrentLevelInfo = levelInfo;
+            CurrentLevelData = levelInfo;
             StartCoroutine(DelayedHideFader());
         });
     }

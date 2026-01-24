@@ -2,32 +2,23 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class LevelInfo
-{
-    [NonSerialized] public int number;
-    public string title;
-    public string sceneName;
-    public float timeLimit;
-}
-
-[CreateAssetMenu(menuName = "Data/Level Library", fileName = "Level Library")]
+[CreateAssetMenu(menuName = "Data/Level Library", fileName = "LevelLibrary")]
 public class LevelLibrary : ScriptableObject
 {
-    [SerializeField] private List<LevelInfo> levelInfos;
+    [SerializeField] private List<LevelData> levelInfos;
 
     public int GetLevelCount()
     {
         return levelInfos.Count;
     }
     
-    public LevelInfo GetLevelInfo(int number)
+    public LevelData GetLevelInfo(int number)
     {
         levelInfos[number].number = number;
         return levelInfos[number];
     }
 
-    public LevelInfo GetLevelInfoOf(string sceneName)
+    public LevelData GetLevelInfoOf(string sceneName)
     {
         return levelInfos.Find(level => level.sceneName == sceneName);
     }
