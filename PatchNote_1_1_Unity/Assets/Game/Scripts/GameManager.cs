@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
     public int CurrentLap { get; private set; }
     public event Action CurrentLapChanged;
     
+    public float CurrentScore { get; private set; }
+    public event Action CurrentScoreChanged;
+    
     public Timer LevelTimer => m_levelTimer;
     
     // ======== Unity Events ========
@@ -117,6 +120,9 @@ public class GameManager : MonoBehaviour
         
         CurrentLap = 0;
         CurrentLapChanged?.Invoke();
+
+        CurrentScore = 0;
+        CurrentScoreChanged?.Invoke();
         
         m_levelTimer.Setup(LevelManager.Instance.CurrentLevelData.timeLimit);
         m_levelTimer.StartTimer();
