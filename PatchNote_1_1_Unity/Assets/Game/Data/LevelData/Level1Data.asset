@@ -14,8 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   title: O'Typical
   sceneName: GameScene
-  timeLimit: 0
+  timeLimit: 180
   laps:
-  - requirements: []
-  - requirements: []
-  - requirements: []
+  - requirements:
+    - itemType: 5
+      quantity: 2
+    - itemType: 206
+      quantity: 2
+    - itemType: 104
+      quantity: 2
+  - requirements:
+    - itemType: 103
+      quantity: 2
+    - itemType: 202
+      quantity: 2
+    - itemType: 204
+      quantity: 2
+  - requirements:
+    - itemType: 106
+      quantity: 2
+    - itemType: 4
+      quantity: 2
+    - itemType: 304
+      quantity: 1
