@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &294207353274538680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5052423093728593456}
+  m_Layer: 6
+  m_Name: LaunchDirection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5052423093728593456
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294207353274538680}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.8622488, z: 0.506485, w: 0}
+  m_LocalPosition: {x: 0, y: 0.4, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7276638079465201425}
+  m_LocalEulerAnglesHint: {x: -60.86, y: 180, z: 0}
 --- !u!1 &701074623155357090
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,8 +313,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7276638079465201425}
-  - component: {fileID: 9002625050352987802}
   - component: {fileID: 2654626894831047300}
+  - component: {fileID: 9002625050352987802}
   - component: {fileID: 4116529701388444550}
   m_Layer: 6
   m_Name: Cooler
@@ -307,6 +338,7 @@ Transform:
   m_Children:
   - {fileID: 120177086797283679}
   - {fileID: 3900443240595606409}
+  - {fileID: 5052423093728593456}
   - {fileID: 876250541047915798}
   - {fileID: 8977391747165749239}
   - {fileID: 3388090214324202172}
@@ -314,6 +346,35 @@ Transform:
   - {fileID: 3972827997220848305}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2654626894831047300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6583009935506600807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c1c73f9da7daab5bcc4be88ba01ae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shelf
+  m_itemList: {fileID: 11400000, guid: e382490855d850ba4b81a819774c6071, type: 2}
+  m_animator: {fileID: 4116529701388444550}
+  m_itemSpawnPositions:
+  - {fileID: 876250541047915798}
+  - {fileID: 8977391747165749239}
+  - {fileID: 3388090214324202172}
+  - {fileID: 1620133088160224926}
+  - {fileID: 3972827997220848305}
+  m_launchDirection: {fileID: 5052423093728593456}
+  m_forceRequiredForItemsFall: 8
+  m_forceOffShelf: 50
+  m_forceOffShelfRandomRange:
+    min: 4
+    max: 4.5
+  m_launchDirectionRandomRange:
+    min: -5
+    max: 5
 --- !u!65 &9002625050352987802
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -335,28 +396,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1.2589307, z: 1.1097698}
   m_Center: {x: 0, y: 0.62946534, z: -0.5548849}
---- !u!114 &2654626894831047300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6583009935506600807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2c1c73f9da7daab5bcc4be88ba01ae9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Shelf
-  m_animator: {fileID: 4116529701388444550}
-  m_itemSpawnPositions:
-  - {fileID: 876250541047915798}
-  - {fileID: 8977391747165749239}
-  - {fileID: 3388090214324202172}
-  - {fileID: 1620133088160224926}
-  - {fileID: 3972827997220848305}
-  m_itemList: {fileID: 11400000, guid: e382490855d850ba4b81a819774c6071, type: 2}
-  m_forceRequiredForItemsFall: 0.1
-  m_forceOffShelf: 50
 --- !u!95 &4116529701388444550
 Animator:
   serializedVersion: 7
