@@ -31588,10 +31588,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 333070547}
     m_Modifications:
     - target: {fileID: 4077866214284046478, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
-      propertyPath: m_effectMinSpeed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4077866214284046478, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
       propertyPath: m_cameraTransform
       value: 
       objectReference: {fileID: 1025907012}
