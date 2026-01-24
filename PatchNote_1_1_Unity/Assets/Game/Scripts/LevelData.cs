@@ -3,10 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct RequirementData
+public class RequirementData
 {
     public ItemType itemType;
     public int quantity;
+
+    public RequirementData(ItemType itemType, int quantity)
+    {
+        this.itemType = itemType;
+        this.quantity = quantity;
+    }
+
+    public RequirementData(RequirementData other)
+    {
+        itemType = other.itemType;
+        quantity = other.quantity;
+    }
+    
+    public void DecreaseQuantity()
+    {
+        quantity--;
+    }
 }
 
 [System.Serializable]

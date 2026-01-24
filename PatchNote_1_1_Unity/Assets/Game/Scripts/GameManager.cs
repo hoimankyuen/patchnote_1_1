@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Input;
 using MoonlightTools.GeneralTools;
 using UnityEngine;
@@ -20,11 +21,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CameraManager m_cameraManager;
     [SerializeField] private Timer m_levelTimer;
 
-    public State CurrentState { get; private set; }
+    public State CurrentState { get; private set; } = State.None;
     public event Action CurrentStateChanged;
-    
-    public int CurrentLap { get; private set; }
+
+    public int CurrentLap { get; private set; } = -1;
     public event Action CurrentLapChanged;
+    
+    public List<RequirementData> CurrentRequirements { get; private set; } = new List<RequirementData>();
+    public event Action CurrentRequirementsChanged;
     
     public float CurrentScore { get; private set; }
     public event Action CurrentScoreChanged;
@@ -118,14 +122,29 @@ public class GameManager : MonoBehaviour
         m_inputReader.DisableUIInput();
         Cursor.lockState = CursorLockMode.Locked;
         
-        CurrentLap = 0;
-        CurrentLapChanged?.Invoke();
-
         CurrentScore = 0;
         CurrentScoreChanged?.Invoke();
         
         m_levelTimer.Setup(LevelManager.Instance.CurrentLevelData.timeLimit);
         m_levelTimer.StartTimer();
+
+        ProgressToNextLap();
+    }
+
+    private void ProgressToNextLap()
+    {
+        CurrentLap++;
+        CurrentRequirements.Clear();
+        foreach (RequirementData requirement in LevelManager.Instance.CurrentLevelData.laps[CurrentLap].requirements)
+        {
+            CurrentRequirements.Add(new RequirementData(requirement));
+        }
+        CurrentLapChanged?.Invoke();
+    }
+
+    private void CheckForLapCompletion()
+    {
+        // TODO
     }
     
     public void Restart()

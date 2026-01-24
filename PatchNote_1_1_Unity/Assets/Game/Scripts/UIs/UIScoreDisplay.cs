@@ -26,7 +26,7 @@ public class UIScoreDisplay : MonoBehaviour
     
     // ======== Unity Events ========
     
-    public void Awake()
+    public void Start()
     {
         m_gameManager.CurrentStateChanged += OnCurrentStateChanged;
         OnCurrentStateChanged();
