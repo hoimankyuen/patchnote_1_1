@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 7139342677591590426}
   - component: {fileID: 8057942137304695842}
   m_Layer: 0
-  m_Name: UITameDisplay
+  m_Name: UITimeDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
