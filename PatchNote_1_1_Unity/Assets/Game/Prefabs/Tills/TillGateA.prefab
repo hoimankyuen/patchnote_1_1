@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5425039210486152249}
   - component: {fileID: 4954119814770230556}
   - component: {fileID: 3582593096929896715}
+  - component: {fileID: 8550798376009887757}
   m_Layer: 0
   m_Name: TillGateA
   m_TagString: Untagged
@@ -119,6 +120,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &8550798376009887757
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5959820600485705150}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.06314111
+  m_Height: 1.0556912
+  m_Direction: 1
+  m_Center: {x: -2.9000006, y: 0.5278456, z: 1.8999994}
 --- !u!1 &8487292173310014083
 GameObject:
   m_ObjectHideFlags: 0

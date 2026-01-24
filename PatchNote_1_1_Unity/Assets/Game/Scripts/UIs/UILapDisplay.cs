@@ -80,7 +80,7 @@ public class UILapDisplay : MonoBehaviour
     
     private void ShowLapText()
     {
-        m_text.text = $"LAP {m_gameManager.CurrentLap}/{LevelManager.Instance.CurrentLevelData.laps.Count}";
+        m_text.text = $"LAP {m_gameManager.CurrentLap + 1}/{LevelManager.Instance.CurrentLevelData.laps.Count}";
     }
 
     private void BlinkText()
