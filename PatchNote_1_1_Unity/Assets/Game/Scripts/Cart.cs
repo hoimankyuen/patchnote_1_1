@@ -15,15 +15,23 @@ public class Cart : MonoBehaviour
     [SerializeField] private Transform m_cameraFollowTargetTransform;
     [SerializeField] private List<Collider> m_wheelColliders;
     [SerializeField] private List<Transform> m_wheelModelTransforms;
+    [SerializeField] private ParticleSystem m_speedEffect;
+    [SerializeField] private List<ParticleSystem> m_wheelEffects;
 
     [Header("Settings (Acceleration)")] 
     [SerializeField] private float m_maxSpeed;
     [SerializeField] private float m_acceleration;
     [SerializeField] private float m_deceleration;
 
-    [Header("Settings Turning")]
+    [Header("Settings (Turning)")]
     [SerializeField] private float m_maxTurningSpeed;
     [SerializeField] private float m_turningForce;
+
+    [Header("Settings (Appearance)")]
+    [SerializeField] private float m_effectMinSpeed;
+    [SerializeField] private float m_effectMaxSpeed;
+    [SerializeField] private Color m_speedEffectColor;
+    [SerializeField] private Color m_wheelEffectColor;
 
     private Vector2 m_MoveInput;
     private float m_RotateInput;
@@ -69,6 +77,8 @@ public class Cart : MonoBehaviour
     private void Update()
     {
         CalculateSpeed();
+        ControlSpeedEffect();
+        ControlWheelEffects();
     }
     
     private void FixedUpdate()
@@ -123,7 +133,7 @@ public class Cart : MonoBehaviour
         transform.position = m_originalPosition;
         transform.rotation = m_originalRotation;
         m_lastPosition = transform.position;
-
+        
         CurrentSpeed = 0;
         CurrentSpeedChanged?.Invoke();
     }
@@ -195,6 +205,38 @@ public class Cart : MonoBehaviour
                 wheel.rotation = Quaternion.LookRotation(direction, transform.up);
             }
             m_lastPosition = transform.position;
+        }
+    }
+
+    private void ControlSpeedEffect()
+    {
+        if (CurrentSpeed > m_effectMinSpeed)
+        {
+            m_speedEffect.Play();
+            
+            ParticleSystem.MainModule main = m_speedEffect.main;
+            main.startSpeed = new ParticleSystem.MinMaxCurve(CurrentSpeed * -1);
+            Color effectColor = m_speedEffectColor;
+            effectColor.a *= Mathf.InverseLerp(m_effectMinSpeed, m_effectMaxSpeed, CurrentSpeed);
+            main.startColor = new ParticleSystem.MinMaxGradient(effectColor);
+            
+            ParticleSystem.ShapeModule shape = m_speedEffect.shape;
+            shape.rotation = Quaternion.LookRotation(transform.InverseTransformDirection(m_rigidbody.linearVelocity), transform.up).eulerAngles;
+        }
+        else
+        {
+            m_speedEffect.Stop();
+        }
+    }
+
+    private void ControlWheelEffects()
+    {
+        foreach (ParticleSystem wheelEffect in m_wheelEffects)
+        {
+            ParticleSystem.MainModule main = wheelEffect.main;
+            Color effectColor = m_wheelEffectColor;
+            effectColor.a *= Mathf.InverseLerp(m_effectMinSpeed, m_effectMaxSpeed, CurrentSpeed);
+            main.startColor = new ParticleSystem.MinMaxGradient(effectColor);
         }
     }
 }
