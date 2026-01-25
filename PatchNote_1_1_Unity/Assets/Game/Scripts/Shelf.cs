@@ -8,6 +8,7 @@ public class Shelf : MonoBehaviour
     private static readonly int Collide = Animator.StringToHash("Collide");
     
     [Header("References")]
+    [SerializeField] private ItemLibrary m_itemLibrary;
     [SerializeField] private ItemList m_itemList;
     
     [Header("Components")]
@@ -18,7 +19,6 @@ public class Shelf : MonoBehaviour
     
     [Header("Settings")]
     [SerializeField] private float m_forceRequiredForItemsFall = 1f;
-    //[SerializeField] private float m_forceOffShelf = 5f;
     [SerializeField] private RangedFloat m_forceOffShelfRandomRange;
     [SerializeField] private RangedFloat m_launchDirectionRandomRange;
     
@@ -49,8 +49,34 @@ public class Shelf : MonoBehaviour
             if (itemSpawnPosition != null)
             {
                 Gizmos.DrawWireSphere(itemSpawnPosition.position, 0.1f);
-
             }
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (m_itemSpawnPositions.Count <= 0 || m_itemList == null || m_itemList.ItemTypes.Count <= 0)
+            return;
+        
+        Gizmos.color = Color.yellow;
+        Vector3 positionAverage = Vector3.zero;
+        int positionCount = 0;
+        foreach (Transform itemSpawnPosition in m_itemSpawnPositions)
+        {
+            if (itemSpawnPosition != null)
+            {
+                positionAverage += itemSpawnPosition.position;
+                positionCount++;
+            }
+        }
+        if (positionCount > 0)
+        {
+            string text = "";
+            for (int i = 0; i < m_itemList.ItemTypes.Count; i++)
+            {
+                text += $"{m_itemList.ItemTypes[i].ToString()}{(i < m_itemList.ItemTypes.Count - 1 ? "," : "")}";
+            }
+            GizmoUtils.DrawText(positionAverage / positionCount, text);
         }
     }
 
@@ -58,7 +84,9 @@ public class Shelf : MonoBehaviour
     {
         foreach (Transform itemSpawnPosition in m_itemSpawnPositions)
         {
-            m_items.Add(Instantiate(m_itemList.Items[Random.Range(0, m_itemList.Items.Count)],
+            ItemType itemType = m_itemList.ItemTypes[Random.Range(0, m_itemList.ItemTypes.Count)];
+            ItemData itemData = m_itemLibrary.GetItemData(itemType);
+            m_items.Add(Instantiate(itemData.prefab,
                 itemSpawnPosition.position,
                 itemSpawnPosition.rotation,
                 transform).GetComponent<Rigidbody>());
