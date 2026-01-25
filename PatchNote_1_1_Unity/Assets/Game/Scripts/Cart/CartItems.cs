@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class CartItems : MonoBehaviour
 {
+    [Header("Components")]
+    [SerializeField] private ParticleSystem m_cashEffect;
+    
     //TODO: Unserialize these fields after testing
+    
     
     [SerializeField] private List<Item> m_items = new List<Item>();
 
@@ -44,7 +48,11 @@ public class CartItems : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer != LayerMask.NameToLayer("Goal")) return;
+        if (other.gameObject.layer != LayerMask.NameToLayer("Goal")) 
+            return;
+
+        if (m_items.Count <= 0)
+            return;
         
         //TODO: Increase score by m_currentItemsTotalValue
         
@@ -55,5 +63,7 @@ public class CartItems : MonoBehaviour
         }
         m_items.Clear();
         m_currentItemsTotalValue = 0f;
+        
+        m_cashEffect.Play();
     }
 }
