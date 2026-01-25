@@ -27,7 +27,7 @@ public class UILapDisplay : MonoBehaviour
     
     // ======== Unity Events ========
     
-    public void Awake()
+    public void Start()
     {
         m_gameManager.CurrentStateChanged += OnCurrentStateChanged;
         OnCurrentStateChanged();
