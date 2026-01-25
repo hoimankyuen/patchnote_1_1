@@ -22,6 +22,7 @@ public class Item : MonoBehaviour
         m_rigidbody.mass = itemData.Mass;
     }
 
+    public ItemType ItemType => m_data.Type;
     public float GetItemPrice => m_data.Price;
 
     private void OnTriggerEnter(Collider other)

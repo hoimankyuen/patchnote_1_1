@@ -10478,7 +10478,7 @@ Transform:
   m_GameObject: {fileID: 2957978851039754074}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.695, z: 0}
+  m_LocalPosition: {x: 0, y: 0.814, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10497,6 +10497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d576bca367244cd89a9d161dc02da7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CartItems
+  m_gameManager: {fileID: 0}
   m_cashEffect: {fileID: 5452780447270711964}
   m_items: []
   m_currentItemsTotalValue: 0
@@ -10519,8 +10520,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.56, y: 0.77, z: 1}
-  m_Center: {x: 0, y: 0.24, z: 0}
+  m_Size: {x: 0.65, y: 0.77, z: 1.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3012753828801540692
 GameObject:
   m_ObjectHideFlags: 0

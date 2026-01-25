@@ -33,6 +33,12 @@ public class GameManager : MonoBehaviour
     public float CurrentScore { get; private set; }
     public event Action CurrentScoreChanged;
     
+    public bool JamFound { get; private set; }
+    public event Action JamFoundChanged;
+    
+    public bool GemFound { get; private set; }
+    public event Action GemFoundChanged;
+    
     public Timer LevelTimer => m_levelTimer;
     
     // ======== Unity Events ========
@@ -45,7 +51,7 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
-        StartMapPreview();
+        StartMapPreviewState();
     }
 
     private void OnDestroy()
@@ -67,7 +73,7 @@ public class GameManager : MonoBehaviour
     
     // ======== Map Preview ========
 
-    private void StartMapPreview()
+    private void StartMapPreviewState()
     {
         CurrentState = State.MapPreview;
         CurrentStateChanged?.Invoke();
@@ -86,12 +92,12 @@ public class GameManager : MonoBehaviour
         if (CurrentState != State.MapPreview)
             return;
 
-        StartCountdown();
+        StartCountdownState();
     }
     
     // ======== Countdown ========
 
-    private void StartCountdown()
+    private void StartCountdownState()
     {
         CurrentState = State.Countdown;
         CurrentStateChanged?.Invoke();
@@ -108,12 +114,12 @@ public class GameManager : MonoBehaviour
         if (CurrentState != State.Countdown)
             return;
         
-        StartPlaying();
+        StartPlayingState();
     }
 
     // ======== Playing and Paused ======== 
     
-    private void StartPlaying()
+    private void StartPlayingState()
     {
         CurrentState = State.Playing;
         CurrentStateChanged?.Invoke();
@@ -125,6 +131,12 @@ public class GameManager : MonoBehaviour
         CurrentScore = 0;
         CurrentScoreChanged?.Invoke();
         
+        JamFound = false;
+        JamFoundChanged?.Invoke();
+        
+        GemFound = false;
+        GemFoundChanged?.Invoke();
+        
         m_levelTimer.Setup(LevelManager.Instance.CurrentLevelData.timeLimit);
         m_levelTimer.StartTimer();
 
@@ -135,16 +147,55 @@ public class GameManager : MonoBehaviour
     {
         CurrentLap++;
         CurrentRequirements.Clear();
-        foreach (RequirementData requirement in LevelManager.Instance.CurrentLevelData.laps[CurrentLap].requirements)
+
+        if (CurrentLap < LevelManager.Instance.CurrentLevelData.laps.Count)
         {
-            CurrentRequirements.Add(new RequirementData(requirement));
+            foreach (RequirementData requirement in
+                     LevelManager.Instance.CurrentLevelData.laps[CurrentLap].requirements)
+            {
+                CurrentRequirements.Add(new RequirementData(requirement));
+            }
+            CurrentLapChanged?.Invoke();
         }
-        CurrentLapChanged?.Invoke();
+        else
+        {
+            StartEndedState();
+        }
     }
 
-    private void CheckForLapCompletion()
+    public void SolidifyProgress(List<Item> items, float score)
     {
-        // TODO
+        foreach (Item item in items)
+        {
+            RequirementData requirementData = CurrentRequirements.Find(x => x.itemType == item.ItemType);
+            if (requirementData != null)
+            {
+                Debug.Log("Solidified" + requirementData.itemType);
+                requirementData.quantity--;
+            }
+
+            if (!JamFound && item.ItemType == ItemType.Jam)
+            {
+                JamFound = true;
+                JamFoundChanged?.Invoke();
+            }
+
+            if (!GemFound && item.ItemType == ItemType.Gem)
+            {
+                GemFound = true;
+                GemFoundChanged?.Invoke();
+            }
+        }
+        CurrentRequirementsChanged?.Invoke();
+        
+        CurrentScore += score;
+        CurrentScoreChanged?.Invoke();
+
+        // check for lap completion
+        if (CurrentRequirements.TrueForAll(x => x.quantity <= 0))
+        {
+            ProgressToNextLap();
+        }
     }
     
     public void Restart()
@@ -191,5 +242,19 @@ public class GameManager : MonoBehaviour
     {
         if (CurrentState is not State.Playing and not State.Paused)
             return;
+
+        StartEndedState();
+    }
+    
+    // ======== Ended ========
+
+    private void StartEndedState()
+    {
+        CurrentState = State.Ended;
+        CurrentStateChanged?.Invoke();
+        
+        m_inputReader.DisablePlayerInput();
+        m_inputReader.EnableUIInput();
+        Cursor.lockState = CursorLockMode.None;
     }
 }

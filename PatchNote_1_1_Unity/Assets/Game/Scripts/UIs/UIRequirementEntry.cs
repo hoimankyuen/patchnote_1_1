@@ -18,7 +18,7 @@ public class UIRequirementEntry : MonoBehaviour
     
     private int m_order; 
     private int m_requiredQuantity;
-    private int m_currentQuantity;
+    private int m_remainingQuantity;
     private float m_showHideDuration;
     
     public ItemType ItemType { get; private set; }
@@ -38,23 +38,23 @@ public class UIRequirementEntry : MonoBehaviour
         m_order = order;
         m_icon.sprite = m_ItemLibrary.GetItemData(itemType).Icon;
         m_requiredQuantity = requiredQuantity;
-        m_currentQuantity = 0;
+        m_remainingQuantity = requiredQuantity;
         m_showHideDuration = showHideDuration;
         UpdateDisplay();
     }
 
-    public void SetAmount(int amount)
+    public void SetNewRemaining(int amount)
     {
-        m_currentQuantity = amount;
+        m_remainingQuantity = amount;
         UpdateDisplay();
     }
 
     private void UpdateDisplay()
-    {  
-        bool fulfilled = m_currentQuantity >= m_requiredQuantity;
+    {
+        bool fulfilled = m_remainingQuantity <= 0f;
         m_tick.gameObject.SetActive(fulfilled);
         m_text.gameObject.SetActive(!fulfilled);
-        m_text.text = $"{m_currentQuantity}/{m_requiredQuantity}";
+        m_text.text = $"{m_remainingQuantity}/{m_requiredQuantity}";
     }
 
     public void Show()

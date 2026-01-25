@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CartItems : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private GameManager m_gameManager;
+    
     [Header("Components")]
     [SerializeField] private ParticleSystem m_cashEffect;
     
@@ -54,7 +57,7 @@ public class CartItems : MonoBehaviour
         if (m_items.Count <= 0)
             return;
         
-        //TODO: Increase score by m_currentItemsTotalValue
+        m_gameManager.SolidifyProgress(m_items, m_currentItemsTotalValue);
         
         //TODO: We may want to have particle effects for each item here, should definitely have a cash register/"cha-ching!" sound effect   
         foreach (Item item in m_items)

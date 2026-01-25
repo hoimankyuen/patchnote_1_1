@@ -31409,6 +31409,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trolley
       objectReference: {fileID: 0}
+    - target: {fileID: 9151423032837678016, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
+      propertyPath: m_gameManager
+      value: 
+      objectReference: {fileID: 1725036625}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

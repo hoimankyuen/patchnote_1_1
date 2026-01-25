@@ -121,10 +121,10 @@ public class UIRequirementDisplay : MonoBehaviour
     {
         foreach (UIRequirementEntry instance in m_requirementEntryInstances)
         {
-            RequirementData data = requirementData.FirstOrDefault(x => x.itemType == instance.ItemType);
+            RequirementData data = requirementData.Find(x => x.itemType == instance.ItemType);
             if (data != null)
             {
-                instance.SetAmount(data.quantity);
+                instance.SetNewRemaining(data.quantity);
             }
         }
     }
