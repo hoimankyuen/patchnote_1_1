@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8070636165991423312}
   - component: {fileID: 7940030260896450419}
   m_Layer: 0
-  m_Name: CountdownText
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 8337758196026148062}
   - component: {fileID: 7621714691283908841}
   m_Layer: 0
-  m_Name: CountdownTextShadow
+  m_Name: TextShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 1897449061675010481}
   - component: {fileID: 2258855582998839332}
   m_Layer: 0
-  m_Name: UICountdown
+  m_Name: UIAnnouncementDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

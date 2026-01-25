@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using MoonlightTools.GeneralTools;
 using TMPro;
-using Unity.Cinemachine;
 using UnityEngine;
 
-public class UICountdown : MonoBehaviour
+public class UIAnnouncementDisplay : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameManager m_gameManager;
@@ -21,11 +20,14 @@ public class UICountdown : MonoBehaviour
     [SerializeField] private float m_textStayDuration;
     [SerializeField] private float m_textDecayDuration;
     
+    private Coroutine m_showTextCoroutine;
+    
     // ======== Unity Events ========
     
     public void Awake()
     {
         m_gameManager.CurrentStateChanged += OnCurrentStateChanged;
+        m_gameManager.CurrentLapChanged += OnCurrentLapChanged;
     }
     
     private void OnDestroy()
@@ -33,6 +35,7 @@ public class UICountdown : MonoBehaviour
         if (m_gameManager != null)
         {
             m_gameManager.CurrentStateChanged -= OnCurrentStateChanged;
+            m_gameManager.CurrentLapChanged -= OnCurrentLapChanged;
         }
     }
     
@@ -43,7 +46,7 @@ public class UICountdown : MonoBehaviour
         if (m_gameManager.CurrentState == GameManager.State.Countdown)
         {
             m_canvasGroup.alpha = 0;
-            StartCoroutine(CountdownSequence());
+            AnnounceCountdown();
         }
         else
         {
@@ -51,28 +54,55 @@ public class UICountdown : MonoBehaviour
         }
     }
 
+    private void OnCurrentLapChanged()
+    {
+        if (m_gameManager.CurrentState is not GameManager.State.Playing and not GameManager.State.Paused)
+            return;
+
+        if (m_gameManager.CurrentLap > 0)
+        {
+            AnnounceText($"LAP {m_gameManager.CurrentLap + 1}");
+        }
+        else if (m_gameManager.CurrentLap == LevelManager.Instance.CurrentLevelData.Laps.Count - 1)
+        {
+            AnnounceText($"FINAL LAP");
+        }
+    }
+    
+    // ======== Functionalities ========
+
+    private void AnnounceCountdown()
+    {
+        StartCoroutine(CountdownSequence());
+    }
+
     private IEnumerator CountdownSequence()
     {
         yield return new WaitForSeconds (m_countdownWaitDuration);
-
-        // numbers
+        
         for (int i = m_countFrom; i >= 1; i--)
         {
-            SetText(i.ToString());
-            yield return new WaitForSeconds(Mathf.Min(m_countdownTickDuration, m_textStayDuration));
-            yield return CoroutineUtils.LerpWithTime(
-                Mathf.Max(Mathf.Min(m_countdownTickDuration - m_textStayDuration, m_textDecayDuration), 0),
-                t =>
-                {
-                    m_canvasGroup.alpha = 1 - t;
-                });
-            yield return new WaitForSeconds(Mathf.Max(m_countdownTickDuration - m_textStayDuration - m_textDecayDuration, 0));
+            AnnounceText(i.ToString());
+            yield return new WaitForSeconds(m_countdownTickDuration);
         }
         
         m_gameManager.CompleteCountdown();
-        
-        // go
-        SetText("GO!");
+        AnnounceText("GO!");
+    }
+
+    private void AnnounceText(string text)
+    {
+        if (m_showTextCoroutine != null)
+        {
+            StopCoroutine(m_showTextCoroutine);
+            m_showTextCoroutine = null;
+        }
+        m_showTextCoroutine = StartCoroutine(ShowTextSequence(text));
+    }
+    
+    private IEnumerator ShowTextSequence(string text)
+    {
+        SetText(text);
         yield return new WaitForSeconds(m_textStayDuration);
         yield return CoroutineUtils.LerpWithTime(m_textDecayDuration,
             t =>

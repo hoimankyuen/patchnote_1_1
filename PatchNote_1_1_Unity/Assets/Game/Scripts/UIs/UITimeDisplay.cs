@@ -105,6 +105,11 @@ public class UITimeDisplay : MonoBehaviour
         else
         {
             m_text.color = m_normalTextColour;
+            
+            if (m_textAlarmCoroutine == null)
+                return;
+            StopCoroutine(m_textAlarmCoroutine);
+            m_textAlarmCoroutine = null;
         }
     }
 
