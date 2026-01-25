@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3098931776936609497}
   - component: {fileID: 8592266813385102801}
   - component: {fileID: 3837430414575398321}
+  - component: {fileID: -6822522068353146528}
   m_Layer: 7
   m_Name: GoldModel
   m_TagString: Untagged
@@ -141,3 +142,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 5504132838147662469, guid: 47ca3420e201d4b41a5779ba948cace5, type: 3}
+--- !u!114 &-6822522068353146528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5983777506889326711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b055c83a109a7112cb3b7d5a65103e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  m_data: {fileID: 0}

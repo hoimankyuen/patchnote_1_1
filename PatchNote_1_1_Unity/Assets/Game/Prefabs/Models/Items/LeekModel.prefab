@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6242168798142587675}
   - component: {fileID: -4109986216886549124}
   - component: {fileID: 7177186185736816103}
+  - component: {fileID: 2176381417892009868}
   m_Layer: 7
   m_Name: LeekModel
   m_TagString: Untagged
@@ -142,3 +143,16 @@ CapsuleCollider:
   m_Height: 0.38647622
   m_Direction: 1
   m_Center: {x: -0.0009169439, y: 0.19392559, z: 0.0009049941}
+--- !u!114 &2176381417892009868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278085160106970652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b055c83a109a7112cb3b7d5a65103e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  m_data: {fileID: 0}

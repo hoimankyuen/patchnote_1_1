@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2011926181469580779}
   - component: {fileID: 1368356965040895438}
   - component: {fileID: 42647689811179254}
+  - component: {fileID: -8110402805302474334}
   m_Layer: 7
   m_Name: HamModel
   m_TagString: Untagged
@@ -141,3 +142,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5506878775851055244, guid: 47ca3420e201d4b41a5779ba948cace5, type: 3}
+--- !u!114 &-8110402805302474334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3336152990570190724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b055c83a109a7112cb3b7d5a65103e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  m_data: {fileID: 0}

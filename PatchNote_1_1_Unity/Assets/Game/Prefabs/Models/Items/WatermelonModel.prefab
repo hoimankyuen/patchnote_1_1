@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4086229272578989410}
   - component: {fileID: 162313262565443546}
   - component: {fileID: 7442761475683784147}
+  - component: {fileID: 4653324946421191956}
   m_Layer: 7
   m_Name: WatermelonModel
   m_TagString: Untagged
@@ -140,3 +141,16 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.16773796
   m_Center: {x: -0.000000029802322, y: 0.16814211, z: -0.000000014901161}
+--- !u!114 &4653324946421191956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3752578987335906503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b055c83a109a7112cb3b7d5a65103e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  m_data: {fileID: 0}

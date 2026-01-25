@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Fridge
   m_EditorClassIdentifier: Assembly-CSharp::ItemList
   Items:
-  - {fileID: 8469357059290778857, guid: 770e764d2a24eab48a5894c8f3b05ef1, type: 3}
-  - {fileID: 6002216981904243730, guid: 9393fb5d4355805458a5fce07ecf0c2c, type: 3}
-  - {fileID: 8597565649547528606, guid: b6a6e605f4f077848b7c057d0e08ccb3, type: 3}
-  - {fileID: 3752578987335906503, guid: 7befa399f00f64c4a8d5bd62d4c06cdd, type: 3}
-  - {fileID: 2518176100745994948, guid: daa8447e759d75c48b427d97d1c6750d, type: 3}
-  - {fileID: 2606066022917364813, guid: 83c23b4aed2731a4b9962faeb620bcf2, type: 3}
-  - {fileID: 5755992046572987026, guid: ff8a497ad671a8b4da2ccd18d997eadd, type: 3}
+  - {fileID: 11400000, guid: 74b7141af246fa145b2e8f2f2a3e0689, type: 2}
+  - {fileID: 11400000, guid: 329e8a9ca4cd8e143b1121984aeddc88, type: 2}
+  - {fileID: 11400000, guid: 6347762eea9d7464d96034dc3784415b, type: 2}
+  - {fileID: 11400000, guid: 792e79f8cc65df742ab6f58ac85a2ad5, type: 2}
+  - {fileID: 11400000, guid: d59357006e54096428d3190953d8b452, type: 2}
+  - {fileID: 11400000, guid: 3cc4cd5f90dff914cbdc4b74bcd14029, type: 2}
+  - {fileID: 11400000, guid: ada3a3379771eab4da0f7589e94e9118, type: 2}
+  - {fileID: 11400000, guid: 2ebb2967b3b7149428ef3e62cfbd5cfc, type: 2}

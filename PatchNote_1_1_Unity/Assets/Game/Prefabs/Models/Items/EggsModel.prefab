@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4494650361054169629}
   - component: {fileID: 325655145112596990}
   - component: {fileID: 227457905553733343}
+  - component: {fileID: -1193166732743958850}
   m_Layer: 7
   m_Name: EggsModel
   m_TagString: Untagged
@@ -140,3 +141,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1933427, y: 0.08775312, z: 0.1293582}
   m_Center: {x: 0, y: 0.044734985, z: 0}
+--- !u!114 &-1193166732743958850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6002216981904243730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b055c83a109a7112cb3b7d5a65103e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  m_data: {fileID: 0}

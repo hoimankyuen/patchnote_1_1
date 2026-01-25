@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ebe01aa5554e449aa79d401a9a1295, type: 3}
   m_Name: ItemData_Crisps
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  type: 302
-  price: 10
-  mass: 1
-  icon: {fileID: 21300000, guid: 65bec079fc1f10a4ebdc5d7383814336, type: 3}
-  prefab: {fileID: 4501764703296430737, guid: 168023e3da579514aa3d18701312cba3, type: 3}
+  Type: 302
+  Price: 10
+  Mass: 1
+  Icon: {fileID: 21300000, guid: 65bec079fc1f10a4ebdc5d7383814336, type: 3}
+  Prefab: {fileID: 4501764703296430737, guid: 168023e3da579514aa3d18701312cba3, type: 3}

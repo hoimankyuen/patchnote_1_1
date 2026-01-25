@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ebe01aa5554e449aa79d401a9a1295, type: 3}
   m_Name: ItemData_Can
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  type: 201
-  price: 10
-  mass: 1
-  icon: {fileID: 21300000, guid: af9b18f6a26e394438f3958494df1f2f, type: 3}
-  prefab: {fileID: 8903305954407089693, guid: f8421d842332a3649b4159e2794ddccc, type: 3}
+  Type: 201
+  Price: 10
+  Mass: 1
+  Icon: {fileID: 21300000, guid: af9b18f6a26e394438f3958494df1f2f, type: 3}
+  Prefab: {fileID: 8903305954407089693, guid: f8421d842332a3649b4159e2794ddccc, type: 3}

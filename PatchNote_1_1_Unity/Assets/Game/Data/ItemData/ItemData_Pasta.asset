@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ebe01aa5554e449aa79d401a9a1295, type: 3}
   m_Name: ItemData_Pasta
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  type: 203
-  price: 10
-  mass: 1
-  icon: {fileID: 21300000, guid: 664c3acde078cc54d91d89cc4c970b3c, type: 3}
-  prefab: {fileID: 1879098291888844192, guid: 70c613a08c1e27f418bf624201a53093, type: 3}
+  Type: 203
+  Price: 10
+  Mass: 1
+  Icon: {fileID: 21300000, guid: 664c3acde078cc54d91d89cc4c970b3c, type: 3}
+  Prefab: {fileID: 1879098291888844192, guid: 70c613a08c1e27f418bf624201a53093, type: 3}

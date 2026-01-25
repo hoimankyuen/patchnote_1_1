@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ebe01aa5554e449aa79d401a9a1295, type: 3}
   m_Name: ItemData_Potato
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  type: 4
-  price: 10
-  mass: 1
-  icon: {fileID: 21300000, guid: c88980b5d3de86049b9eff371693d073, type: 3}
-  prefab: {fileID: 2606066022917364813, guid: 83c23b4aed2731a4b9962faeb620bcf2, type: 3}
+  Type: 4
+  Price: 10
+  Mass: 1
+  Icon: {fileID: 21300000, guid: c88980b5d3de86049b9eff371693d073, type: 3}
+  Prefab: {fileID: 2606066022917364813, guid: 83c23b4aed2731a4b9962faeb620bcf2, type: 3}

@@ -15,7 +15,7 @@ public class ItemLibrary : ScriptableObject
             m_runtimeItemDataLookup = new Dictionary<ItemType, ItemData>();
             foreach (ItemData itemData in items)
             {
-                m_runtimeItemDataLookup[itemData.type] = itemData;
+                m_runtimeItemDataLookup[itemData.Type] = itemData;
             }
         }
         

@@ -58,10 +58,13 @@ public class Shelf : MonoBehaviour
     {
         foreach (Transform itemSpawnPosition in m_itemSpawnPositions)
         {
-            m_items.Add(Instantiate(m_itemList.Items[Random.Range(0, m_itemList.Items.Count)],
+            ItemData newItem = m_itemList.Items[Random.Range(0, m_itemList.Items.Count)];
+            GameObject newObject = Instantiate(newItem.Prefab,
                 itemSpawnPosition.position,
                 itemSpawnPosition.rotation,
-                transform).GetComponent<Rigidbody>());
+                transform);
+            m_items.Add(newObject.GetComponent<Rigidbody>());
+            newObject.GetComponent<Item>().SetData(newItem);
         }
     }
 

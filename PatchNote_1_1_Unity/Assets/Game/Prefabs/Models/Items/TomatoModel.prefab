@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5653551752548678091}
   - component: {fileID: 7591026169811088131}
   - component: {fileID: 6191692444003952449}
+  - component: {fileID: 6030048964743652975}
   m_Layer: 7
   m_Name: TomatoModel
   m_TagString: Untagged
@@ -140,3 +141,16 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.057740696
   m_Center: {x: -0.000000031664968, y: 0.04, z: 0}
+--- !u!114 &6030048964743652975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2518176100745994948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b055c83a109a7112cb3b7d5a65103e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  m_data: {fileID: 0}

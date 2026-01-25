@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 839429071611032407}
   - component: {fileID: -8207892576827452479}
   - component: {fileID: 8443025648690284934}
+  - component: {fileID: 7849730112904321954}
   m_Layer: 7
   m_Name: BreadModel
   m_TagString: Untagged
@@ -140,3 +141,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.2240864, y: 0.18520248, z: 0.1679743}
   m_Center: {x: 0, y: 0.09396194, z: 0}
+--- !u!114 &7849730112904321954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7829798263333520968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b055c83a109a7112cb3b7d5a65103e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  m_data: {fileID: 0}

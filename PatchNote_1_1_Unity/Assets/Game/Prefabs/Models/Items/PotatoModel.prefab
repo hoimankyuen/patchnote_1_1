@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 91998754072602317}
   - component: {fileID: 3471765633649266554}
   - component: {fileID: 1026715953017988328}
+  - component: {fileID: 3038687688055937945}
   m_Layer: 7
   m_Name: PotatoModel
   m_TagString: Untagged
@@ -142,3 +143,16 @@ CapsuleCollider:
   m_Height: 0.15
   m_Direction: 0
   m_Center: {x: 0.0023362245, y: 0.049827203, z: 0.001518216}
+--- !u!114 &3038687688055937945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2606066022917364813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b055c83a109a7112cb3b7d5a65103e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  m_data: {fileID: 0}

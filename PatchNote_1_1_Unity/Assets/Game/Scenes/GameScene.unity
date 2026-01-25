@@ -29595,6 +29595,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GoalEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 4457448747338335322, guid: 6a71da3f8564f4842897d0a1d29dfcad, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8017189373301743647, guid: 6a71da3f8564f4842897d0a1d29dfcad, type: 3}
       propertyPath: m_LocalScale.x
       value: 21.9
@@ -29650,13 +29654,42 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4457448747338335322, guid: 6a71da3f8564f4842897d0a1d29dfcad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2036484193}
   m_SourcePrefab: {fileID: 100100000, guid: 6a71da3f8564f4842897d0a1d29dfcad, type: 3}
 --- !u!4 &2036484191 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8017189373301743647, guid: 6a71da3f8564f4842897d0a1d29dfcad, type: 3}
   m_PrefabInstance: {fileID: 2036484190}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2036484192 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4457448747338335322, guid: 6a71da3f8564f4842897d0a1d29dfcad, type: 3}
+  m_PrefabInstance: {fileID: 2036484190}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2036484193
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036484192}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &2038772909
 PrefabInstance:
   m_ObjectHideFlags: 0

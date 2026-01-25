@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4868237859084207780}
   - component: {fileID: -3927705006674327928}
   - component: {fileID: 8826205232828396161}
+  - component: {fileID: -1394712049865831874}
   m_Layer: 7
   m_Name: FishModel
   m_TagString: Untagged
@@ -140,3 +141,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.2812476, y: 0.04086806, z: 0.2119208}
   m_Center: {x: 0, y: 0.021323316, z: -0.0023990497}
+--- !u!114 &-1394712049865831874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3590968075888628323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b055c83a109a7112cb3b7d5a65103e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  m_data: {fileID: 0}
