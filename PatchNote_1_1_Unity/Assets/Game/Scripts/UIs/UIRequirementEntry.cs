@@ -43,18 +43,18 @@ public class UIRequirementEntry : MonoBehaviour
         UpdateDisplay();
     }
 
-    public void SetAmount(int amount)
+    public void SetCurrent(int amount)
     {
-        m_currentQuantity = amount;
+        m_currentQuantity = Mathf.Max(0, m_requiredQuantity - amount);
         UpdateDisplay();
     }
 
     private void UpdateDisplay()
-    {  
+    {
         bool fulfilled = m_currentQuantity >= m_requiredQuantity;
         m_tick.gameObject.SetActive(fulfilled);
         m_text.gameObject.SetActive(!fulfilled);
-        m_text.text = $"{m_currentQuantity}/{m_requiredQuantity}";
+        m_text.text = $"{Mathf.Min(9,m_currentQuantity)} / {Mathf.Min(9,m_requiredQuantity)}";
     }
 
     public void Show()

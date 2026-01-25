@@ -23208,6 +23208,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c259eeef9e8e5542a4612a1772a0f9f, type: 3}
+--- !u!114 &1592274786 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9151423032837678016, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
+  m_PrefabInstance: {fileID: 3571118845490365242}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d576bca367244cd89a9d161dc02da7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CartItems
 --- !u!1001 &1598642591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31286,7 +31297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5977559749165183486, guid: b7521b075dde15b4f8b4110e23836a33, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 360
+      value: 560
       objectReference: {fileID: 0}
     - target: {fileID: 5977559749165183486, guid: b7521b075dde15b4f8b4110e23836a33, type: 3}
       propertyPath: m_SizeDelta.y
@@ -31344,6 +31355,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIScoreDisplay
       objectReference: {fileID: 0}
+    - target: {fileID: 9178810642444174467, guid: b7521b075dde15b4f8b4110e23836a33, type: 3}
+      propertyPath: m_cartItems
+      value: 
+      objectReference: {fileID: 1592274786}
     - target: {fileID: 9178810642444174467, guid: b7521b075dde15b4f8b4110e23836a33, type: 3}
       propertyPath: m_gameManager
       value: 
@@ -31409,6 +31424,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trolley
       objectReference: {fileID: 0}
+    - target: {fileID: 9151423032837678016, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
+      propertyPath: m_gameManager
+      value: 
+      objectReference: {fileID: 1725036625}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31517,6 +31536,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIRequirementDisplay
       objectReference: {fileID: 0}
+    - target: {fileID: 4204117766913487669, guid: ac8eb92c492055e44b91f30a5d635e44, type: 3}
+      propertyPath: m_cartItems
+      value: 
+      objectReference: {fileID: 1592274786}
     - target: {fileID: 4204117766913487669, guid: ac8eb92c492055e44b91f30a5d635e44, type: 3}
       propertyPath: m_gameManager
       value: 

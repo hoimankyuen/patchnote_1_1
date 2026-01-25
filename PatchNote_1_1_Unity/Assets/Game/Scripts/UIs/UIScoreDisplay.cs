@@ -9,11 +9,13 @@ public class UIScoreDisplay : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameManager m_gameManager;
+    [SerializeField] private CartItems m_cartItems;
     
     [Header("Components")]
     [SerializeField] private CanvasGroup m_canvasGroup;
     [SerializeField] private Image m_frame;
-    [SerializeField] private TextMeshProUGUI m_text;
+    [SerializeField] private TextMeshProUGUI m_confirmedScoreText;
+    [SerializeField] private TextMeshProUGUI m_pendingScoreText;
 
     [Header("Settings")]
     [SerializeField] private float m_scoreChangeDuration;    
@@ -21,8 +23,10 @@ public class UIScoreDisplay : MonoBehaviour
     private float m_currentAlpha = 0f;
     private float m_targetAlpha = 0f;
 
-    private float m_currentScore = 0f;
-    private Coroutine m_changePriceCoroutine;
+    private float m_currentConfirmed = 0f;
+    private float m_currentPending = 0f;
+    private Coroutine m_changeConfirmedCoroutine;
+    private Coroutine m_changePendingCoroutine;
     
     // ======== Unity Events ========
     
@@ -34,6 +38,9 @@ public class UIScoreDisplay : MonoBehaviour
         m_gameManager.CurrentScoreChanged += OnCurrentScoreChanged;
         OnCurrentScoreChanged();
         
+        m_cartItems.TotalScoreChanged += OnCartTotalScoreChanged;
+        OnCartTotalScoreChanged();
+        
         m_currentAlpha = m_canvasGroup.alpha;
     }
     
@@ -43,6 +50,11 @@ public class UIScoreDisplay : MonoBehaviour
         {
             m_gameManager.CurrentStateChanged -= OnCurrentStateChanged;
             m_gameManager.CurrentScoreChanged -= OnCurrentScoreChanged;
+        }
+
+        if (m_cartItems != null)
+        {
+            m_cartItems.TotalScoreChanged -= OnCartTotalScoreChanged;
         }
     }
 
@@ -63,7 +75,12 @@ public class UIScoreDisplay : MonoBehaviour
 
     private void OnCurrentScoreChanged()
     {
-        ChangePrice(m_gameManager.CurrentScore);
+        ChangeConfirmed(m_gameManager.CurrentScore);
+    }
+    
+    private void OnCartTotalScoreChanged()
+    {
+        ChangePending(m_cartItems.TotalScore);
     }
     
     // ======== Functionalities ========
@@ -76,34 +93,60 @@ public class UIScoreDisplay : MonoBehaviour
         m_canvasGroup.alpha = m_currentAlpha;
     }
     
-    
-    private void ChangePrice(float score)
+    private void ChangeConfirmed(float score)
     {
-        if (m_changePriceCoroutine != null)
+        if (m_changeConfirmedCoroutine != null)
         {
-            StopCoroutine(m_changePriceCoroutine);
-            m_changePriceCoroutine = null;
+            StopCoroutine(m_changeConfirmedCoroutine);
+            m_changeConfirmedCoroutine = null;
         }
-        m_changePriceCoroutine = StartCoroutine(ChangePriceSequence(score));
-        
-        m_text.text = $"LAP {m_gameManager.CurrentLap}/{LevelManager.Instance.CurrentLevelData.laps.Count}";
+        m_changeConfirmedCoroutine = StartCoroutine(ChangeConfirmedSequence(score));
     }
 
-    private IEnumerator ChangePriceSequence(float score)
+    private IEnumerator ChangeConfirmedSequence(float score)
     {
-        float fromScore = m_currentScore;
+        float fromScore = m_currentConfirmed;
         float toScore = m_gameManager.CurrentScore;
         yield return CoroutineUtils.LerpWithTime(m_scoreChangeDuration, t =>
         {
-            m_currentScore = Mathf.Lerp(fromScore, toScore, t);
-            SetPriceText(m_currentScore);
+            m_currentConfirmed = Mathf.Lerp(fromScore, toScore, t);
+            SetConfirmedText(m_currentConfirmed);
         });
-        SetPriceText(toScore);
-        m_changePriceCoroutine = null;
+        SetConfirmedText(toScore);
+        m_changeConfirmedCoroutine = null; 
     }
 
-    private void SetPriceText(float score)
+    private void SetConfirmedText(float score)
     {
-        m_text.text = $"{score:F2}";
+        m_confirmedScoreText.text = $"{(int)Mathf.Min(score, 999999)} + (    )";
+    }
+    
+    private void ChangePending(float score)
+    {
+        if (m_changePendingCoroutine != null)
+        {
+            StopCoroutine(m_changePendingCoroutine);
+            m_changePendingCoroutine = null;
+        }
+        m_changePendingCoroutine = StartCoroutine(ChangePendingSequence(score));
+    }
+
+    
+    private IEnumerator ChangePendingSequence(float score)
+    {
+        float fromScore = m_currentPending;
+        float toScore = m_cartItems.TotalScore;
+        yield return CoroutineUtils.LerpWithTime(m_scoreChangeDuration, t =>
+        {
+            m_currentPending = Mathf.Lerp(fromScore, toScore, t);
+            SetPendingText(m_currentPending);
+        });
+        SetPendingText(toScore);
+        m_changePendingCoroutine = null; 
+    }
+    
+    private void SetPendingText(float score)
+    {
+        m_pendingScoreText.text = $"{(int)Mathf.Min(score, 9999)})";
     }
 }

@@ -12,28 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21a9d0b8f0373643953686d596947d3, type: 3}
   m_Name: Level1Data
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
-  title: O'Typical
-  sceneName: GameScene
-  timeLimit: 180
-  laps:
-  - requirements:
-    - itemType: 5
-      quantity: 2
-    - itemType: 206
-      quantity: 2
-    - itemType: 104
-      quantity: 2
-  - requirements:
-    - itemType: 103
-      quantity: 2
-    - itemType: 202
-      quantity: 2
-    - itemType: 204
-      quantity: 2
-  - requirements:
-    - itemType: 106
-      quantity: 2
-    - itemType: 4
-      quantity: 2
-    - itemType: 304
-      quantity: 1
+  Title: O'Typical
+  SceneName: GameScene
+  TimeLimit: 180
+  Laps:
+  - Requirements:
+    - Type: 5
+      Quantity: 2
+    - Type: 206
+      Quantity: 2
+    - Type: 104
+      Quantity: 2
+  - Requirements:
+    - Type: 103
+      Quantity: 2
+    - Type: 202
+      Quantity: 2
+    - Type: 204
+      Quantity: 2
+  - Requirements:
+    - Type: 106
+      Quantity: 2
+    - Type: 4
+      Quantity: 2
+    - Type: 304
+      Quantity: 1

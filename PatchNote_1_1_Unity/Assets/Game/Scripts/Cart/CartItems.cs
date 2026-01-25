@@ -4,31 +4,35 @@ using UnityEngine;
 
 public class CartItems : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private GameManager m_gameManager;
+    
     [Header("Components")]
     [SerializeField] private ParticleSystem m_cashEffect;
     
-    //TODO: Unserialize these fields after testing
+    public List<Item> Items { get; private set; } = new List<Item>();
+    public event Action ItemsChanged;
     
-    
-    [SerializeField] private List<Item> m_items = new List<Item>();
-
-    [SerializeField] private float m_currentItemsTotalValue;
+    public float TotalScore { get; private set; }
+    public event Action TotalScoreChanged;
     
     public void AddItem(Item item)
     {
-        if (!m_items.Contains(item))
+        if (!Items.Contains(item))
         {
-            m_items.Add(item);
+            Items.Add(item);
             UpdateCurrentItemsTotalValue();
+            ItemsChanged?.Invoke();
         }
     }
 
     public void RemoveItem(Item item)
     {
-        if (m_items.Contains(item))
+        if (Items.Contains(item))
         {
-            m_items.Remove(item);
+            Items.Remove(item);
             UpdateCurrentItemsTotalValue();
+            ItemsChanged?.Invoke();
         }
     }
 
@@ -36,33 +40,35 @@ public class CartItems : MonoBehaviour
     {
         float total = 0f;
         
-        foreach (Item item in m_items)
+        foreach (Item item in Items)
         {
             total += item.GetItemPrice;
         }
 
-        m_currentItemsTotalValue = total;
+        TotalScore = total;
+        TotalScoreChanged?.Invoke();
     }
-
-    public float GetPriceOfAllItemsInCart => m_currentItemsTotalValue;
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer != LayerMask.NameToLayer("Goal")) 
             return;
 
-        if (m_items.Count <= 0)
+        if (Items.Count <= 0)
             return;
         
-        //TODO: Increase score by m_currentItemsTotalValue
+        m_gameManager.SolidifyProgress(Items, TotalScore);
         
         //TODO: We may want to have particle effects for each item here, should definitely have a cash register/"cha-ching!" sound effect   
-        foreach (Item item in m_items)
+        foreach (Item item in Items)
         {
             Destroy(item.gameObject);
         }
-        m_items.Clear();
-        m_currentItemsTotalValue = 0f;
+        Items.Clear();
+        ItemsChanged?.Invoke();
+        
+        TotalScore = 0f;
+        TotalScoreChanged?.Invoke();
         
         m_cashEffect.Play();
     }
