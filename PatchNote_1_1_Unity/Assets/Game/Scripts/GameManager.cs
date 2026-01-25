@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Input;
 using MoonlightTools.AudioSystem;
 using MoonlightTools.GeneralTools;
+using MoonlightTools.StoredDataSystem;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -263,6 +264,22 @@ public class GameManager : MonoBehaviour
         m_inputReader.DisablePlayerInput();
         m_inputReader.EnableUIInput();
         Cursor.lockState = CursorLockMode.None;
+
+        SaveLevelResults();
+    }
+
+    private void SaveLevelResults()
+    {
+        LevelManager.Instance.SaveCurrentLevelResults(
+            CurrentScore, 
+            LevelManager.Instance.CurrentLevelData.TimeLimit  - LevelTimer.RemainingTime,
+            GemFound,
+            JamFound,
+            GoldFound);
+        if (LevelCompleted)
+        {
+            LevelManager.Instance.UnlockNextLevel();
+        }
     }
 
     public void NextLevel()

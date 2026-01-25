@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using MoonlightTools.GeneralTools;
+using MoonlightTools.StoredDataSystem;
 using MoonlightTools.UIToolkit;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,8 @@ public class LevelManager : MonoBehaviourPersistentSingleton<LevelManager>
     
     private bool m_loadingScene = false;
 
+    public int UnlockedLevel { get; private set; }
+    
     public LevelData CurrentLevelData { get; private set; }
 
     public bool HasNextLevel => CurrentLevelData != null && CurrentLevelData.Number < m_levelLibrary.GetLevelCount() - 1;
@@ -26,6 +29,11 @@ public class LevelManager : MonoBehaviourPersistentSingleton<LevelManager>
         base.Awake();
         
         RetrieveLevelIndex();
+    }
+
+    private void Start()
+    {
+        RetrieveInitialUnlockedLevels();
     }
 
     // ======== Functionalities ========
@@ -64,5 +72,78 @@ public class LevelManager : MonoBehaviourPersistentSingleton<LevelManager>
         {
             m_loadingScene = false;
         });
+    }
+    
+    // ======= Level Save Data ========
+
+    private void RetrieveInitialUnlockedLevels()
+    {
+        UnlockedLevel = StoredDataManager.Instance.GetOrSetupInt(DataCategory.Shared, $"UnlockedLevel", 0);
+        StoredDataManager.Instance.Save(DataCategory.Shared);
+    }
+
+    public void UnlockNextLevel()
+    {
+        if (CurrentLevelData == null)
+            return;
+        
+        StoredDataManager.Instance.SetInt(DataCategory.Shared, $"UnlockedLevel", CurrentLevelData.Number + 1);
+        StoredDataManager.Instance.Save(DataCategory.Shared);
+    }
+
+    [System.Serializable]
+    private class LevelResults
+    {
+        public float Score;
+        public float Time;
+        public bool GemFound;
+        public bool JamFound;
+        public bool GoldFound;
+
+        public LevelResults(float score, float time, bool gemFound, bool jamFound, bool goldFound)
+        {
+            Score = score;
+            Time = time;
+            GemFound = gemFound;
+            JamFound = jamFound;
+            GoldFound = goldFound;
+        }
+    }
+
+    public void SaveCurrentLevelResults(float score, float time, bool gemFound, bool jamFound, bool goldFound)
+    {
+        if (CurrentLevelData == null)
+            return;
+        
+        LoadLevelResults(CurrentLevelData.Number, out float prevScore,  out float prevTime,  out bool prevGemFound,  out bool prevJamFound, out bool prevGoldFound);
+        LevelResults results = new LevelResults(
+             score >= prevScore ? score : prevScore, 
+             score < prevScore ? time : time <= prevTime ? time : prevTime,
+            gemFound || prevGemFound,
+            jamFound || prevJamFound,
+            goldFound || prevGoldFound);
+        
+        string json = JsonUtility.ToJson(results);
+        StoredDataManager.Instance.SetString(DataCategory.Shared, $"LevelResult_{CurrentLevelData.Number + 1}", json);
+        StoredDataManager.Instance.Save(DataCategory.Shared);
+    }
+
+    public void LoadLevelResults(int levelNumber,out float score,out float time,out bool gemFound,out bool jamFound,out bool goldFound)
+    {
+        score = 0;
+        time = 0;
+        gemFound = false;
+        jamFound = false;
+        goldFound = false;
+        string json = StoredDataManager.Instance.GetString(DataCategory.Shared, $"LevelResult_{levelNumber}");
+        if (!string.IsNullOrEmpty(json))
+        {
+            LevelResults results = JsonUtility.FromJson<LevelResults>(json);
+            score = results.Score;
+            time = results.Time;
+            gemFound = results.GemFound;
+            jamFound = results.JamFound;
+            goldFound = results.GoldFound;
+        }
     }
 }
