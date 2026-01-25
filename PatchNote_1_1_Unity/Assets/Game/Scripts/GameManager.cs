@@ -272,7 +272,7 @@ public class GameManager : MonoBehaviour
     {
         LevelManager.Instance.SaveCurrentLevelResults(
             CurrentScore, 
-            LevelManager.Instance.CurrentLevelData.TimeLimit  - LevelTimer.RemainingTime,
+            LevelManager.Instance.CurrentLevelData.TimeLimit - LevelTimer.RemainingTime,
             GemFound,
             JamFound,
             GoldFound);
