@@ -45,11 +45,11 @@ public class UIPauseMenu : MonoBehaviour
 
     private void OnCurrentStateChanged()
     {
-        if (m_gameManager.CurrentState == GameManager.State.Paused)
-        {
-            m_panel.Show(true);
-            m_firstButton.Select();
-        }
+        if (m_gameManager.CurrentState != GameManager.State.Paused) 
+            return;
+        
+        m_panel.Show(true);
+        m_firstButton.Select();
     }
     
     private void OnResumeInput()
@@ -58,6 +58,17 @@ public class UIPauseMenu : MonoBehaviour
             return;
 
         Resume();
+    }
+    
+    private void OnIsVisibleChanged()
+    {
+        if (m_gameManager.CurrentState != GameManager.State.Paused)
+            return;
+
+        if (m_panel.IsVisible)
+            return;
+        
+        m_gameManager.Resume();
     }
     
     // ======== Functionalities ========
@@ -75,17 +86,6 @@ public class UIPauseMenu : MonoBehaviour
     public void Resume()
     {
         m_panel.Show(false);
-    }
-    
-    private void OnIsVisibleChanged()
-    {
-        if (m_gameManager.CurrentState != GameManager.State.Paused)
-            return;
-
-        if (m_panel.IsVisible)
-            return;
-        
-        m_gameManager.Resume();
     }
 
     public void BackToMainMenu()

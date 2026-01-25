@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -20}
+  m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: 0, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &5503814620417423505
@@ -450,6 +450,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8694341376054159789, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694341376054159789, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 1391996028706728788}
+    - target: {fileID: 8694341376054159789, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 5833115577681179273}
+    - target: {fileID: 8694341376054159789, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -487,6 +499,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4137419789133514727, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
   m_PrefabInstance: {fileID: 474345680272649613}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9096628620169053216 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8694341376054159789, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
+  m_PrefabInstance: {fileID: 474345680272649613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ccc19297ebe9ca44b5b0cbc05dcd36a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.moonlight.tools.gizmotools::MoonlightTools.UIComponents.MultiButton
 --- !u!1001 &2908167422387919652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -584,6 +607,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8694341376054159789, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694341376054159789, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 9096628620169053216}
+    - target: {fileID: 8694341376054159789, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 1832410153401515556}
+    - target: {fileID: 8694341376054159789, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -621,6 +656,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4137419789133514727, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
   m_PrefabInstance: {fileID: 2908167422387919652}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5833115577681179273 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8694341376054159789, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
+  m_PrefabInstance: {fileID: 2908167422387919652}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ccc19297ebe9ca44b5b0cbc05dcd36a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.moonlight.tools.gizmotools::MoonlightTools.UIComponents.MultiButton
 --- !u!1001 &7045466249926580105
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -703,7 +749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4137419789133514727, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4137419789133514727, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -717,6 +763,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8694341376054159789, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694341376054159789, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 5833115577681179273}
     - target: {fileID: 8694341376054159789, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -753,6 +807,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3434093509287389918}
   m_SourcePrefab: {fileID: 100100000, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
+--- !u!114 &1832410153401515556 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8694341376054159789, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
+  m_PrefabInstance: {fileID: 7045466249926580105}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5943924574846477713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ccc19297ebe9ca44b5b0cbc05dcd36a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: com.moonlight.tools.gizmotools::MoonlightTools.UIComponents.MultiButton
 --- !u!1 &5943924574846477713 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3727724648806281752, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
@@ -1072,6 +1137,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8694341376054159789, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694341376054159789, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 9096628620169053216}
     - target: {fileID: 8694341376054159789, guid: 3007894a4cc9ed048b66a9617e7500de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1

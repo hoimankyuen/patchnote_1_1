@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
     public ItemQuantities CurrentRequirements { get; private set; } = new ItemQuantities();
     public event Action CurrentRequirementsChanged;
     
+    public int CurrentItemCount { get; private set; }
+    public event Action CurrentItemCountChanged;
+    
     public float CurrentScore { get; private set; }
     public event Action CurrentScoreChanged;
     
@@ -43,6 +46,8 @@ public class GameManager : MonoBehaviour
     public event Action GoldFoundChanged;
     
     public Timer LevelTimer => m_levelTimer;
+    
+    public bool LevelCompleted { get; private set; }
     
     // ======== Unity Events ========
     
@@ -158,6 +163,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            LevelCompleted = true;
+            m_levelTimer.PauseTimer();
             StartEndedState();
         }
     }
@@ -190,17 +197,15 @@ public class GameManager : MonoBehaviour
         
         CurrentScore += score;
         CurrentScoreChanged?.Invoke();
+        
+        CurrentItemCount += items.Count;
+        CurrentItemCountChanged?.Invoke();
 
         // check for lap completion
         if (CurrentRequirements.TrueForAll(x => x.Quantity <= 0))
         {
             ProgressToNextLap();
         }
-    }
-    
-    public void Restart()
-    {
-        LevelManager.Instance.GotoLevel(LevelManager.Instance.CurrentLevelData.Number);
     }
     
     private void Pause()
@@ -233,16 +238,12 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void BackToManuMenu()
-    {
-        LevelManager.Instance.GotoMainMenu();
-    }
-
     private void LevelTimeOut()
     {
         if (CurrentState is not State.Playing and not State.Paused)
             return;
 
+        LevelCompleted = false;
         StartEndedState();
     }
     
@@ -256,5 +257,20 @@ public class GameManager : MonoBehaviour
         m_inputReader.DisablePlayerInput();
         m_inputReader.EnableUIInput();
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void NextLevel()
+    {
+        LevelManager.Instance.GotoLevel(LevelManager.Instance.CurrentLevelData.Number + 1);
+    }
+    
+    public void Restart()
+    {
+        LevelManager.Instance.GotoLevel(LevelManager.Instance.CurrentLevelData.Number);
+    }
+    
+    public void BackToManuMenu()
+    {
+        LevelManager.Instance.GotoMainMenu();
     }
 }

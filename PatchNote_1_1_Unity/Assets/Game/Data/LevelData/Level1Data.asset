@@ -17,23 +17,11 @@ MonoBehaviour:
   TimeLimit: 180
   Laps:
   - Requirements:
-    - Type: 5
-      Quantity: 2
     - Type: 206
-      Quantity: 2
-    - Type: 104
-      Quantity: 2
+      Quantity: 1
   - Requirements:
-    - Type: 103
-      Quantity: 2
-    - Type: 202
-      Quantity: 2
-    - Type: 204
-      Quantity: 2
+    - Type: 206
+      Quantity: 1
   - Requirements:
-    - Type: 106
-      Quantity: 2
-    - Type: 4
-      Quantity: 2
-    - Type: 304
+    - Type: 206
       Quantity: 1

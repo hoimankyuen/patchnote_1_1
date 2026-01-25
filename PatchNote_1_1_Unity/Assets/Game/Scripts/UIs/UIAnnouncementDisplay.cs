@@ -48,6 +48,10 @@ public class UIAnnouncementDisplay : MonoBehaviour
             m_canvasGroup.alpha = 0;
             AnnounceCountdown();
         }
+        else if (m_gameManager.CurrentState is GameManager.State.Ended)
+        {
+            AnnounceText(m_gameManager.LevelCompleted ? "FINISHED!" : "TIME OUT");
+        }
         else
         {
             m_canvasGroup.alpha = 0;
@@ -58,15 +62,16 @@ public class UIAnnouncementDisplay : MonoBehaviour
     {
         if (m_gameManager.CurrentState is not GameManager.State.Playing and not GameManager.State.Paused)
             return;
-
+        
         if (m_gameManager.CurrentLap > 0)
         {
             AnnounceText($"LAP {m_gameManager.CurrentLap + 1}");
         }
         else if (m_gameManager.CurrentLap == LevelManager.Instance.CurrentLevelData.Laps.Count - 1)
         {
-            AnnounceText($"FINAL LAP");
+            AnnounceText("FINAL LAP");
         }
+        
     }
     
     // ======== Functionalities ========

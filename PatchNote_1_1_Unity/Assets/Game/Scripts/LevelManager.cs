@@ -16,6 +16,8 @@ public class LevelManager : MonoBehaviourPersistentSingleton<LevelManager>
     private bool m_loadingScene = false;
 
     public LevelData CurrentLevelData { get; private set; }
+
+    public bool HasNextLevel => CurrentLevelData != null && CurrentLevelData.Number < m_levelLibrary.GetLevelCount() - 1;
     
     // ======== Unity Events ========
     
