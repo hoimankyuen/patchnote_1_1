@@ -4,7 +4,7 @@ using Input;
 using MoonlightTools.AudioSystem;
 using MoonlightTools.GeneralTools;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,7 +22,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private InputReader m_inputReader;
     [SerializeField] private CameraManager m_cameraManager;
     [SerializeField] private Timer m_levelTimer;
-
+    [SerializeField] private AudioSource m_musicAudioSource;
+    
+    [SerializeField] private AudioResource m_gameMusic;
+    [SerializeField] private AudioResource m_previewMusic;
     public State CurrentState { get; private set; } = State.None;
     public event Action CurrentStateChanged;
 
@@ -51,10 +54,6 @@ public class GameManager : MonoBehaviour
     
     public bool LevelCompleted { get; private set; }
     
-    // ======== Unity Events ========
-
-    public UnityEvent OnCountdownComplete;
-    
     public void Awake()
     {
         m_inputReader.Pause += Pause;
@@ -63,6 +62,7 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
+        AudioManager.Instance.StopMusic();
         StartMapPreviewState();
     }
 
@@ -89,6 +89,9 @@ public class GameManager : MonoBehaviour
     {
         CurrentState = State.MapPreview;
         CurrentStateChanged?.Invoke();
+        
+        m_musicAudioSource.resource = m_previewMusic;
+        m_musicAudioSource.Play();
         
         m_inputReader.DisablePlayerInput();
         m_inputReader.EnableUIInput();
@@ -126,8 +129,6 @@ public class GameManager : MonoBehaviour
         if (CurrentState != State.Countdown)
             return;
         
-        OnCountdownComplete?.Invoke();
-        
         StartPlayingState();
     }
 
@@ -155,6 +156,10 @@ public class GameManager : MonoBehaviour
         m_levelTimer.StartTimer();
 
         ProgressToNextLap();
+        
+        m_musicAudioSource.Stop();
+        m_musicAudioSource.resource = m_gameMusic;
+        m_musicAudioSource.Play();
     }
 
     private void ProgressToNextLap()

@@ -1,4 +1,5 @@
 using Input;
+using MoonlightTools.AudioSystem;
 using MoonlightTools.UIComponents;
 using TMPro;
 using UnityEngine;
@@ -75,21 +76,25 @@ public class UIPauseMenu : MonoBehaviour
 
     public void Settings()
     {
+        AudioManager.Instance.PlaySoundEffect("Button_press01");
         // TODO
     }
     
     public void Restart()
     {
+        AudioManager.Instance.PlaySoundEffect("Button_press01");
         m_gameManager.Restart();
     }
     
     public void Resume()
     {
+        AudioManager.Instance.PlaySoundEffect("Button_press01");
         m_panel.Show(false);
     }
 
     public void BackToMainMenu()
     {
+        AudioManager.Instance.PlaySoundEffect("Button_press01");
         m_gameManager.BackToManuMenu();
     }
 }

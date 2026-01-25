@@ -1,3 +1,4 @@
+using MoonlightTools.AudioSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -51,16 +52,17 @@ public class UIMainMenu : MonoBehaviour
 
     public void MainPageStart()
     {
+        AudioManager.Instance.PlaySoundEffect("Button_press01");
         LevelManager.Instance.GotoLevel(0);
     }
 
     public void MainPageSettings()
     {
-        
+        AudioManager.Instance.PlaySoundEffect("Button_press01");
     }
 
     public void MainPageCredits()
     {
-        
+        AudioManager.Instance.PlaySoundEffect("Button_press01");
     }
 }
