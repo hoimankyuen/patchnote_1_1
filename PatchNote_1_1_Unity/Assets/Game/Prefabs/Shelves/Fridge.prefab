@@ -5414,6 +5414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shelf
   m_itemList: {fileID: 11400000, guid: e382490855d850ba4b81a819774c6071, type: 2}
+  m_itemLibrary: {fileID: 11400000, guid: fc30496a4bbb32042b414a801322f574, type: 2}
   m_animator: {fileID: 1955811379733068414}
   m_itemSpawnPositions:
   - {fileID: 7517853370259072753}

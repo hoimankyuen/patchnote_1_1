@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81ebe01aa5554e449aa79d401a9a1295, type: 3}
-  m_Name: ItemData_Watermelon
+  m_Name: ItemData_Melon
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   Type: 305
   Price: 10

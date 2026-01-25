@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ebe01aa5554e449aa79d401a9a1295, type: 3}
   m_Name: ItemData_Bread
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  Type: 104
+  Type: 206
   Price: 10
   Mass: 1
   Icon: {fileID: 21300000, guid: 4a5f8db3ed23d4b47908fc91f3d72ac8, type: 3}

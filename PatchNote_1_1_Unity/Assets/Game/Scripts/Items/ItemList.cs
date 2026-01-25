@@ -4,5 +4,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ItemList", menuName = "ScriptableObjects/ItemList", order = 1)]
 public class ItemList : ScriptableObject
 {
-    public List<ItemData> Items;
+    public List<ItemType> ItemTypes;
 }
