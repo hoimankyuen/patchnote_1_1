@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MoonlightTools.AudioSystem;
 using UnityEngine;
 
 public class CartItems : MonoBehaviour
@@ -59,7 +60,8 @@ public class CartItems : MonoBehaviour
         
         m_gameManager.SolidifyProgress(Items, TotalScore);
         
-        //TODO: We may want to have particle effects for each item here, should definitely have a cash register/"cha-ching!" sound effect   
+        AudioManager.Instance.PlaySoundEffect("Ka_ching01");
+        
         foreach (Item item in Items)
         {
             Destroy(item.gameObject);

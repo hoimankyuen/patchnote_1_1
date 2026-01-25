@@ -13,6 +13,84 @@ MonoBehaviour:
   m_Name: AudioLibrary
   m_EditorClassIdentifier: com.moonlight.tools.gizmotools::MoonlightTools.AudioSystem.AudioLibrary
   audioInfos:
-  - name: SampleClip
-    clip: {fileID: 0}
+  - name: Button_hover01
+    clip: {fileID: 8300000, guid: df6aec2249311118dab6917080b823c2, type: 3}
+    volumeScale: 1
+  - name: Button_press01
+    clip: {fileID: 8300000, guid: d393c9b796808127485449eb513f6460, type: 3}
+    volumeScale: 1
+  - name: Countdown01
+    clip: {fileID: 8300000, guid: 137798c998f706e24a3a0c232302f230, type: 3}
+    volumeScale: 1
+  - name: Glass_shattering01
+    clip: {fileID: 8300000, guid: 99fe8c4debe5979f6bb179ec66c93c4b, type: 3}
+    volumeScale: 1
+  - name: Glass_shattering02
+    clip: {fileID: 8300000, guid: 04914e72caf3b541ab8d3626c385beac, type: 3}
+    volumeScale: 1
+  - name: Item_impact01_1
+    clip: {fileID: 8300000, guid: 83672cdc37699a00498337c7ed5a9cce, type: 3}
+    volumeScale: 1
+  - name: Item_impact02
+    clip: {fileID: 8300000, guid: 9cd746238ff623e72bd426b959ce42a3, type: 3}
+    volumeScale: 1
+  - name: Item_impact03
+    clip: {fileID: 8300000, guid: d245fbb2d03bf16c1af7f9f434272c25, type: 3}
+    volumeScale: 1
+  - name: Ka_ching01
+    clip: {fileID: 8300000, guid: a0a5d038db611b8bdb2116c0819207d4, type: 3}
+    volumeScale: 1
+  - name: Level_fail01
+    clip: {fileID: 8300000, guid: 6b7f444ad79107494b500809556c47c5, type: 3}
+    volumeScale: 1
+  - name: Level_fail02
+    clip: {fileID: 8300000, guid: a237e0fd74221abc2a33c9b5a601021a, type: 3}
+    volumeScale: 1
+  - name: Level_win01
+    clip: {fileID: 8300000, guid: 740bb1d09b81a6fc59725d575cac7d4d, type: 3}
+    volumeScale: 1
+  - name: Req_complete01
+    clip: {fileID: 8300000, guid: 091ce940a6ebeab958dcd974116a67d2, type: 3}
+    volumeScale: 1
+  - name: Shelf_falling01
+    clip: {fileID: 8300000, guid: e60761fd808d5a13c98cff89c33b1200, type: 3}
+    volumeScale: 1
+  - name: Shelf_falling02
+    clip: {fileID: 8300000, guid: 65628dc6d56d2a37d9f4b751dd6aec81, type: 3}
+    volumeScale: 1
+  - name: Shelf_falling04
+    clip: {fileID: 8300000, guid: 409d985b6d1ecf0d3bf503f160ae5a27, type: 3}
+    volumeScale: 1
+  - name: Shelf_falling05
+    clip: {fileID: 8300000, guid: fac5f198b0eeadeb4a5fc8329ced42e7, type: 3}
+    volumeScale: 1
+  - name: Success01
+    clip: {fileID: 8300000, guid: 68f0dad0e821e6462bced002ceca7887, type: 3}
+    volumeScale: 1
+  - name: Trolley_impact01
+    clip: {fileID: 8300000, guid: 54d433d1f06ddd90ab3caf64507ef530, type: 3}
+    volumeScale: 1
+  - name: Whistle01
+    clip: {fileID: 8300000, guid: e4bd1848f780b0367b2fe73f25445ef0, type: 3}
+    volumeScale: 1
+  - name: Whistle02
+    clip: {fileID: 8300000, guid: b45b435826d174eb799aaaab4cda84f9, type: 3}
+    volumeScale: 1
+  - name: Music_game01
+    clip: {fileID: 8300000, guid: dadbdbdf01292f802aed9d0414d77526, type: 3}
+    volumeScale: 1
+  - name: Music_game02
+    clip: {fileID: 8300000, guid: 374f712733a89eee28779406ff3bd29b, type: 3}
+    volumeScale: 1
+  - name: Music_main01
+    clip: {fileID: 8300000, guid: 5cc74547e68de46d282529df404b4f92, type: 3}
+    volumeScale: 1
+  - name: Music_main02
+    clip: {fileID: 8300000, guid: ba7519effbd6cbe58a621d13280e90db, type: 3}
+    volumeScale: 1
+  - name: Music_preview01
+    clip: {fileID: 8300000, guid: 784d159c7898d347e81056cc0b5ea9e3, type: 3}
+    volumeScale: 1
+  - name: Music_preview02
+    clip: {fileID: 8300000, guid: 80bf8297b1431c1ec963a450064e41ce, type: 3}
     volumeScale: 1

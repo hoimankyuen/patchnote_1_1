@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using MoonlightTools.GizmoTools;
 using MoonlightTools.MathTools;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Shelf : MonoBehaviour
 {
@@ -15,7 +16,6 @@ public class Shelf : MonoBehaviour
     [SerializeField] private Animator m_animator;
     [SerializeField] private List<Transform> m_itemSpawnPositions;
     [SerializeField] private Transform m_launchDirection;
-
     
     [Header("Settings")]
     [SerializeField] private float m_forceRequiredForItemsFall = 1f;
@@ -26,6 +26,10 @@ public class Shelf : MonoBehaviour
     
     private bool m_launched = false;
     
+    // ==== Unity Events ====
+
+    public UnityEvent OnShelfHit;
+
     private void Start()
     {
         SetupItems();
@@ -101,10 +105,10 @@ public class Shelf : MonoBehaviour
             return;
         
         if (collision.gameObject.layer != LayerMask.NameToLayer("Player")) return;
-            
-        //collision.gameObject.TryGetComponent(out Rigidbody rb);
         
         if (collision.relativeVelocity.magnitude < m_forceRequiredForItemsFall) return;
+        
+        OnShelfHit?.Invoke();
 
         m_animator.SetTrigger(Collide);
         
@@ -118,7 +122,6 @@ public class Shelf : MonoBehaviour
         foreach (Rigidbody item in m_items)
         {
             item.isKinematic = false;
-            //item.AddForce(item.transform.forward * m_forceOffShelf);
             Vector3 direction = Quaternion.AngleAxis(m_launchDirectionRandomRange.Random(), m_launchDirection.up) * m_launchDirection.forward;
             float force = m_forceOffShelfRandomRange.Random();
             item.AddForce(direction * force, ForceMode.Impulse);

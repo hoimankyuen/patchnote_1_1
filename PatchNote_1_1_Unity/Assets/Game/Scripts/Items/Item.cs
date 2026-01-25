@@ -1,5 +1,7 @@
 using System.Collections;
+using MoonlightTools.AudioSystem;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Item : MonoBehaviour
 {
@@ -15,6 +17,10 @@ public class Item : MonoBehaviour
     private ItemData m_data;
 
     private bool m_grounded;
+    
+    // ==== Unity Events ====
+
+    public UnityEvent OnHitGround; 
 
     public void SetData(ItemData itemData)
     {
@@ -50,6 +56,8 @@ public class Item : MonoBehaviour
     {
         if (other.gameObject.layer != LayerMask.NameToLayer("Ground")) 
             return;
+        
+        OnHitGround?.Invoke();
 
         if (m_grounded)
             return;

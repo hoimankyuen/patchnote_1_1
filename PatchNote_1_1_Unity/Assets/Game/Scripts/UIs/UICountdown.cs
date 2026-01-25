@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoonlightTools.AudioSystem;
 using MoonlightTools.GeneralTools;
 using TMPro;
 using Unity.Cinemachine;
@@ -55,6 +56,8 @@ public class UICountdown : MonoBehaviour
     {
         yield return new WaitForSeconds (m_countdownWaitDuration);
 
+        AudioManager.Instance.PlaySoundEffect("Countdown01");
+        
         // numbers
         for (int i = m_countFrom; i >= 1; i--)
         {

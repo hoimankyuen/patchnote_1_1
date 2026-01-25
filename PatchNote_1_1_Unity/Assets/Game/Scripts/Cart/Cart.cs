@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Input;
+using MoonlightTools.AudioSystem;
 using Unity.Collections;
 using UnityEngine;
 
@@ -238,5 +239,13 @@ public class Cart : MonoBehaviour
             effectColor.a *= Mathf.InverseLerp(m_effectMinSpeed, m_effectMaxSpeed, CurrentSpeed);
             main.startColor = new ParticleSystem.MinMaxGradient(effectColor);
         }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground") || other.gameObject.layer == LayerMask.NameToLayer("Item")) 
+            return;
+        
+        AudioManager.Instance.PlaySoundEffect("Trolley_impact01");
     }
 }

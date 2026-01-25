@@ -130,7 +130,6 @@ public class UIScoreDisplay : MonoBehaviour
         }
         m_changePendingCoroutine = StartCoroutine(ChangePendingSequence(score));
     }
-
     
     private IEnumerator ChangePendingSequence(float score)
     {

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    [SerializeField] private CinemachineBrain m_cinemachineBrain;
+    [Space(5)]
     [Header("Components (Map Preview)")]
     [SerializeField] private GameObject m_previewVCamSetup;
     [SerializeField] private CinemachineSplineDolly m_splineDolly;

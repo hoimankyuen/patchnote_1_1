@@ -57,7 +57,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1732676842010206128}
   m_Layer: 0
-  m_Name: == Presistent Systems ==
+  m_Name: == Persistent Systems ==
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -282,6 +282,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1732676842010206128}
     m_Modifications:
+    - target: {fileID: 583911852311738018, guid: 8d442263ebfba7f4c9fb494758b6319c, type: 3}
+      propertyPath: m_Name
+      value: MusicSource
+      objectReference: {fileID: 0}
     - target: {fileID: 927029379588664770, guid: 8d442263ebfba7f4c9fb494758b6319c, type: 3}
       propertyPath: m_Name
       value: AudioManager

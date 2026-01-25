@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using Input;
+using MoonlightTools.AudioSystem;
 using MoonlightTools.GeneralTools;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -45,6 +47,8 @@ public class GameManager : MonoBehaviour
     public Timer LevelTimer => m_levelTimer;
     
     // ======== Unity Events ========
+
+    public UnityEvent OnCountdownComplete;
     
     public void Awake()
     {
@@ -116,6 +120,8 @@ public class GameManager : MonoBehaviour
     {
         if (CurrentState != State.Countdown)
             return;
+        
+        OnCountdownComplete?.Invoke();
         
         StartPlayingState();
     }
