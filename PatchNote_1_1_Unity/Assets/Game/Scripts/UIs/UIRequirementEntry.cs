@@ -36,7 +36,7 @@ public class UIRequirementEntry : MonoBehaviour
     {
         ItemType = itemType;
         m_order = order;
-        m_icon.sprite = m_ItemLibrary.GetItemData(itemType).icon;
+        m_icon.sprite = m_ItemLibrary.GetItemData(itemType).Icon;
         m_requiredQuantity = requiredQuantity;
         m_currentQuantity = 0;
         m_showHideDuration = showHideDuration;
