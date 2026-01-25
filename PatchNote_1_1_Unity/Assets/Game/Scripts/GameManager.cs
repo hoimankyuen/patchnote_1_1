@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public int CurrentLap { get; private set; } = -1;
     public event Action CurrentLapChanged;
     
-    public List<RequirementData> CurrentRequirements { get; private set; } = new List<RequirementData>();
+    public ItemQuantities CurrentRequirements { get; private set; } = new ItemQuantities();
     public event Action CurrentRequirementsChanged;
     
     public float CurrentScore { get; private set; }
@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
         GemFound = false;
         GemFoundChanged?.Invoke();
         
-        m_levelTimer.Setup(LevelManager.Instance.CurrentLevelData.timeLimit);
+        m_levelTimer.Setup(LevelManager.Instance.CurrentLevelData.TimeLimit);
         m_levelTimer.StartTimer();
 
         ProgressToNextLap();
@@ -148,13 +148,9 @@ public class GameManager : MonoBehaviour
         CurrentLap++;
         CurrentRequirements.Clear();
 
-        if (CurrentLap < LevelManager.Instance.CurrentLevelData.laps.Count)
+        if (CurrentLap < LevelManager.Instance.CurrentLevelData.Laps.Count)
         {
-            foreach (RequirementData requirement in
-                     LevelManager.Instance.CurrentLevelData.laps[CurrentLap].requirements)
-            {
-                CurrentRequirements.Add(new RequirementData(requirement));
-            }
+            CurrentRequirements.AddRange(LevelManager.Instance.CurrentLevelData.Laps[CurrentLap].Requirements);
             CurrentLapChanged?.Invoke();
         }
         else
@@ -167,12 +163,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (Item item in items)
         {
-            RequirementData requirementData = CurrentRequirements.Find(x => x.itemType == item.ItemType);
-            if (requirementData != null)
-            {
-                Debug.Log("Solidified" + requirementData.itemType);
-                requirementData.quantity--;
-            }
+            CurrentRequirements.ChangeQuantityIfExists(item.ItemType, -1);
 
             if (!JamFound && item.ItemType == ItemType.Jam)
             {
@@ -192,7 +183,7 @@ public class GameManager : MonoBehaviour
         CurrentScoreChanged?.Invoke();
 
         // check for lap completion
-        if (CurrentRequirements.TrueForAll(x => x.quantity <= 0))
+        if (CurrentRequirements.TrueForAll(x => x.Quantity <= 0))
         {
             ProgressToNextLap();
         }
@@ -200,7 +191,7 @@ public class GameManager : MonoBehaviour
     
     public void Restart()
     {
-        LevelManager.Instance.GotoLevel(LevelManager.Instance.CurrentLevelData.number);
+        LevelManager.Instance.GotoLevel(LevelManager.Instance.CurrentLevelData.Number);
     }
     
     private void Pause()

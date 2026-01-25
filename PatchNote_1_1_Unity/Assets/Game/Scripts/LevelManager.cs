@@ -49,7 +49,7 @@ public class LevelManager : MonoBehaviourPersistentSingleton<LevelManager>
         LevelData levelInfo = levelNumber == -1 ? null : m_levelLibrary.GetLevelInfo(levelNumber);
         LoadingFader.Instance.Show(() =>
         {
-            SceneManager.LoadScene(levelInfo == null ? m_mainMenuSceneName : levelInfo.sceneName, LoadSceneMode.Single);
+            SceneManager.LoadScene(levelInfo == null ? m_mainMenuSceneName : levelInfo.SceneName, LoadSceneMode.Single);
             CurrentLevelData = levelInfo;
             StartCoroutine(DelayedHideFader());
         });

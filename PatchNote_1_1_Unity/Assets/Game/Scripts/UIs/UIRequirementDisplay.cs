@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using MoonlightTools.MathTools;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ public class UIRequirementDisplay : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameManager m_gameManager;
-    
+   
     [Header("Components")]
     [SerializeField] private CanvasGroup m_canvasGroup;
     [SerializeField] private Transform m_requirementEntryContainer;
@@ -73,7 +72,7 @@ public class UIRequirementDisplay : MonoBehaviour
 
     private void OnCurrentRequirementsChanged()
     {
-        UpdateRequirementDisplay(m_gameManager.CurrentRequirements);
+        UpdateConfirmedRequirementDisplay(m_gameManager.CurrentRequirements);
     }
     
     // ======== Functionalities ========
@@ -86,46 +85,44 @@ public class UIRequirementDisplay : MonoBehaviour
         m_canvasGroup.alpha = m_currentAlpha;
     }
 
-    private void PopulateRequirementDisplay(List<RequirementData> requirementDatas)
+    private void PopulateRequirementDisplay(ItemQuantities requirements)
     {
-        StartCoroutine(PopulateRequirementDisplaySequence(requirementDatas));
+        StartCoroutine(PopulateRequirementDisplaySequence(requirements));
     }
 
-    private IEnumerator PopulateRequirementDisplaySequence(List<RequirementData> requirementDatas)
+    private IEnumerator PopulateRequirementDisplaySequence(ItemQuantities requirements)
     {
+        // hide existing
         if (m_requirementEntryInstances.Count > 0)
         {
             foreach (UIRequirementEntry instance in m_requirementEntryInstances)
             {
                 instance.Hide();
             }
-
             yield return new WaitForSeconds(m_entryShowDuration + m_entryShowDelay);
         }
         m_requirementEntryInstances.Clear();
         
-        for (int i = 0; i < requirementDatas.Count; i++)
+        // show new
+        List<ItemQuantity> requirementList = requirements.ToList();
+        for (int i = 0; i < requirementList.Count; i++)
         {
-            RequirementData requirementData = requirementDatas[i];
+            ItemQuantity requirementData = requirementList[i];
             
             GameObject go = Instantiate(m_requirementEntryPrefab, m_canvasGroup.transform);
             UIRequirementEntry entry = go.GetComponent<UIRequirementEntry>();
             go.SetActive(true);
-            entry.Setup(i, requirementData.itemType, requirementData.quantity, m_entryShowDuration);
+            entry.Setup(i, requirementData.Type, requirementData.Quantity, m_entryShowDuration);
             entry.Show();
             m_requirementEntryInstances.Add(entry);
         }
     }
 
-    private void UpdateRequirementDisplay(List<RequirementData> requirementData)
+    private void UpdateConfirmedRequirementDisplay(ItemQuantities remaining)
     {
         foreach (UIRequirementEntry instance in m_requirementEntryInstances)
         {
-            RequirementData data = requirementData.Find(x => x.itemType == instance.ItemType);
-            if (data != null)
-            {
-                instance.SetNewRemaining(data.quantity);
-            }
+            instance.SetCurrent(remaining.GetQuantity(instance.ItemType));
         }
     }
 }

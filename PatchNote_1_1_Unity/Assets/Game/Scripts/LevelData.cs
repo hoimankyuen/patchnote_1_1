@@ -3,45 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class RequirementData
-{
-    public ItemType itemType;
-    public int quantity;
-
-    public RequirementData(ItemType itemType, int quantity)
-    {
-        this.itemType = itemType;
-        this.quantity = quantity;
-    }
-
-    public RequirementData(RequirementData other)
-    {
-        itemType = other.itemType;
-        quantity = other.quantity;
-    }
-    
-    public void DecreaseQuantity()
-    {
-        quantity--;
-    }
-}
-
-[System.Serializable]
 public class LapData
 {
-    public List<RequirementData> requirements;
+    public List<ItemQuantity> Requirements;
 }
 
 [CreateAssetMenu(menuName = "Data/Level Data", fileName = "LevelData")]
 public class LevelData : ScriptableObject
 {
-    [NonSerialized] public int number;
+    [NonSerialized] public int Number;
     
     [Header("Main Data")]
-    public string title;
-    public string sceneName;
-    public float timeLimit;
+    public string Title;
+    public string SceneName;
+    public float TimeLimit;
     
     [Header("Lap Data")]
-    public List<LapData> laps;
+    public List<LapData> Laps;
 }

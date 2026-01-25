@@ -14,13 +14,13 @@ public class LevelLibrary : ScriptableObject
     
     public LevelData GetLevelInfo(int number)
     {
-        levelInfos[number].number = number;
+        levelInfos[number].Number = number;
         return levelInfos[number];
     }
 
     public LevelData GetLevelInfoOf(string sceneName)
     {
-        return levelInfos.Find(level => level.sceneName == sceneName);
+        return levelInfos.Find(level => level.SceneName == sceneName);
     }
 }
 
