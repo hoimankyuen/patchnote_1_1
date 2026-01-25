@@ -15,8 +15,8 @@ TagManager:
   - Item
   - Ground
   - Goal
-  - 
-  - 
+  - FallenItem
+  - CartItem
   - 
   - 
   - 

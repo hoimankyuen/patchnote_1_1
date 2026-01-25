@@ -154,4 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b055c83a109a7112cb3b7d5a65103e10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  m_data: {fileID: 0}
+  m_rigidbody: {fileID: 1368356965040895438}
+  m_renderer: {fileID: 2011926181469580779}
+  m_fallenTimeout: 10
+  m_fallenBlinkDuration: 0.1
+  m_fallenBlinkTimes: 20

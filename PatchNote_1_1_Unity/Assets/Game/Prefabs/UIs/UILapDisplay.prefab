@@ -347,8 +347,8 @@ MonoBehaviour:
   m_canvasGroup: {fileID: 555436347840734622}
   m_frame: {fileID: 2162062753721634421}
   m_text: {fileID: 7412767841362487557}
-  m_blinkInterval: 0.2
-  m_blinkTimes: 6
+  m_blinkInterval: 0.1
+  m_blinkTimes: 10
   m_normalTextColour: {r: 1, g: 1, b: 1, a: 1}
   m_blinkTextColour: {r: 0.24313726, g: 0.5019608, b: 0.69411767, a: 1}
 --- !u!225 &555436347840734622
