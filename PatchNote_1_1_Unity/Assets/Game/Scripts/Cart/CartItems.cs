@@ -42,7 +42,7 @@ public class CartItems : MonoBehaviour
         
         foreach (Item item in Items)
         {
-            total += item.GetItemPrice;
+            total += item.Price;
         }
 
         TotalScore = total;

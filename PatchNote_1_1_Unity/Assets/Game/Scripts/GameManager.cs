@@ -33,11 +33,14 @@ public class GameManager : MonoBehaviour
     public float CurrentScore { get; private set; }
     public event Action CurrentScoreChanged;
     
+    public bool GemFound { get; private set; }
+    public event Action GemFoundChanged;
+    
     public bool JamFound { get; private set; }
     public event Action JamFoundChanged;
     
-    public bool GemFound { get; private set; }
-    public event Action GemFoundChanged;
+    public bool GoldFound { get; private set; }
+    public event Action GoldFoundChanged;
     
     public Timer LevelTimer => m_levelTimer;
     
@@ -163,18 +166,24 @@ public class GameManager : MonoBehaviour
     {
         foreach (Item item in items)
         {
-            CurrentRequirements.ChangeQuantityIfExists(item.ItemType, -1);
+            CurrentRequirements.ChangeQuantityIfExists(item.Type, -1);
 
-            if (!JamFound && item.ItemType == ItemType.Jam)
+            if (!JamFound && item.Type == ItemType.Jam)
             {
                 JamFound = true;
                 JamFoundChanged?.Invoke();
             }
 
-            if (!GemFound && item.ItemType == ItemType.Gem)
+            if (!GemFound && item.Type == ItemType.Gem)
             {
                 GemFound = true;
                 GemFoundChanged?.Invoke();
+            }
+            
+            if (!GoldFound && item.Type == ItemType.Gold)
+            {
+                GoldFound = true;
+                GoldFoundChanged?.Invoke();
             }
         }
         CurrentRequirementsChanged?.Invoke();

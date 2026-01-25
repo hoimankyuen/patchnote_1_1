@@ -54,7 +54,7 @@ public class UIRequirementEntry : MonoBehaviour
         bool fulfilled = m_currentQuantity >= m_requiredQuantity;
         m_tick.gameObject.SetActive(fulfilled);
         m_text.gameObject.SetActive(!fulfilled);
-        m_text.text = $"{Mathf.Min(9,m_currentQuantity)} / {Mathf.Min(9,m_requiredQuantity)}";
+        m_text.text = $"{Mathf.Min(9,m_currentQuantity)}/{Mathf.Min(9,m_requiredQuantity)}";
     }
 
     public void Show()
