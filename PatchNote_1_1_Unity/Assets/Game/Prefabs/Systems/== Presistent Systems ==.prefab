@@ -412,10 +412,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RuntimeLogger
       objectReference: {fileID: 0}
-    - target: {fileID: 8431062737145664621, guid: 8686df92a86c6864b92c70a6b2d67706, type: 3}
-      propertyPath: loggerEnabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
