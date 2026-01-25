@@ -10497,9 +10497,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d576bca367244cd89a9d161dc02da7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CartItems
+  m_gameManager: {fileID: 0}
   m_cashEffect: {fileID: 5452780447270711964}
-  m_items: []
-  m_currentItemsTotalValue: 0
 --- !u!65 &8240823658753150396
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35479,7 +35478,7 @@ Rigidbody:
   m_Mass: 10
   m_LinearDamping: 0.05
   m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0.2, z: -0.2}
+  m_CenterOfMass: {x: 0, y: 0.2, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:

@@ -32534,10 +32534,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6131337716036255075, guid: e34a0a518e5c47e4fb8cef5e517a9c0a, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6380117611822436582, guid: e34a0a518e5c47e4fb8cef5e517a9c0a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -32577,10 +32573,6 @@ PrefabInstance:
     - target: {fileID: 7377329002108708749, guid: e34a0a518e5c47e4fb8cef5e517a9c0a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7858045353899740375, guid: e34a0a518e5c47e4fb8cef5e517a9c0a, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8210814453111827106, guid: e34a0a518e5c47e4fb8cef5e517a9c0a, type: 3}
       propertyPath: m_gameManager
