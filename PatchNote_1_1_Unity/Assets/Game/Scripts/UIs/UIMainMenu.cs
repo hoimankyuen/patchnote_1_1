@@ -4,7 +4,8 @@ using UnityEngine.UI;
 public class UIMainMenu : MonoBehaviour
 {
     [Header("References")] 
-    [SerializeField] private UILevelMenu m_uiLevelMenu;
+    [SerializeField] private UILevelMenu m_levelMenu;
+    [SerializeField] private UICreditMenu m_creditMenu;
     
     [Header("Components")]
     [SerializeField] private GameObject m_mainPage;
@@ -15,7 +16,8 @@ public class UIMainMenu : MonoBehaviour
 
     private void Start()
     {
-        m_uiLevelMenu.Setup(SelectFirstButton);
+        m_levelMenu.Setup(SelectFirstButton);
+        m_creditMenu.Setup(SelectFirstButton);
         
         SelectFirstButton();
     }
@@ -34,7 +36,7 @@ public class UIMainMenu : MonoBehaviour
 
     public void ShowLevelMenu()
     {
-        m_uiLevelMenu.Show();
+        m_levelMenu.Show();
     }
     
     public void ShowSettingsMenu()
@@ -44,6 +46,6 @@ public class UIMainMenu : MonoBehaviour
 
     public void ShowCreditsMenu()
     {
-        
+        m_creditMenu.Show();
     }
 }

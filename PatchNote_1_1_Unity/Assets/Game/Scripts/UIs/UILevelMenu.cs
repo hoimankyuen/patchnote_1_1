@@ -22,11 +22,11 @@ public class UILevelMenu : MonoBehaviour
 
     public void Setup(Action onClose)
     {
-        PopulateLevelButtons();
+        Populate();
         OnClose = onClose;
     }
     
-    private void PopulateLevelButtons()
+    private void Populate()
     {
         m_levelButtonPrefab.gameObject.SetActive(false);
         
@@ -59,6 +59,7 @@ public class UILevelMenu : MonoBehaviour
     public void Show()
     {
         m_panel.Show(true);
+            
         if (m_levelButtons != null && m_levelButtons.Count > 0)
         {
             m_levelButtons[0].Button.Select();

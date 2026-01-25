@@ -36,11 +36,6 @@ public class LevelManager : MonoBehaviourPersistentSingleton<LevelManager>
         RetrieveInitialUnlockedLevels();
     }
 
-    public void Update()
-    {
-        Debug.Log(CurrentLevelData != null ? CurrentLevelData.Number : -1);
-    }
-
     // ======== Functionalities ========
 
     private void RetrieveLevelIndex()
