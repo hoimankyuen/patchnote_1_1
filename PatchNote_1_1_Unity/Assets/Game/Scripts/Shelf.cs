@@ -150,7 +150,6 @@ public class Shelf : MonoBehaviour
 
     private void Reset()
     {
-        Debug.Log("Resetting shelf " + name);
         m_launched = false;
         m_animator.Play("Idle");
         SetupItems();
