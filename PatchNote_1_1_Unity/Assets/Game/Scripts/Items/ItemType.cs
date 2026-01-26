@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum ItemType
@@ -55,4 +56,89 @@ public enum ItemType
     Melon = 305,
     [InspectorName("Other/Gem")]
     Gem = 306
+}
+
+public enum ItemGroup
+{
+    None = 0,
+    Normal = 1,
+    Cold = 2,
+    Fresh = 3,
+    Rare = 4,
+    NonRare = 5,
+}
+
+public static class ItemGroupDefinition
+{
+    public static ItemType[] GetByGroup(ItemGroup group)
+    {
+        return group switch
+        {
+            ItemGroup.Normal => NormalItems,
+            ItemGroup.Cold => ColdItems,
+            ItemGroup.Fresh => FreshItems,
+            ItemGroup.Rare => RareItems,
+            ItemGroup.NonRare => NonRareItems,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+    }
+    
+    private static readonly ItemType[] NormalItems =
+    {
+        ItemType.Bottle,
+        ItemType.Bread,
+        ItemType.Can,
+        ItemType.Cereal,
+        ItemType.Jam,
+        ItemType.Oil,
+        ItemType.Pasta
+    };
+    
+    private static readonly ItemType[] ColdItems =
+    {
+        ItemType.Beef,
+        ItemType.Fish,
+        ItemType.Egg,
+        ItemType.Milk,
+        ItemType.Sausage
+    };
+    
+    private static readonly ItemType[] FreshItems =
+    {
+        ItemType.Broccoli,
+        ItemType.Carrot,
+        ItemType.Leek,
+        ItemType.Potato,
+        ItemType.Swede,
+        ItemType.Tomato
+    };
+
+    private static readonly ItemType[] RareItems =
+    {
+        ItemType.Crisps,
+        ItemType.Ham,
+        ItemType.Melon
+    };
+
+    private static readonly ItemType[] NonRareItems =
+    {
+        ItemType.Bottle,
+        ItemType.Bread,
+        ItemType.Can,
+        ItemType.Cereal,
+        ItemType.Jam,
+        ItemType.Oil,
+        ItemType.Pasta,
+        ItemType.Beef,
+        ItemType.Fish,
+        ItemType.Egg,
+        ItemType.Milk,
+        ItemType.Sausage,
+        ItemType.Broccoli,
+        ItemType.Carrot,
+        ItemType.Leek,
+        ItemType.Potato,
+        ItemType.Swede,
+        ItemType.Tomato
+    };
 }

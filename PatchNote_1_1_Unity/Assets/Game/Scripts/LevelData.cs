@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class LapData
 {
-    public List<ItemQuantity> Requirements;
+    public List<ItemGroupQuantity> Requirements;
     public float TimeAllocated;
 }
 

@@ -1,6 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Random = UnityEngine.Random;
+
+// ======== Group Entry ========
+
+[System.Serializable]
+public struct ItemGroupQuantity
+{
+    public ItemGroup Group;
+    public int Quantity;
+
+    public ItemQuantity ResolveToItemQuantity(List<ItemType> except)
+    {
+        ItemType[] types = ItemGroupDefinition.GetByGroup(Group).Except(except).ToArray();
+        return new ItemQuantity(types[Random.Range(0, types.Length)], Quantity);
+    }
+}
 
 // ======== Individual Entry ========
 
@@ -44,12 +60,17 @@ public class ItemQuantities
     public int Count => m_collection.Count;
     
     // ======== Entries Management ========
+
+    public void Add(ItemQuantity pair)
+    {
+        m_collection.Add(pair.Type, pair.Quantity);
+    }
     
     public void AddRange(List<ItemQuantity> pairs)
     {
         foreach (ItemQuantity pair in pairs)
         {
-            m_collection.Add(pair.Type, pair.Quantity);
+            Add(pair);
         }
     }
     

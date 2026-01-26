@@ -190,7 +190,13 @@ public class GameManager : MonoBehaviour
             RemainingTime += LevelManager.Instance.CurrentLevelData.Laps[CurrentLap].TimeAllocated;
             RemainingTimeChanged?.Invoke();
             
-            CurrentRequirements.AddRange(LevelManager.Instance.CurrentLevelData.Laps[CurrentLap].Requirements);
+            List<ItemType> selectedItemTypes = new List<ItemType>();
+            foreach (ItemGroupQuantity groupQuantity in LevelManager.Instance.CurrentLevelData.Laps[CurrentLap].Requirements)
+            {
+                ItemQuantity itemQuantity = groupQuantity.ResolveToItemQuantity(selectedItemTypes);
+                CurrentRequirements.Add(itemQuantity);
+                selectedItemTypes.Add(itemQuantity.Type);
+            }
             CurrentLapChanged?.Invoke();
         }
         else

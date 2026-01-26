@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 
 [CustomPropertyDrawer(typeof(ItemQuantity))]
-public class ItemQuantityPairDrawer : PropertyDrawer
+public class ItemQuantityDrawer : PropertyDrawer
 {
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
