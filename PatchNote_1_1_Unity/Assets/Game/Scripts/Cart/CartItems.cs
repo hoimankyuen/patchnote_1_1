@@ -16,6 +16,8 @@ public class CartItems : MonoBehaviour
     
     public float TotalScore { get; private set; }
     public event Action TotalScoreChanged;
+
+    public static Action OnCashedItems;
     
     private int m_goalLayer;
     
@@ -73,6 +75,7 @@ public class CartItems : MonoBehaviour
         m_gameManager.SolidifyProgress(Items, TotalScore);
         
         AudioManager.Instance.PlaySoundEffect("Ka_ching01");
+        OnCashedItems?.Invoke();
         
         foreach (Item item in Items)
         {

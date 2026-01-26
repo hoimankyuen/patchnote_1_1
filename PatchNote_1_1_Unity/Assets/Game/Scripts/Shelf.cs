@@ -3,6 +3,7 @@ using MoonlightTools.GizmoTools;
 using MoonlightTools.MathTools;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class Shelf : MonoBehaviour
 {
@@ -33,6 +34,13 @@ public class Shelf : MonoBehaviour
     private void Start()
     {
         SetupItems();
+
+        CartItems.OnCashedItems += OnCashedItems;
+    }
+
+    private void OnDestroy()
+    {
+        CartItems.OnCashedItems -= OnCashedItems;
     }
 
     private void OnDrawGizmos()
@@ -69,6 +77,8 @@ public class Shelf : MonoBehaviour
 
     private void SetupItems()
     {
+        m_items.Clear();
+        
         ConstructedWeightedList();
         foreach (Transform itemSpawnPosition in m_itemSpawnPositions)
         {
@@ -128,5 +138,21 @@ public class Shelf : MonoBehaviour
             float force = m_forceOffShelfRandomRange.Random();
             item.linearVelocity = direction * force;
         }
+    }
+
+    private void OnCashedItems()
+    {
+        if (m_launched)
+        {
+            Reset();
+        }
+    }
+
+    private void Reset()
+    {
+        Debug.Log("Resetting shelf " + name);
+        m_launched = false;
+        m_animator.Play("Idle");
+        SetupItems();
     }
 }
