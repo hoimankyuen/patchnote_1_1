@@ -94,7 +94,6 @@ public class LevelManager : MonoBehaviourPersistentSingleton<LevelManager>
         if (CurrentLevelData == null)
             return;
         
-        Debug.Log("Saving to number" + CurrentLevelData.Number);
         LoadLevelResults(CurrentLevelData.Number, out float prevScore,  out float prevTime,  out bool prevGemFound,  out bool prevJamFound, out bool prevGoldFound);
         LevelResults results = new LevelResults(
              score >= prevScore ? score : prevScore, 

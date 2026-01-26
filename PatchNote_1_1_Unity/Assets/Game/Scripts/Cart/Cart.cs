@@ -267,6 +267,7 @@ public class Cart : MonoBehaviour
                     m_speedBlinkCoroutine = null;
                 }
                 m_speedBlinkCoroutine = StartCoroutine(SpeedBlinkEffectSequence());
+                AudioManager.Instance.PlaySoundEffect("Dash01");
                 m_speedBlinkEffectPlayed = true;
             }
         }

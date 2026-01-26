@@ -30,13 +30,13 @@ MonoBehaviour:
     volumeScale: 1
   - name: Item_impact01_1
     clip: {fileID: 8300000, guid: 83672cdc37699a00498337c7ed5a9cce, type: 3}
-    volumeScale: 1
+    volumeScale: 0.2
   - name: Item_impact02
     clip: {fileID: 8300000, guid: 9cd746238ff623e72bd426b959ce42a3, type: 3}
-    volumeScale: 1
+    volumeScale: 0.2
   - name: Item_impact03
     clip: {fileID: 8300000, guid: d245fbb2d03bf16c1af7f9f434272c25, type: 3}
-    volumeScale: 1
+    volumeScale: 0.2
   - name: Ka_ching01
     clip: {fileID: 8300000, guid: a0a5d038db611b8bdb2116c0819207d4, type: 3}
     volumeScale: 1
@@ -54,22 +54,22 @@ MonoBehaviour:
     volumeScale: 1
   - name: Shelf_falling01
     clip: {fileID: 8300000, guid: e60761fd808d5a13c98cff89c33b1200, type: 3}
-    volumeScale: 1
+    volumeScale: 0.75
   - name: Shelf_falling02
     clip: {fileID: 8300000, guid: 65628dc6d56d2a37d9f4b751dd6aec81, type: 3}
     volumeScale: 1
   - name: Shelf_falling04
     clip: {fileID: 8300000, guid: 409d985b6d1ecf0d3bf503f160ae5a27, type: 3}
-    volumeScale: 1
+    volumeScale: 0.75
   - name: Shelf_falling05
     clip: {fileID: 8300000, guid: fac5f198b0eeadeb4a5fc8329ced42e7, type: 3}
-    volumeScale: 1
+    volumeScale: 0.75
   - name: Success01
     clip: {fileID: 8300000, guid: 68f0dad0e821e6462bced002ceca7887, type: 3}
     volumeScale: 1
   - name: Trolley_impact01
     clip: {fileID: 8300000, guid: 54d433d1f06ddd90ab3caf64507ef530, type: 3}
-    volumeScale: 1
+    volumeScale: 0.7
   - name: Whistle01
     clip: {fileID: 8300000, guid: e4bd1848f780b0367b2fe73f25445ef0, type: 3}
     volumeScale: 1
@@ -94,3 +94,6 @@ MonoBehaviour:
   - name: Music_preview02
     clip: {fileID: 8300000, guid: 80bf8297b1431c1ec963a450064e41ce, type: 3}
     volumeScale: 1
+  - name: Dash01
+    clip: {fileID: 8300000, guid: 49a44b4ea2b7f2a43a870b9eae6b5ebd, type: 3}
+    volumeScale: 0.8
