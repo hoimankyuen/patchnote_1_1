@@ -1,7 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Input;
 using MoonlightTools.AudioSystem;
+using MoonlightTools.GeneralTools;
+using MoonlightTools.MathTools;
+using QuickerEffects;
 using Unity.Collections;
 using UnityEngine;
 
@@ -19,6 +23,7 @@ public class Cart : MonoBehaviour
     [SerializeField] private List<Transform> m_wheelModelTransforms;
     [SerializeField] private ParticleSystem m_speedEffect;
     [SerializeField] private List<ParticleSystem> m_wheelEffects;
+    [SerializeField] private Overlay m_overlay;
 
     [Header("Settings (Acceleration)")] 
     [SerializeField] private float m_maxSpeed;
@@ -29,14 +34,15 @@ public class Cart : MonoBehaviour
     [SerializeField] private float m_maxTurningSpeed;
     [SerializeField] private float m_turningForce;
 
-    [Header("Settings (Functionalities)")]
-    [SerializeField] private float m_collisionEffectSpeed;
-
     [Header("Settings (Appearance)")]
     [SerializeField] private float m_effectMinSpeed;
     [SerializeField] private float m_effectMaxSpeed;
     [SerializeField] private Color m_speedEffectColor;
     [SerializeField] private Color m_wheelEffectColor;
+    [SerializeField] private float m_collisionEffectSpeed;
+    [SerializeField] private Color m_speedBlinkColor;
+    [SerializeField] private float m_speedBlinkDuration;
+
 
     private Vector2 m_MoveInput;
     private float m_RotateInput;
@@ -46,6 +52,9 @@ public class Cart : MonoBehaviour
     private Vector3 m_originalPosition;
     private Quaternion m_originalRotation;
     private Vector3 m_lastPosition;
+
+    private bool m_speedBlinkEffectPlayed;
+    private Coroutine m_speedBlinkCoroutine;
     
     public float MaxSpeed => m_maxSpeed;
     
@@ -84,6 +93,7 @@ public class Cart : MonoBehaviour
         CalculateSpeed();
         ControlSpeedEffect();
         ControlWheelEffects();
+        ControlSpeedBlinkEffect();
     }
     
     private void FixedUpdate()
@@ -243,6 +253,39 @@ public class Cart : MonoBehaviour
             effectColor.a *= Mathf.InverseLerp(m_effectMinSpeed, m_effectMaxSpeed, CurrentSpeed);
             main.startColor = new ParticleSystem.MinMaxGradient(effectColor);
         }
+    }
+
+    private void ControlSpeedBlinkEffect()
+    {
+        if (CurrentSpeed > m_collisionEffectSpeed)
+        {
+            if (!m_speedBlinkEffectPlayed)
+            {
+                if (m_speedBlinkCoroutine != null)
+                {
+                    StopCoroutine(m_speedBlinkCoroutine);
+                    m_speedBlinkCoroutine = null;
+                }
+                m_speedBlinkCoroutine = StartCoroutine(SpeedBlinkEffectSequence());
+                m_speedBlinkEffectPlayed = true;
+            }
+        }
+        else
+        {
+            m_speedBlinkEffectPlayed = false;
+        }
+    }
+
+    private IEnumerator SpeedBlinkEffectSequence()
+    {
+        Color color = m_speedBlinkColor;
+        m_overlay.Color = color;
+        yield return CoroutineUtils.LerpWithTime(m_speedBlinkDuration, t =>
+        {
+            color.a = Mathfx.Sinerp(1f, 0f, t);
+            m_overlay.Color = color;
+        });
+        m_speedBlinkCoroutine = null;
     }
 
     private void OnCollisionEnter(Collision other)

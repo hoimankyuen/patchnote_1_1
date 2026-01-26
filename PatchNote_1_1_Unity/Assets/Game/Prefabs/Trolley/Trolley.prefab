@@ -5172,6 +5172,7 @@ GameObject:
   - component: {fileID: 2564286022939109013}
   - component: {fileID: 7912284451751322077}
   - component: {fileID: 4475243889327601539}
+  - component: {fileID: 8776086398172659711}
   m_Layer: 3
   m_Name: TrolleyModel
   m_TagString: Untagged
@@ -5259,6 +5260,20 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8776086398172659711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727171142471488689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62df72655532bf84a954f4f3fc49e5ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuickerEffects.Overlay
+  color: {r: 1, g: 1, b: 1, a: 0}
+  show: 1
 --- !u!1 &1795547699612265564
 GameObject:
   m_ObjectHideFlags: 0
@@ -35459,16 +35474,19 @@ MonoBehaviour:
   - {fileID: 2924949191422359993}
   - {fileID: 8294705454056715825}
   - {fileID: 2965939603604424274}
+  m_overlay: {fileID: 8776086398172659711}
   m_maxSpeed: 15
   m_acceleration: 15
   m_deceleration: 15
   m_maxTurningSpeed: 3
   m_turningForce: 30
-  m_collisionEffectSpeed: 8
   m_effectMinSpeed: 4
   m_effectMaxSpeed: 8
   m_speedEffectColor: {r: 1, g: 1, b: 1, a: 0.2509804}
   m_wheelEffectColor: {r: 0.12941177, g: 0.17254902, b: 0.23921569, a: 0.5019608}
+  m_collisionEffectSpeed: 8
+  m_speedBlinkColor: {r: 1, g: 1, b: 1, a: 1}
+  m_speedBlinkDuration: 0.4
 --- !u!54 &2731846719565306082
 Rigidbody:
   m_ObjectHideFlags: 0
