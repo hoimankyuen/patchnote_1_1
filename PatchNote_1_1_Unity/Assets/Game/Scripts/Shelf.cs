@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using MoonlightTools.GizmoTools;
 using MoonlightTools.MathTools;
@@ -152,6 +153,13 @@ public class Shelf : MonoBehaviour
     {
         m_launched = false;
         m_animator.Play("Idle");
+        //SetupItems();
+        StartCoroutine(DelayedSetupItem());
+    }
+
+    private IEnumerator DelayedSetupItem()
+    {
+        yield return new WaitForSeconds(0.2f);
         SetupItems();
     }
 }
