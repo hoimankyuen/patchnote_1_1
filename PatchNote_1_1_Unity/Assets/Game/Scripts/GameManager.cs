@@ -169,6 +169,11 @@ public class GameManager : MonoBehaviour
         TotalTime += Time.deltaTime;
         RemainingTime -= Time.deltaTime;
         RemainingTimeChanged?.Invoke();
+        
+        if (RemainingTime <= 0)
+        {
+            LevelTimeOut();
+        }
     }
     
     private void LevelTimeOut()
@@ -176,6 +181,9 @@ public class GameManager : MonoBehaviour
         if (CurrentState is not State.Playing and not State.Paused)
             return;
 
+        m_musicAudioSource.Stop();
+        AudioManager.Instance.PlaySoundEffect("Level_fail02");
+        
         LevelCompleted = false;
         StartEndedState();
     }
@@ -201,6 +209,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            m_musicAudioSource.Stop();
+            AudioManager.Instance.PlaySoundEffect("Level_win01");
             LevelCompleted = true;
             StartEndedState();
         }
