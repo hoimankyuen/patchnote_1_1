@@ -9,6 +9,7 @@ public class UIPauseMenu : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameManager m_gameManager;
     [SerializeField] private InputReader m_inputReader;
+    [SerializeField] private UISettingsMenu m_settingsMenu;
 
     [Header("Components")]
     [SerializeField] private Panel m_panel;
@@ -21,6 +22,8 @@ public class UIPauseMenu : MonoBehaviour
         m_gameManager.CurrentStateChanged += OnCurrentStateChanged;
         m_inputReader.Resume += OnResumeInput;
         m_panel.IsVisibleChanged += OnIsVisibleChanged;
+        
+        m_settingsMenu.Setup(SelectFirstButton);
     }
 
     private void OnDestroy()
@@ -49,7 +52,7 @@ public class UIPauseMenu : MonoBehaviour
             return;
         
         m_panel.Show(true);
-        m_firstButton.Select();
+        SelectFirstButton();
     }
     
     private void OnResumeInput()
@@ -73,9 +76,14 @@ public class UIPauseMenu : MonoBehaviour
     
     // ======== Functionalities ========
 
+    private void SelectFirstButton()
+    {
+        m_firstButton.Select();
+    }
+    
     public void Settings()
     {
-        // TODO
+        m_settingsMenu.Show();
     }
     
     public void Restart()

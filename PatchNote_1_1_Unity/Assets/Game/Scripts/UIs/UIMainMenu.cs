@@ -5,6 +5,7 @@ public class UIMainMenu : MonoBehaviour
 {
     [Header("References")] 
     [SerializeField] private UILevelMenu m_levelMenu;
+    [SerializeField] private UISettingsMenu m_settingsMenu;
     [SerializeField] private UICreditMenu m_creditMenu;
     
     [Header("Components")]
@@ -17,6 +18,7 @@ public class UIMainMenu : MonoBehaviour
     private void Start()
     {
         m_levelMenu.Setup(SelectFirstButton);
+        m_settingsMenu.Setup(SelectFirstButton);
         m_creditMenu.Setup(SelectFirstButton);
         
         SelectFirstButton();
@@ -41,7 +43,7 @@ public class UIMainMenu : MonoBehaviour
     
     public void ShowSettingsMenu()
     {
-        
+        m_settingsMenu.Show();
     }
 
     public void ShowCreditsMenu()

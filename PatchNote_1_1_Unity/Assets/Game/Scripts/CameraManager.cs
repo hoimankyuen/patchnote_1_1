@@ -1,17 +1,76 @@
+using System;
 using Unity.Cinemachine;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    [Header("Components (General)")]
     [SerializeField] private CinemachineBrain m_cinemachineBrain;
-    [Space(5)]
+
     [Header("Components (Map Preview)")]
     [SerializeField] private GameObject m_previewVCamSetup;
     [SerializeField] private CinemachineSplineDolly m_splineDolly;
     
     [Header("Components (Trolley)")]
     [SerializeField] private GameObject m_trolleyVCamSetup;
+    [SerializeField] private CinemachineCamera m_trolleyVCam;
+    [SerializeField] private CinemachineInputAxisController m_trolleyInput;
 
+    private void Start()
+    {
+        SettingsManager.Instance.SensitivityChanged += OnSensitivityChanged;
+        OnSensitivityChanged();
+
+        SettingsManager.Instance.VerticalInvertChanged += OnVerticalInvertChanged;
+        OnVerticalInvertChanged();
+        
+        SettingsManager.Instance.FOVChanged += OnFOVChanged;
+        OnFOVChanged();
+    }
+
+    private void OnDestroy()
+    {
+        if (SettingsManager.Instance != null)
+        {
+            SettingsManager.Instance.SensitivityChanged -= OnSensitivityChanged;
+            SettingsManager.Instance.VerticalInvertChanged -= OnVerticalInvertChanged;
+            SettingsManager.Instance.FOVChanged -= OnFOVChanged;
+        }
+    }
+
+    private void OnSensitivityChanged()
+    {
+        foreach (var c in m_trolleyInput.Controllers)
+        {
+            if (c.Name == "Look X (Pan)")
+            {
+                c.Input.Gain = Mathf.Lerp(3f, 7f, SettingsManager.Instance.Sensitivity);
+            }
+            if (c.Name == "Look Y (Tilt)")
+            {
+                c.Input.Gain = Mathf.Lerp(3f, 7f, SettingsManager.Instance.Sensitivity)
+                               * (SettingsManager.Instance.VerticalInvert ? 1f : -1f);
+            }
+        }
+    }
+    
+    private void OnVerticalInvertChanged()
+    {
+        foreach (var c in m_trolleyInput.Controllers)
+        {
+            if (c.Name == "Look Y (Tilt)")
+            {
+                c.Input.Gain = Mathf.Lerp(3f, 7f, SettingsManager.Instance.Sensitivity) 
+                               * (SettingsManager.Instance.VerticalInvert ? 1f : -1f);
+                break;
+            }
+        }
+    }
+    
+    private void OnFOVChanged()
+    {
+        m_trolleyVCam.Lens.FieldOfView = Mathf.Lerp(40f, 80f, SettingsManager.Instance.FOV);
+    }
 
     private void StopAllCameras()
     {
