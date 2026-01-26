@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   Type: 105
   Price: 10
-  Mass: 1
+  Mass: 0.6
+  IsRare: 0
+  IsBonus: 0
   Icon: {fileID: 21300000, guid: f39b1a1c6ce9238438193db2652139ac, type: 3}
   Prefab: {fileID: 8170084826947206181, guid: 5d8f97f5234204a4a90ebc6b57990505, type: 3}
