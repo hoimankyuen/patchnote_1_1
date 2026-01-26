@@ -289,16 +289,34 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
+        m_inputReader.DisablePlayerInput();
+        m_inputReader.EnableUIInput();
+        Cursor.lockState = CursorLockMode.None;
+        
+        Time.timeScale = 1f;
+        
         LevelManager.Instance.GotoLevel(LevelManager.Instance.CurrentLevelData.Number + 1);
     }
     
     public void Restart()
     {
+        m_inputReader.DisablePlayerInput();
+        m_inputReader.EnableUIInput();
+        Cursor.lockState = CursorLockMode.None;
+        
+        Time.timeScale = 1f;
+        
         LevelManager.Instance.GotoLevel(LevelManager.Instance.CurrentLevelData.Number);
     }
     
     public void BackToManuMenu()
     {
+        m_inputReader.DisablePlayerInput();
+        m_inputReader.EnableUIInput();
+        Cursor.lockState = CursorLockMode.None;
+        
+        Time.timeScale = 1f;
+        
         LevelManager.Instance.GotoMainMenu();
     }
 }
