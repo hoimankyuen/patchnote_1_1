@@ -22,16 +22,20 @@ public class GameManager : MonoBehaviour
     [Header("References")] 
     [SerializeField] private InputReader m_inputReader;
     [SerializeField] private CameraManager m_cameraManager;
-    [SerializeField] private Timer m_levelTimer;
     [SerializeField] private AudioSource m_musicAudioSource;
     
     [SerializeField] private AudioResource m_gameMusic;
     [SerializeField] private AudioResource m_previewMusic;
+    
     public State CurrentState { get; private set; } = State.None;
     public event Action CurrentStateChanged;
 
     public int CurrentLap { get; private set; } = -1;
     public event Action CurrentLapChanged;
+    
+    public float TotalTime { get; private set; }
+    public float RemainingTime { get; private set; }
+    public event Action RemainingTimeChanged;
     
     public ItemQuantities CurrentRequirements { get; private set; } = new ItemQuantities();
     public event Action CurrentRequirementsChanged;
@@ -51,14 +55,11 @@ public class GameManager : MonoBehaviour
     public bool GoldFound { get; private set; }
     public event Action GoldFoundChanged;
     
-    public Timer LevelTimer => m_levelTimer;
-    
     public bool LevelCompleted { get; private set; }
     
     public void Awake()
     {
         m_inputReader.Pause += Pause;
-        m_levelTimer.Completed += LevelTimeOut;
     }
     
     private void Start()
@@ -77,11 +78,11 @@ public class GameManager : MonoBehaviour
             m_inputReader.DisableUIInput();
             Cursor.lockState = CursorLockMode.None;
         }
+    }
 
-        if (m_levelTimer != null)
-        {
-            m_levelTimer.Completed -= LevelTimeOut;
-        }
+    private void Update()
+    {
+        HandleTime();
     }
     
     // ======== Map Preview ========
@@ -153,14 +154,30 @@ public class GameManager : MonoBehaviour
         GemFound = false;
         GemFoundChanged?.Invoke();
         
-        m_levelTimer.Setup(LevelManager.Instance.CurrentLevelData.TimeLimit);
-        m_levelTimer.StartTimer();
-
         ProgressToNextLap();
         
         m_musicAudioSource.Stop();
         m_musicAudioSource.resource = m_gameMusic;
         m_musicAudioSource.Play();
+    }
+
+    private void HandleTime()
+    {
+        if (CurrentState is not State.Playing and not State.Paused)
+            return;
+
+        TotalTime += Time.deltaTime;
+        RemainingTime -= Time.deltaTime;
+        RemainingTimeChanged?.Invoke();
+    }
+    
+    private void LevelTimeOut()
+    {
+        if (CurrentState is not State.Playing and not State.Paused)
+            return;
+
+        LevelCompleted = false;
+        StartEndedState();
     }
 
     private void ProgressToNextLap()
@@ -170,13 +187,15 @@ public class GameManager : MonoBehaviour
 
         if (CurrentLap < LevelManager.Instance.CurrentLevelData.Laps.Count)
         {
+            RemainingTime += LevelManager.Instance.CurrentLevelData.Laps[CurrentLap].TimeAllocated;
+            RemainingTimeChanged?.Invoke();
+            
             CurrentRequirements.AddRange(LevelManager.Instance.CurrentLevelData.Laps[CurrentLap].Requirements);
             CurrentLapChanged?.Invoke();
         }
         else
         {
             LevelCompleted = true;
-            m_levelTimer.PauseTimer();
             StartEndedState();
         }
     }
@@ -249,15 +268,6 @@ public class GameManager : MonoBehaviour
         
         Time.timeScale = 1f;
     }
-
-    private void LevelTimeOut()
-    {
-        if (CurrentState is not State.Playing and not State.Paused)
-            return;
-
-        LevelCompleted = false;
-        StartEndedState();
-    }
     
     // ======== Ended ========
 
@@ -277,7 +287,7 @@ public class GameManager : MonoBehaviour
     {
         LevelManager.Instance.SaveCurrentLevelResults(
             CurrentScore, 
-            LevelManager.Instance.CurrentLevelData.TimeLimit - LevelTimer.RemainingTime,
+            TotalTime,
             GemFound,
             JamFound,
             GoldFound);

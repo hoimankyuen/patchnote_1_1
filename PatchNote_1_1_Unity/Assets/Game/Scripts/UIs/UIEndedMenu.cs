@@ -95,7 +95,7 @@ public class UIEndedMenu : MonoBehaviour
         m_itemValue.gameObject.SetActive(true);
         
         yield return new WaitForSecondsRealtime(m_betweenElementDuration);
-        float time = LevelManager.Instance.CurrentLevelData.TimeLimit - m_gameManager.LevelTimer.RemainingTime;
+        float time = m_gameManager.TotalTime;
         m_timeValue.text = $"{(int)(time/60):D2}:{(int)(time%60):D2}:{(int)(time*100%100):D2}";
         m_timeLabel.gameObject.SetActive(true);
         m_timeValue.gameObject.SetActive(true);

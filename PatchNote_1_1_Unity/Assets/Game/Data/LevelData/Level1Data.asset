@@ -19,9 +19,12 @@ MonoBehaviour:
   - Requirements:
     - Type: 206
       Quantity: 1
+    TimeAllocated: 120
   - Requirements:
     - Type: 206
       Quantity: 1
+    TimeAllocated: 120
   - Requirements:
     - Type: 206
       Quantity: 1
+    TimeAllocated: 120

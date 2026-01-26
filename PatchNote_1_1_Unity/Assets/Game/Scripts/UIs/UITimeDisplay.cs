@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using MoonlightTools.GeneralTools;
 using MoonlightTools.MathTools;
 using TMPro;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class UITimeDisplay : MonoBehaviour
     [SerializeField] private CanvasGroup m_canvasGroup;
     [SerializeField] private Image m_frame;
     [SerializeField] private TextMeshProUGUI m_text;
+    [SerializeField] private CanvasGroup m_addCanvasGroup;
+    [SerializeField] private TextMeshProUGUI m_addText;
 
     [Header("Settings")] 
     [SerializeField] private float m_alarmStartingTime;
@@ -23,6 +26,8 @@ public class UITimeDisplay : MonoBehaviour
 
     private float m_currentAlpha = 0f;
     private float m_targetAlpha = 0f;
+    
+    private float m_lastTime = 0f;
 
     private Coroutine m_textAlarmCoroutine;
     
@@ -33,7 +38,7 @@ public class UITimeDisplay : MonoBehaviour
         m_gameManager.CurrentStateChanged += OnCurrentStateChanged;
         OnCurrentStateChanged();
         
-        m_gameManager.LevelTimer.RemainingTimeChanged += OnRemainingTimeChanged;
+        m_gameManager.RemainingTimeChanged += OnRemainingTimeChanged;
         OnRemainingTimeChanged();
         
         m_currentAlpha = m_canvasGroup.alpha;
@@ -44,7 +49,7 @@ public class UITimeDisplay : MonoBehaviour
         if (m_gameManager != null)
         {
             m_gameManager.CurrentStateChanged -= OnCurrentStateChanged;
-            m_gameManager.LevelTimer.RemainingTimeChanged -= OnRemainingTimeChanged;
+            m_gameManager.RemainingTimeChanged -= OnRemainingTimeChanged;
         }
     }
 
@@ -65,7 +70,12 @@ public class UITimeDisplay : MonoBehaviour
 
     private void OnRemainingTimeChanged()
     {
-        float remainingTime = m_gameManager.LevelTimer.RemainingTime;
+        float remainingTime = m_gameManager.RemainingTime;
+        if (remainingTime > m_lastTime)
+        {
+            StartCoroutine(AddTimeSequence(remainingTime - m_lastTime));
+        }
+        m_lastTime = remainingTime;
         
         ShowTimeText(remainingTime);
         HandleTextColour(remainingTime);
@@ -122,5 +132,17 @@ public class UITimeDisplay : MonoBehaviour
             m_text.color = m_normalTextColour;
             yield return new WaitForSeconds(m_alarmInterval / 2f);
         }
+    }
+
+    private IEnumerator AddTimeSequence(float addedTime)
+    {
+        m_addText.text = $"+{(int)(addedTime/60):D2}:{(int)(addedTime%60):D2}:{(int)(addedTime*100%100):D2}";
+        m_addCanvasGroup.alpha = 1f;
+        yield return new WaitForSeconds(1f);
+        yield return CoroutineUtils.LerpWithTime(2f, t =>
+        {
+            m_addCanvasGroup.alpha = Mathfx.Coserp(1f, 0f, t);
+        });
+        m_addCanvasGroup.alpha = 0f;
     }
 }

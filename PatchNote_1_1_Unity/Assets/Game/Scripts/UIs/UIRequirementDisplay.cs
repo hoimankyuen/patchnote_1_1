@@ -45,7 +45,7 @@ public class UIRequirementDisplay : MonoBehaviour
         if (m_gameManager != null)
         {
             m_gameManager.CurrentStateChanged -= OnCurrentStateChanged;
-            m_gameManager.LevelTimer.RemainingTimeChanged -= OnCurrentLapChanged;
+            m_gameManager.CurrentLapChanged -= OnCurrentLapChanged;
             m_gameManager.CurrentRequirementsChanged -= OnCurrentRequirementsChanged;
         }
     }

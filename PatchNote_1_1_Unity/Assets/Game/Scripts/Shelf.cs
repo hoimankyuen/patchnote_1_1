@@ -124,7 +124,7 @@ public class Shelf : MonoBehaviour
             item.isKinematic = false;
             Vector3 direction = Quaternion.AngleAxis(m_launchDirectionRandomRange.Random(), m_launchDirection.up) * m_launchDirection.forward;
             float force = m_forceOffShelfRandomRange.Random();
-            item.AddForce(direction * force, ForceMode.Impulse);
+            item.linearVelocity = direction * force;
         }
     }
 }

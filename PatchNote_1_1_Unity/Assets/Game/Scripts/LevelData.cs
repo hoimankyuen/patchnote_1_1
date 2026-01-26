@@ -6,6 +6,7 @@ using UnityEngine;
 public class LapData
 {
     public List<ItemQuantity> Requirements;
+    public float TimeAllocated;
 }
 
 [CreateAssetMenu(menuName = "Data/Level Data", fileName = "LevelData")]
@@ -16,7 +17,6 @@ public class LevelData : ScriptableObject
     [Header("Main Data")]
     public string Title;
     public string SceneName;
-    public float TimeLimit;
     
     [Header("Lap Data")]
     public List<LapData> Laps;
