@@ -94,6 +94,7 @@ public class Cart : MonoBehaviour
         ControlSpeedEffect();
         ControlWheelEffects();
         ControlSpeedBlinkEffect();
+        DetectOutOfScene();
     }
     
     private void FixedUpdate()
@@ -207,6 +208,14 @@ public class Cart : MonoBehaviour
             CurrentSpeedChanged?.Invoke();
         }
     }
+
+    private void DetectOutOfScene()
+    {
+        if (transform.position.y < -20f)
+        {
+            OnResetTrolley();
+        }
+    }
     
     // ======== Appearance ========
 
@@ -250,7 +259,8 @@ public class Cart : MonoBehaviour
         {
             ParticleSystem.MainModule main = wheelEffect.main;
             Color effectColor = m_wheelEffectColor;
-            effectColor.a *= Mathf.InverseLerp(m_effectMinSpeed, m_effectMaxSpeed, CurrentSpeed);
+            bool grounded = Physics.Raycast(wheelEffect.transform.position, Vector3.down, 0.1f);
+            effectColor.a *= grounded ? Mathf.InverseLerp(m_effectMinSpeed, m_effectMaxSpeed, CurrentSpeed) : 0f;
             main.startColor = new ParticleSystem.MinMaxGradient(effectColor);
         }
     }
