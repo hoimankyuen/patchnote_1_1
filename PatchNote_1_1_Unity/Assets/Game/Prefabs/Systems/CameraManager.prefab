@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 8861674169238025255}
   - component: {fileID: 463643249242572964}
   - component: {fileID: 587375597185602833}
+  - component: {fileID: 9005577102695382583}
   - component: {fileID: 2658083565316279675}
   m_Layer: 0
   m_Name: CartVCam
@@ -382,6 +383,23 @@ MonoBehaviour:
       Wait: 0
       Time: 1
     Restrictions: 0
+--- !u!114 &9005577102695382583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681950056511294793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0
+  FrequencyGain: 2
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &2658083565316279675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1119,6 +1137,8 @@ MonoBehaviour:
   m_trolleyVCamSetup: {fileID: 7464784327217686278}
   m_trolleyVCam: {fileID: 8861674169238025255}
   m_trolleyInput: {fileID: 2658083565316279675}
+  m_trolleyShake: {fileID: 9005577102695382583}
+  m_trolleyShakeDuration: 0.25
 --- !u!1 &7464784327217686278
 GameObject:
   m_ObjectHideFlags: 0

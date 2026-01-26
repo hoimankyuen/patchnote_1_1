@@ -10,6 +10,7 @@ public class Cart : MonoBehaviour
     [Header("References")]
     [SerializeField] private InputReader m_inputReader;
     [SerializeField] private Transform m_cameraTransform;
+    [SerializeField] private CameraManager m_cameraManager;
     
     [Header("Components")]
     [SerializeField] private Rigidbody m_rigidbody;
@@ -27,6 +28,9 @@ public class Cart : MonoBehaviour
     [Header("Settings (Turning)")]
     [SerializeField] private float m_maxTurningSpeed;
     [SerializeField] private float m_turningForce;
+
+    [Header("Settings (Functionalities)")]
+    [SerializeField] private float m_collisionEffectSpeed;
 
     [Header("Settings (Appearance)")]
     [SerializeField] private float m_effectMinSpeed;
@@ -247,5 +251,9 @@ public class Cart : MonoBehaviour
             return;
         
         AudioManager.Instance.PlaySoundEffect("Trolley_impact01");
+        if (other.relativeVelocity.magnitude > m_collisionEffectSpeed)
+        {
+            m_cameraManager.ShakeTrolleyCamera();
+        }
     }
 }

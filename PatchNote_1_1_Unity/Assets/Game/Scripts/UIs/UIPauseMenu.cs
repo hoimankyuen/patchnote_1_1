@@ -23,7 +23,10 @@ public class UIPauseMenu : MonoBehaviour
         m_gameManager.CurrentStateChanged += OnCurrentStateChanged;
         m_inputReader.Resume += OnResumeInput;
         m_panel.IsVisibleChanged += OnIsVisibleChanged;
-        
+    }
+
+    private void Start()
+    {
         m_settingsMenu.Setup(SelectFirstButton);
     }
 

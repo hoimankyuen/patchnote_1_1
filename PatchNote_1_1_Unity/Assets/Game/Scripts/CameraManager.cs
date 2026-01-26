@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -15,7 +15,13 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private GameObject m_trolleyVCamSetup;
     [SerializeField] private CinemachineCamera m_trolleyVCam;
     [SerializeField] private CinemachineInputAxisController m_trolleyInput;
+    [SerializeField] private CinemachineBasicMultiChannelPerlin m_trolleyShake;
 
+    [Header("Settings")]
+    [SerializeField] private float m_trolleyShakeDuration;
+    
+    private Coroutine m_trolleyShakeCoroutine;
+    
     private void Start()
     {
         SettingsManager.Instance.SensitivityChanged += OnSensitivityChanged;
@@ -90,5 +96,22 @@ public class CameraManager : MonoBehaviour
     {
         StopAllCameras();
         m_trolleyVCamSetup.SetActive(true);
+    }
+
+    public void ShakeTrolleyCamera()
+    {
+        if (m_trolleyShakeCoroutine != null)
+        {
+            StopCoroutine(m_trolleyShakeCoroutine);
+            m_trolleyShakeCoroutine = null;
+        }
+        m_trolleyShakeCoroutine = StartCoroutine(ShakeTrolleyCameraSequence());
+    }
+
+    private IEnumerator ShakeTrolleyCameraSequence()
+    {
+        m_trolleyShake.AmplitudeGain = 2f;
+        yield return new WaitForSeconds(m_trolleyShakeDuration);
+        m_trolleyShake.AmplitudeGain = 0f;
     }
 }

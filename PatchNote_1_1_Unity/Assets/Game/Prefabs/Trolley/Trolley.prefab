@@ -35440,6 +35440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Cart
   m_inputReader: {fileID: 11400000, guid: 9f5e1caab0d20b480919c7157126729c, type: 2}
   m_cameraTransform: {fileID: 0}
+  m_cameraManager: {fileID: 0}
   m_rigidbody: {fileID: 2731846719565306082}
   m_cameraFollowTargetTransform: {fileID: 8949017635357069669}
   m_wheelColliders:
@@ -35463,6 +35464,7 @@ MonoBehaviour:
   m_deceleration: 15
   m_maxTurningSpeed: 3
   m_turningForce: 30
+  m_collisionEffectSpeed: 8
   m_effectMinSpeed: 4
   m_effectMaxSpeed: 8
   m_speedEffectColor: {r: 1, g: 1, b: 1, a: 0.2509804}

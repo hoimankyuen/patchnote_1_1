@@ -12,7 +12,6 @@ public class UIMainMenu : MonoBehaviour
     [Header("Components")]
     [SerializeField] private GameObject m_mainPage;
     [SerializeField] private Button m_mainPageFirstButton;
-
     
     // ======== Unity Events ========
 

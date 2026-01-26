@@ -26,7 +26,7 @@ public class UISettingsMenu : MonoBehaviour
         Populate();
         OnClose = onClose;
     }
-
+    
     private void Populate()
     {
         m_musicSlider.value = AudioManager.Instance.MusicVolume * 4f;
