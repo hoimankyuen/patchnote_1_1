@@ -278,7 +278,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 331.5, y: -90}
-  m_SizeDelta: {x: 663, y: 20}
+  m_SizeDelta: {x: 663, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1323498630095753432
 GameObject:
@@ -639,7 +639,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: KelvinHMY
+  m_text: 'KelvinHMY
+
+    KelvinHMY'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a78c73db7cc6b98459d24811c49c6710, type: 2}
   m_sharedMaterial: {fileID: 2026379841797840785, guid: a78c73db7cc6b98459d24811c49c6710, type: 2}
@@ -679,7 +681,7 @@ MonoBehaviour:
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 30
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -777,8 +779,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 331.5, y: -65}
-  m_SizeDelta: {x: 663, y: 30}
+  m_AnchoredPosition: {x: 531.5, y: -30}
+  m_SizeDelta: {x: 1063, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5897656412649462432
 GameObject:
@@ -1454,7 +1456,7 @@ MonoBehaviour:
   - subtitle: Game Design
     entries:
     - Kelvin Yuen (KelvinHM)
-    - Pau Gush (DrChocolates)
+    - Paul Gush (DrChocolates)
     - Caitlynn Ngai (fanngaipui)
   - subtitle: Programming
     entries:
@@ -1470,9 +1472,33 @@ MonoBehaviour:
     entries:
     - Caitlynn Ngai (fanngaipui)
   - subtitle: Music
-    entries: []
+    entries:
+    - -The Race Is On-\nMelody Ayres-Griffiths
+    - -War Of Engines-\nVitaliy Levkin
+    - -Night Racing-\nMelody Ayres-Griffiths
+    - -Competition-\nMusic Word
+    - -Action Drive Racing Music-\nViacheslav Starostin
+    - -Speed -\nMykola Sosin
   - subtitle: SFX
-    entries: []
+    entries:
+    - 'NXRT '
+    - bevibeldesign
+    - issalcake
+    - shelbyshark
+    - elliott.klein
+    - animationIsaac
+    - Universfield
+    - Clurky
+    - Dilip
+    - Rosebugg
+    - Freesound Community
+    - Koi Roylers
+    - strongbot
+    - ricniclas
+    - floraphonic
+  - subtitle: Others
+    entries:
+    - Cozy Voxel Skybox\nVoxelNest
 --- !u!224 &3895671390107898524 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3329046996744206771, guid: 62b290ec5e906f84b9bb07e3e26faae9, type: 3}
