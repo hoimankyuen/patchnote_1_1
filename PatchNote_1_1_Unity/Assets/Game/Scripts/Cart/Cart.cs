@@ -43,7 +43,10 @@ public class Cart : MonoBehaviour
     [SerializeField] private Color m_speedBlinkColor;
     [SerializeField] private float m_speedBlinkDuration;
 
-
+    private int m_groundMask;
+    private int m_groundLayer;
+    private int m_itemLayer;
+    
     private Vector2 m_MoveInput;
     private float m_RotateInput;
     
@@ -65,6 +68,7 @@ public class Cart : MonoBehaviour
     
     private void Awake()
     {
+        PreprocessLayers();
         RecordOriginalTransform();
         SetupColliders();
         Physics.ContactModifyEvent += PreventGhostCollisions;
@@ -106,6 +110,13 @@ public class Cart : MonoBehaviour
     }
     
     // ======== Physics System Handling ========
+
+    private void PreprocessLayers()
+    {
+        m_groundMask = 1 << LayerMask.NameToLayer("Ground");
+        m_groundLayer = LayerMask.NameToLayer("Ground");
+        m_itemLayer = LayerMask.NameToLayer("Item");
+    }
     
     private void SetupColliders()
     {
@@ -168,10 +179,14 @@ public class Cart : MonoBehaviour
     
     private void ApplyMovement()
     {
+        Vector3 up = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hitInfo, 2f, m_groundMask)
+            ? hitInfo.normal
+            : Vector3.up;
+        
         // Calculate movement direction relative to camera
-        Vector3 cameraForward = Vector3.ProjectOnPlane( m_cameraTransform.forward, Vector3.up).normalized;
-        Vector3 cameraRight = Vector3.ProjectOnPlane(m_cameraTransform.right, Vector3.up).normalized;
-        Vector3 moveDir = (cameraForward * m_MoveInput.y + cameraRight * m_MoveInput.x).normalized;
+        Vector3 forward = Vector3.ProjectOnPlane( m_cameraTransform.forward, up).normalized;
+        Vector3 right = Vector3.ProjectOnPlane(m_cameraTransform.right, up).normalized;
+        Vector3 moveDir = (forward * m_MoveInput.y + right * m_MoveInput.x).normalized;
             
         // Add force while limit the maximum speed
         if (m_rigidbody.linearVelocity.magnitude > m_maxSpeed)
@@ -259,7 +274,7 @@ public class Cart : MonoBehaviour
         {
             ParticleSystem.MainModule main = wheelEffect.main;
             Color effectColor = m_wheelEffectColor;
-            bool grounded = Physics.Raycast(wheelEffect.transform.position, Vector3.down, 0.1f);
+            bool grounded = Physics.Raycast(wheelEffect.transform.position, Vector3.down, 0.1f, m_groundMask);
             effectColor.a *= grounded ? Mathf.InverseLerp(m_effectMinSpeed, m_effectMaxSpeed, CurrentSpeed) : 0f;
             main.startColor = new ParticleSystem.MinMaxGradient(effectColor);
         }
@@ -301,7 +316,7 @@ public class Cart : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ground") || other.gameObject.layer == LayerMask.NameToLayer("Item")) 
+        if (other.gameObject.layer == m_groundLayer || other.gameObject.layer == m_itemLayer) 
             return;
         
         AudioManager.Instance.PlaySoundEffect("Trolley_impact01");

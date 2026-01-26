@@ -15,26 +15,41 @@ public class Item : MonoBehaviour
     [SerializeField] private float m_fallenBlinkTimes;
     
     private ItemData m_data;
-
+    
+    private int m_groundLayer;
+    private int m_cartItemLayer;
+    private int m_fallenItemLayer;
+    
     private bool m_grounded;
     
-    // ==== Unity Events ====
+    public ItemType Type => m_data.Type;
+    public float Price => m_data.Price;
+    public Sprite Icon => m_data.Icon;
+    
+    public UnityEvent OnHitGround;
 
-    public UnityEvent OnHitGround; 
-
+    private void Awake()
+    {
+        PreprocessLayers();
+    }
+    
     public void SetData(ItemData itemData)
     {
         m_data = itemData;
         m_rigidbody.mass = itemData.Mass;
     }
-
-    public ItemType Type => m_data.Type;
-    public float Price => m_data.Price;
-    public Sprite Icon => m_data.Icon;
+    
+    private void PreprocessLayers()
+    {
+        m_groundLayer = LayerMask.NameToLayer("Ground");
+        m_cartItemLayer = LayerMask.NameToLayer("CartItem");
+        m_fallenItemLayer = LayerMask.NameToLayer("FallenItem");
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer != LayerMask.NameToLayer("CartItem")) return;
+        if (other.gameObject.layer != m_cartItemLayer) 
+            return;
 
         if (other.TryGetComponent(out CartItems cartItems))
         {
@@ -44,7 +59,8 @@ public class Item : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer != LayerMask.NameToLayer("CartItem")) return;
+        if (other.gameObject.layer != m_cartItemLayer)
+            return;
 
         if (other.TryGetComponent(out CartItems cartItems))
         {
@@ -54,7 +70,7 @@ public class Item : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer != LayerMask.NameToLayer("Ground")) 
+        if (other.gameObject.layer != m_groundLayer) 
             return;
         
         OnHitGround?.Invoke();
@@ -63,7 +79,7 @@ public class Item : MonoBehaviour
             return;
 
         m_grounded = true;
-        gameObject.layer = LayerMask.NameToLayer("FallenItem");
+        gameObject.layer = m_fallenItemLayer;
         StartCoroutine(DisappearSequence());
     }
 

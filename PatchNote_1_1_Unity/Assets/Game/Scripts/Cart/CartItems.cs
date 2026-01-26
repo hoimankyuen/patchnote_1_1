@@ -17,6 +17,18 @@ public class CartItems : MonoBehaviour
     public float TotalScore { get; private set; }
     public event Action TotalScoreChanged;
     
+    private int m_goalLayer;
+    
+    private void Awake()
+    {
+        PreprocessLayers();
+    }
+
+    private void PreprocessLayers()
+    {
+        m_goalLayer = LayerMask.NameToLayer("Goal");
+    }
+    
     public void AddItem(Item item)
     {
         if (!Items.Contains(item))
@@ -52,7 +64,7 @@ public class CartItems : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer != LayerMask.NameToLayer("Goal")) 
+        if (other.gameObject.layer != m_goalLayer) 
             return;
 
         if (Items.Count <= 0)
