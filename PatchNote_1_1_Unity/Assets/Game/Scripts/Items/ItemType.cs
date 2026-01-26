@@ -89,7 +89,6 @@ public static class ItemGroupDefinition
         ItemType.Bread,
         ItemType.Can,
         ItemType.Cereal,
-        ItemType.Jam,
         ItemType.Oil,
         ItemType.Pasta
     };
@@ -97,6 +96,7 @@ public static class ItemGroupDefinition
     private static readonly ItemType[] ColdItems =
     {
         ItemType.Beef,
+        ItemType.Cheese,
         ItemType.Fish,
         ItemType.Egg,
         ItemType.Milk,
@@ -126,10 +126,10 @@ public static class ItemGroupDefinition
         ItemType.Bread,
         ItemType.Can,
         ItemType.Cereal,
-        ItemType.Jam,
         ItemType.Oil,
         ItemType.Pasta,
         ItemType.Beef,
+        ItemType.Cheese,
         ItemType.Fish,
         ItemType.Egg,
         ItemType.Milk,
