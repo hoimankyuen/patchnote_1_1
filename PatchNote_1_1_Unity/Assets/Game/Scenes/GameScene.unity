@@ -31881,9 +31881,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 333070547}
     m_Modifications:
     - target: {fileID: 4077866214284046478, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
+      propertyPath: m_cameraManager
+      value: 
+      objectReference: {fileID: 692345172}
+    - target: {fileID: 4077866214284046478, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
       propertyPath: m_cameraTransform
       value: 
       objectReference: {fileID: 1025907012}
+    - target: {fileID: 4077866214284046478, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
+      propertyPath: m_speedBlinkDuration
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4584568171044949356, guid: 6af048f2de459494b877a7170c1fd7d8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 45
@@ -33179,7 +33187,7 @@ AudioSource:
   m_GameObject: {fileID: 8777498627264532784}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5198099619932154655, guid: 6807322958b70bd43abe9223d4cf81c4, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
