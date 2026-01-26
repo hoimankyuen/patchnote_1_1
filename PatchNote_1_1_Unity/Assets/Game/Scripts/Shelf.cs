@@ -63,7 +63,7 @@ public class Shelf : MonoBehaviour
         if (m_itemList != null)
         {
             Gizmos.color = Color.red;
-            GizmoUtils.DrawText(positionAverage / positionCount, m_itemList.name);
+            GizmoUtils.DrawText(positionAverage / positionCount, m_itemList.name, FontStyle.Bold);
         }
     }
 
