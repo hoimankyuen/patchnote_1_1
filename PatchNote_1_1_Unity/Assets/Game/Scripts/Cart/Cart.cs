@@ -24,6 +24,7 @@ public class Cart : MonoBehaviour
     [SerializeField] private ParticleSystem m_speedEffect;
     [SerializeField] private List<ParticleSystem> m_wheelEffects;
     [SerializeField] private Overlay m_overlay;
+    [SerializeField] private AudioSource m_wheelAudioSource;
 
     [Header("Settings (Acceleration)")] 
     [SerializeField] private float m_maxSpeed;
@@ -42,6 +43,10 @@ public class Cart : MonoBehaviour
     [SerializeField] private float m_collisionEffectSpeed;
     [SerializeField] private Color m_speedBlinkColor;
     [SerializeField] private float m_speedBlinkDuration;
+
+    [Header("Settings (Sound)")]
+    [SerializeField] private float m_wheelSoundMaxSpeed;
+    [SerializeField] private float m_wheelSoundVolume;
 
     private int m_groundMask;
     private int m_groundLayer;
@@ -270,6 +275,7 @@ public class Cart : MonoBehaviour
 
     private void ControlWheelEffects()
     {
+        bool anyWheelGrounded = true;
         foreach (ParticleSystem wheelEffect in m_wheelEffects)
         {
             ParticleSystem.MainModule main = wheelEffect.main;
@@ -277,9 +283,19 @@ public class Cart : MonoBehaviour
             bool grounded = Physics.Raycast(wheelEffect.transform.position, Vector3.down, 0.1f, m_groundMask);
             effectColor.a *= grounded ? Mathf.InverseLerp(m_effectMinSpeed, m_effectMaxSpeed, CurrentSpeed) : 0f;
             main.startColor = new ParticleSystem.MinMaxGradient(effectColor);
+            anyWheelGrounded &= grounded;
+        }
+
+        if (anyWheelGrounded)
+        {
+            m_wheelAudioSource.volume = m_wheelSoundVolume * Mathf.InverseLerp(0, m_wheelSoundMaxSpeed, CurrentSpeed);
+        }
+        else
+        {
+            m_wheelAudioSource.volume = 0;
         }
     }
-
+    
     private void ControlSpeedBlinkEffect()
     {
         if (CurrentSpeed > m_collisionEffectSpeed)
