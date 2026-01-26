@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21a9d0b8f0373643953686d596947d3, type: 3}
   m_Name: Level2Data
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
-  Title: Discount Heap
+  Title: Chaotic Bargin
   SceneName: GameScene2
   Laps:
   - Requirements:
