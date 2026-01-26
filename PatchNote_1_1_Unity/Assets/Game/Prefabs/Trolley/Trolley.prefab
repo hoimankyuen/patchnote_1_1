@@ -35484,7 +35484,7 @@ MonoBehaviour:
   m_effectMaxSpeed: 8
   m_speedEffectColor: {r: 1, g: 1, b: 1, a: 0.2509804}
   m_wheelEffectColor: {r: 0.12941177, g: 0.17254902, b: 0.23921569, a: 0.5019608}
-  m_collisionEffectSpeed: 8
+  m_collisionEffectSpeed: 7
   m_speedBlinkColor: {r: 1, g: 1, b: 1, a: 1}
   m_speedBlinkDuration: 0.4
 --- !u!54 &2731846719565306082

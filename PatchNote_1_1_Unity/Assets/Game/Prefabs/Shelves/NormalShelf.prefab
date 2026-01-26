@@ -453,7 +453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shelf
   m_itemLibrary: {fileID: 11400000, guid: fc30496a4bbb32042b414a801322f574, type: 2}
-  m_itemList: {fileID: 11400000, guid: c3abf7ce489a9d9f79a4530106692c22, type: 2}
+  m_itemList: {fileID: 11400000, guid: a228457c777377b45a92d39c837861fd, type: 2}
   m_animator: {fileID: 6929763146164238691}
   m_itemSpawnPositions:
   - {fileID: 4849301902719020578}
@@ -465,7 +465,7 @@ MonoBehaviour:
   - {fileID: 4370370549601254106}
   - {fileID: 4845194298658450780}
   m_launchDirection: {fileID: 6929104420230116695}
-  m_forceRequiredForItemsFall: 8
+  m_forceRequiredForItemsFall: 7
   m_forceOffShelfRandomRange:
     min: 2
     max: 2.5
