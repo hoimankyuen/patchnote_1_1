@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21a9d0b8f0373643953686d596947d3, type: 3}
   m_Name: Level1Data
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
-  Title: O'Typical
+  Title: Neat n' Tidy
   SceneName: GameScene
-  TimeLimit: 180
   Laps:
   - Requirements:
     - Type: 206
