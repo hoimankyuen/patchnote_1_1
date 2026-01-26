@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,4 +6,5 @@ using UnityEngine;
 public class ItemList : ScriptableObject
 {
     public List<ItemType> ItemTypes;
+    [NonSerialized] public List<ItemType> WeightedItemTypes;
 }

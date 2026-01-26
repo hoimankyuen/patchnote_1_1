@@ -69,16 +69,35 @@ public class Shelf : MonoBehaviour
 
     private void SetupItems()
     {
+        ConstructedWeightedList();
         foreach (Transform itemSpawnPosition in m_itemSpawnPositions)
         {
-            ItemType itemType = m_itemList.ItemTypes[Random.Range(0, m_itemList.ItemTypes.Count)];
+            ItemType itemType = m_itemList.WeightedItemTypes[Random.Range(0, m_itemList.WeightedItemTypes.Count)];
             ItemData itemData = m_itemLibrary.GetItemData(itemType);
+
             GameObject newObject = Instantiate(itemData.Prefab,
                 itemSpawnPosition.position,
                 itemSpawnPosition.rotation,
                 transform);
             m_items.Add(newObject.GetComponent<Rigidbody>());
             newObject.GetComponent<Item>().SetData(itemData);
+        }
+    }
+
+    private void ConstructedWeightedList()
+    {
+        if (m_itemList.WeightedItemTypes != null)
+            return;
+        
+        m_itemList.WeightedItemTypes = new List<ItemType>();
+        foreach (ItemType itemType in m_itemList.ItemTypes)
+        {
+            ItemData itemData = m_itemLibrary.GetItemData(itemType);
+            int weight = itemData.IsBonus ? 1 : itemData.IsRare ? 8 : 16;
+            for (int i = 0; i < weight; i++)
+            {
+                m_itemList.WeightedItemTypes.Add(itemType);
+            }
         }
     }
 

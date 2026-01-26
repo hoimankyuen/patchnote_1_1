@@ -15,5 +15,6 @@ MonoBehaviour:
   Type: 303
   Price: 10
   Mass: 1.5
+  IsRare: 1
   Icon: {fileID: 21300000, guid: 728acf3f0c7aa3e45a51a13b32ec33a6, type: 3}
   Prefab: {fileID: 8597565649547528606, guid: b6a6e605f4f077848b7c057d0e08ccb3, type: 3}
