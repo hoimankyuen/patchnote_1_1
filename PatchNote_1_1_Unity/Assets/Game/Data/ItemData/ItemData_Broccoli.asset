@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemData_Broccoli
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   Type: 6
-  Price: 10
+  Price: 5
   Mass: 0.6
   IsRare: 0
   IsBonus: 0

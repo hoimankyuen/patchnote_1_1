@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ItemData_Ham
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   Type: 304
-  Price: 10
+  Price: 30
   Mass: 3
   IsRare: 1
+  IsBonus: 0
   Icon: {fileID: 21300000, guid: 08f08a395d038f34db11d1f72994bdfd, type: 3}
   Prefab: {fileID: 3336152990570190724, guid: 7da1808d81e38fb4a80bb8b7274ad436, type: 3}

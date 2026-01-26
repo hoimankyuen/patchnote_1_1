@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ItemData_Gold
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   Type: 301
-  Price: 10
+  Price: 100
   Mass: 6
   IsRare: 1
+  IsBonus: 0
   Icon: {fileID: 21300000, guid: 8b9ee5c0a8896aa44a9c90833d492e83, type: 3}
   Prefab: {fileID: 5983777506889326711, guid: c80517333398c7f4386bda946cff6fa3, type: 3}

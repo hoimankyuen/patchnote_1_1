@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ItemData_Melon
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   Type: 305
-  Price: 10
+  Price: 30
   Mass: 3
   IsRare: 1
+  IsBonus: 0
   Icon: {fileID: 21300000, guid: 26c675d9bf5ad6c4d8371adb63489aea, type: 3}
   Prefab: {fileID: 3752578987335906503, guid: 7befa399f00f64c4a8d5bd62d4c06cdd, type: 3}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemData_Jam
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   Type: 303
-  Price: 10
+  Price: 50
   Mass: 1
   IsRare: 1
   IsBonus: 0

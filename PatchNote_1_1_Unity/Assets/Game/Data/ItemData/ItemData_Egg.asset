@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemData_Egg
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   Type: 102
-  Price: 10
+  Price: 15
   Mass: 0.6
   IsRare: 0
   IsBonus: 0

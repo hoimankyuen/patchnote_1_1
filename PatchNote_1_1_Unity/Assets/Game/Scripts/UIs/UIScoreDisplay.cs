@@ -118,7 +118,7 @@ public class UIScoreDisplay : MonoBehaviour
 
     private void SetConfirmedText(float score)
     {
-        m_confirmedScoreText.text = $"{(int)Mathf.Min(score, 999999)} + (    )";
+        m_confirmedScoreText.text = $"{(int)Mathf.Min(score, 9999)} + (   )";
     }
     
     private void ChangePending(float score)
@@ -146,6 +146,6 @@ public class UIScoreDisplay : MonoBehaviour
     
     private void SetPendingText(float score)
     {
-        m_pendingScoreText.text = $"{(int)Mathf.Min(score, 9999)})";
+        m_pendingScoreText.text = $"{(int)Mathf.Min(score, 999)})";
     }
 }
