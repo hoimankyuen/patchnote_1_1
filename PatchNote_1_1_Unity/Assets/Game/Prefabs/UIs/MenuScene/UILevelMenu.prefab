@@ -56,7 +56,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 20
+  m_Spacing: 40
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -1828,7 +1828,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1195690621935387880, guid: 62b290ec5e906f84b9bb07e3e26faae9, type: 3}
       propertyPath: m_Name
-      value: UILevelMenu Variant
+      value: UILevelMenu
       objectReference: {fileID: 0}
     - target: {fileID: 1287817016646437078, guid: 62b290ec5e906f84b9bb07e3e26faae9, type: 3}
       propertyPath: m_Pivot.x

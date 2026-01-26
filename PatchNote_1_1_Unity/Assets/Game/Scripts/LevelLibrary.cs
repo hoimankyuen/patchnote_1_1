@@ -14,6 +14,9 @@ public class LevelLibrary : ScriptableObject
     
     public LevelData GetLevelInfo(int number)
     {
+        if (number < 0)
+            return null;
+        
         levelInfos[number].Number = number;
         return levelInfos[number];
     }
