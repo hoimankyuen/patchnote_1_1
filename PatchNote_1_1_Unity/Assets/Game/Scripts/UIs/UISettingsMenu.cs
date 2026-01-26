@@ -46,7 +46,7 @@ public class UISettingsMenu : MonoBehaviour
     public void OnSFXValueChanged(float value)
     {
         AudioManager.Instance.PlaySoundEffect("Button_press01");
-        AudioManager.Instance.SetMusicVolume(value / 4f); 
+        AudioManager.Instance.SetSoundVolume(value / 4f); 
     }
 
     public void OnSensitivityChanged(float value)
