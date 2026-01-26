@@ -20,7 +20,8 @@ public class LevelLibrary : ScriptableObject
 
     public LevelData GetLevelInfoOf(string sceneName)
     {
-        return levelInfos.Find(level => level.SceneName == sceneName);
+        int number = levelInfos.FindIndex(x => x.SceneName == sceneName);
+        return GetLevelInfo(number);
     }
 }
 

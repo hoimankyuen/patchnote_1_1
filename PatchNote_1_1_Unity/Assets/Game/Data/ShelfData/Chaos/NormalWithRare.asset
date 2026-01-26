@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c7c5c69a88abeb479302a20a04046de, type: 3}
   m_Name: NormalWithRare
   m_EditorClassIdentifier: Assembly-CSharp::ItemList
-  ItemTypes: c9000000ca000000cb000000cc000000cd000000ce0000002e0100002d0100002f01000032010000
+  ItemTypes: c9000000ca000000cb000000cc000000cd000000ce0000002e010000
