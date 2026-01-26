@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MoonlightTools.AudioSystem;
 using MoonlightTools.UIComponents;
 using UnityEngine;
 using UnityEngine.UI;
@@ -72,6 +73,7 @@ public class UILevelMenu : MonoBehaviour
 
     public void Back()
     {
+        AudioManager.Instance.PlaySoundEffect("Button_press01");
         m_panel.Show(false);
         OnClose?.Invoke();
     }

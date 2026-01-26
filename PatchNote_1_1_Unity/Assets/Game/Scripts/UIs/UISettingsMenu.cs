@@ -39,31 +39,37 @@ public class UISettingsMenu : MonoBehaviour
 
     public void OnMusicValueChanged(float value)
     {
+        AudioManager.Instance.PlaySoundEffect("Button_press01");
         AudioManager.Instance.SetMusicVolume(value / 4f);   
     }
 
     public void OnSFXValueChanged(float value)
     {
+        AudioManager.Instance.PlaySoundEffect("Button_press01");
         AudioManager.Instance.SetMusicVolume(value / 4f); 
     }
 
     public void OnSensitivityChanged(float value)
     {
+        AudioManager.Instance.PlaySoundEffect("Button_press01");
         SettingsManager.Instance.SetSensitivity(value / 4f);
     }
     
     public void OnVInvertValueChanged(bool value)
     {
+        AudioManager.Instance.PlaySoundEffect("Button_press01");
         SettingsManager.Instance.SetVerticalInvert(value);
     }
 
     public void OnFOVValueChanged(float value)
     {
+        AudioManager.Instance.PlaySoundEffect("Button_press01");
         SettingsManager.Instance.SetFOV(value / 4f);
     }
 
     public void OnFPSValueChanged(bool value)
     {
+        AudioManager.Instance.PlaySoundEffect("Button_press01");
         FPSManager.Instance.SetShowFPS(value);
     }
     
@@ -75,8 +81,8 @@ public class UISettingsMenu : MonoBehaviour
     
     public void Back()
     {
+        AudioManager.Instance.PlaySoundEffect("Button_press01");
         StoredDataManager.Instance.Save(DataCategory.Settings);
-        
         m_panel.Show(false);
         OnClose?.Invoke();
     }

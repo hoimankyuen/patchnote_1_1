@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MoonlightTools.AudioSystem;
 using MoonlightTools.UIComponents;
 using TMPro;
 using UnityEngine;
@@ -84,6 +85,7 @@ public class UICreditMenu : MonoBehaviour
 
     public void Back()
     {
+        AudioManager.Instance.PlaySoundEffect("Button_press01");
         m_panel.Show(false);
         OnClose?.Invoke();
     }

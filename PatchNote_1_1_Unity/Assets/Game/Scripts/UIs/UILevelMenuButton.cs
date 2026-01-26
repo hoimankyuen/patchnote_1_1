@@ -1,3 +1,4 @@
+using MoonlightTools.AudioSystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,6 +40,7 @@ public class UILevelMenuButton : MonoBehaviour
 
     public void LoadLevel()
     {
+        AudioManager.Instance.PlaySoundEffect("Button_press01");
         LevelManager.Instance.GotoLevel(m_levelData.Number);
     }
 }
