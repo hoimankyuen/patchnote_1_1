@@ -335,6 +335,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3187463792095388582, guid: 8d442263ebfba7f4c9fb494758b6319c, type: 3}
+      propertyPath: Priority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956406565378326999, guid: 8d442263ebfba7f4c9fb494758b6319c, type: 3}
+      propertyPath: Priority
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5945104621357156923, guid: 8d442263ebfba7f4c9fb494758b6319c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -378,7 +386,7 @@ PrefabInstance:
     - target: {fileID: 8358337740727955940, guid: 8d442263ebfba7f4c9fb494758b6319c, type: 3}
       propertyPath: audioLibrary
       value: 
-      objectReference: {fileID: 11400000, guid: b7c81ccada3f03d43ab4a061dfbb7a83, type: 2}
+      objectReference: {fileID: 11400000, guid: 38dae7592da673846babc34f4c4b7abc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

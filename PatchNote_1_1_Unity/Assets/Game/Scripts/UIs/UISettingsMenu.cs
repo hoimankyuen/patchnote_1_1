@@ -29,12 +29,12 @@ public class UISettingsMenu : MonoBehaviour
     
     private void Populate()
     {
-        m_musicSlider.value = AudioManager.Instance.MusicVolume * 4f;
-        m_sfxSlider.value = AudioManager.Instance.SoundVolume * 4f;
-        m_sensitivitySlider.value = SettingsManager.Instance.Sensitivity * 4f;
-        m_vInvertToggle.isOn = SettingsManager.Instance.VerticalInvert;
-        m_fovSlider.value = SettingsManager.Instance.Sensitivity * 4f;
-        m_fpsToggle.isOn = FPSManager.Instance.ShowFPS;
+        m_musicSlider.SetValueWithoutNotify(AudioManager.Instance.MusicVolume * 4f);
+        m_sfxSlider.SetValueWithoutNotify(AudioManager.Instance.SoundVolume * 4f);
+        m_sensitivitySlider.SetValueWithoutNotify(SettingsManager.Instance.Sensitivity * 4f);
+        m_vInvertToggle.SetIsOnWithoutNotify(SettingsManager.Instance.VerticalInvert);
+        m_fovSlider.SetValueWithoutNotify(SettingsManager.Instance.Sensitivity * 4f);
+        m_fpsToggle.SetIsOnWithoutNotify(FPSManager.Instance.ShowFPS);
     }
 
     public void OnMusicValueChanged(float value)

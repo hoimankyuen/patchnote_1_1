@@ -17,6 +17,7 @@ public class UIMainMenu : MonoBehaviour
 
     private void Start()
     {
+        
         m_levelMenu.Setup(SelectFirstButton);
         m_settingsMenu.Setup(SelectFirstButton);
         m_creditMenu.Setup(SelectFirstButton);
