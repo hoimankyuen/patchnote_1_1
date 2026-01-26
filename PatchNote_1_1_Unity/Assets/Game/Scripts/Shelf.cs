@@ -42,26 +42,11 @@ public class Shelf : MonoBehaviour
             Gizmos.color = Color.green;
             GizmoUtils.DrawArrow(
                 m_launchDirection.position,
-                m_launchDirection.position + m_launchDirection.forward * 1f, 
-                0.5f, 
+                m_launchDirection.position + m_launchDirection.forward * 1f,
+                0.5f,
                 m_launchDirection.up);
         }
-        
-        Gizmos.color = Color.yellow;
-        foreach (Transform itemSpawnPosition in m_itemSpawnPositions)
-        {
-            if (itemSpawnPosition != null)
-            {
-                Gizmos.DrawWireSphere(itemSpawnPosition.position, 0.1f);
-            }
-        }
-    }
 
-    private void OnDrawGizmosSelected()
-    {
-        if (m_itemSpawnPositions.Count <= 0 || m_itemList == null || m_itemList.ItemTypes.Count <= 0)
-            return;
-        
         Gizmos.color = Color.yellow;
         Vector3 positionAverage = Vector3.zero;
         int positionCount = 0;
@@ -69,18 +54,16 @@ public class Shelf : MonoBehaviour
         {
             if (itemSpawnPosition != null)
             {
+                Gizmos.DrawWireSphere(itemSpawnPosition.position, 0.1f);
                 positionAverage += itemSpawnPosition.position;
                 positionCount++;
             }
         }
-        if (positionCount > 0)
+
+        if (m_itemList != null)
         {
-            string text = "";
-            for (int i = 0; i < m_itemList.ItemTypes.Count; i++)
-            {
-                text += $"{m_itemList.ItemTypes[i].ToString()}{(i < m_itemList.ItemTypes.Count - 1 ? "," : "")}";
-            }
-            GizmoUtils.DrawText(positionAverage / positionCount, text);
+            Gizmos.color = Color.red;
+            GizmoUtils.DrawText(positionAverage / positionCount, m_itemList.name);
         }
     }
 
