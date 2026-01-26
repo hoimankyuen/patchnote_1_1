@@ -1113,9 +1113,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f6ca586bacf9a4ba22901562a8a427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraManager
+  m_cinemachineBrain: {fileID: 8462436475704495131}
   m_previewVCamSetup: {fileID: 5121406589129966190}
   m_splineDolly: {fileID: 6079634370885589278}
   m_trolleyVCamSetup: {fileID: 7464784327217686278}
+  m_trolleyVCam: {fileID: 8861674169238025255}
+  m_trolleyInput: {fileID: 2658083565316279675}
 --- !u!1 &7464784327217686278
 GameObject:
   m_ObjectHideFlags: 0

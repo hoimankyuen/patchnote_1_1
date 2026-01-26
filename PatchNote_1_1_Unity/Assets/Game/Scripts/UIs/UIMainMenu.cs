@@ -4,65 +4,55 @@ using UnityEngine.UI;
 
 public class UIMainMenu : MonoBehaviour
 {
-    public enum Page
-    {
-        Main,
-        Settings,
-        Levels,
-        Credits
-    }
-
-    [Header("Components (Main Page)")]
+    [Header("References")] 
+    [SerializeField] private UILevelMenu m_levelMenu;
+    [SerializeField] private UISettingsMenu m_settingsMenu;
+    [SerializeField] private UICreditMenu m_creditMenu;
+    
+    [Header("Components")]
     [SerializeField] private GameObject m_mainPage;
     [SerializeField] private Button m_mainPageFirstButton;
 
+    
     // ======== Unity Events ========
 
     private void Start()
     {
-        SwitchPage(Page.Main);
+        m_levelMenu.Setup(SelectFirstButton);
+        m_settingsMenu.Setup(SelectFirstButton);
+        m_creditMenu.Setup(SelectFirstButton);
+        
+        SelectFirstButton();
     }
 
-    // ======== General Functionalities ========
+    // ======== Functionalities ========
 
-    private void SwitchPage(Page page)
+    private void SelectFirstButton()
     {
-        switch (page)
-        {
-            case Page.Main:
-                ShowMainPage();
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void HideAllPages()
-    {
-        m_mainPage.SetActive(false);
-    }
-    
-    // ======== Main Page ========
-
-    private void ShowMainPage()
-    {
-        m_mainPage.SetActive(true);
         m_mainPageFirstButton.Select();
     }
-
-    public void MainPageStart()
+    
+    public void StartGame()
     {
         AudioManager.Instance.PlaySoundEffect("Button_press01");
         LevelManager.Instance.GotoLevel(0);
     }
 
-    public void MainPageSettings()
+    public void ShowLevelMenu()
     {
         AudioManager.Instance.PlaySoundEffect("Button_press01");
+        m_levelMenu.Show();
+    }
+    
+    public void ShowSettingsMenu()
+    {
+        AudioManager.Instance.PlaySoundEffect("Button_press01");
+        m_settingsMenu.Show();
     }
 
-    public void MainPageCredits()
+    public void ShowCreditsMenu()
     {
         AudioManager.Instance.PlaySoundEffect("Button_press01");
+        m_creditMenu.Show();
     }
 }
