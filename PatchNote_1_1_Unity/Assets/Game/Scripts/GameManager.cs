@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using Input;
 using MoonlightTools.AudioSystem;
-using MoonlightTools.GeneralTools;
-using MoonlightTools.StoredDataSystem;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -182,7 +180,8 @@ public class GameManager : MonoBehaviour
             return;
 
         m_musicAudioSource.Stop();
-        AudioManager.Instance.PlaySoundEffect("Level_fail02");
+        AudioManager.Instance.PlaySoundEffect("Whistle02");
+        AudioManager.Instance.PlaySoundEffect("Level_fail01");
         
         LevelCompleted = false;
         StartEndedState();
@@ -210,6 +209,7 @@ public class GameManager : MonoBehaviour
         else
         {
             m_musicAudioSource.Stop();
+            AudioManager.Instance.PlaySoundEffect("Whistle02");
             AudioManager.Instance.PlaySoundEffect("Level_win01");
             LevelCompleted = true;
             StartEndedState();
@@ -247,7 +247,7 @@ public class GameManager : MonoBehaviour
         
         CurrentItemCount += items.Count;
         CurrentItemCountChanged?.Invoke();
-
+        
         // check for lap completion
         if (CurrentRequirements.TrueForAll(x => x.Quantity <= 0))
         {
