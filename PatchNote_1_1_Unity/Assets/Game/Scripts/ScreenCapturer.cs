@@ -8,8 +8,9 @@ public class ScreenCapturer : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Camera m_camera;
-    
+
     [Header("Settings")]
+    [SerializeField] private string m_folderPath;
     [SerializeField] private int2 m_captureResolution;
     [SerializeField] private List<GameObject> m_modelsToCaptures;
     
@@ -25,21 +26,33 @@ public class ScreenCapturer : MonoBehaviour
             //antiAliasing = 4
         };
         m_camera.targetTexture = tempRT;
-        
-        foreach (GameObject model in m_modelsToCaptures)
-        {  
-            model.SetActive(false);
+
+        if (m_modelsToCaptures.Count > 0)
+        {
+            foreach (GameObject model in m_modelsToCaptures)
+            {
+                model.SetActive(false);
+            }
+
+            foreach (GameObject model in m_modelsToCaptures)
+            {
+                model.SetActive(true);
+                yield return new WaitForSeconds(0.1f);
+                Capture(model.name);
+                yield return new WaitForSeconds(0.1f);
+                model.SetActive(false);
+            }
+            
+            foreach (GameObject model in m_modelsToCaptures)
+            {
+                model.SetActive(true);
+            }
+        }
+        else
+        {
+            Capture("Scene");
         }
 
-        foreach (GameObject model in m_modelsToCaptures)
-        {
-            model.SetActive(true);
-            yield return new WaitForSeconds(0.1f);
-            Capture(model.name);
-            yield return new WaitForSeconds(0.1f);
-            model.SetActive(false);
-        }
-        
         m_camera.targetTexture = null;
         Destroy(tempRT);
         
@@ -61,7 +74,19 @@ public class ScreenCapturer : MonoBehaviour
         byte[] Bytes = image.EncodeToPNG();
         Destroy(image);
 
-        string path = Application.dataPath + "/Captures/" + targetName + ".png";
+        string folderPath = m_folderPath;
+        if (string.IsNullOrWhiteSpace(m_folderPath))
+        {
+            folderPath = Application.dataPath + "/Captures/";
+        }
+        else
+        {
+            if (!folderPath.EndsWith("/"))
+            {
+                folderPath += "/";
+            }
+        }
+        string path = folderPath + targetName + ".png";
         File.WriteAllBytes(path, Bytes);
         Debug.Log($"Saved image to {path}");
     }

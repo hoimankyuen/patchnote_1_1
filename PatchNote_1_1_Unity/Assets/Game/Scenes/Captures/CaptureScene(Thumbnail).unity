@@ -566,7 +566,7 @@ Light:
   serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1.1
+  m_Intensity: 1.42
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1264,9 +1264,7 @@ MonoBehaviour:
   m_captureResolution:
     x: 1280
     y: 720
-  m_modelsToCaptures:
-  - {fileID: 1997775930}
-  - {fileID: 1041282263}
+  m_modelsToCaptures: []
 --- !u!1001 &538172033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1913,13 +1911,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 994204753}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.17298375, y: 0.59308475, z: 0.37309563, w: -0.69218993}
+  m_LocalRotation: {x: 0.27692896, y: 0.3724106, z: 0.5315794, w: -0.7085507}
   m_LocalPosition: {x: 2.916, y: 3.1355028, z: 0.723}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1536840143}
-  m_LocalEulerAnglesHint: {x: -11.717, y: 283.986, z: -47.481}
+  m_LocalEulerAnglesHint: {x: -52.033, y: 337.712, z: -62.773}
 --- !u!108 &994204755
 Light:
   m_ObjectHideFlags: 0
@@ -1931,7 +1929,7 @@ Light:
   serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1.1
+  m_Intensity: 0.73
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -4308,7 +4306,7 @@ Light:
   serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1.1
+  m_Intensity: 1.07
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
